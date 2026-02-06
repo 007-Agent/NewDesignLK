@@ -1,0 +1,85 @@
+.header__content {
+  width: 100%;
+  /* text-align: center; */
+  height: 162px;
+
+  padding-top: 30px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(255, 255, 255, 0)
+  );
+}
+.header__layuot {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.button__menu {
+  /* fixed */
+  top: 1.5rem; /* top-6 (6 * 0.25rem = 1.5rem) */
+  left: 1.5rem; /* left-6 */
+  z-index: 50; /* z-50 */
+
+  background-color: var(--color-teal-500); /* bg-blue-500 */
+  color: white; /* text-white */
+
+  padding: 0.75rem; /* p-3 (3 * 0.25rem = 0.75rem) */
+  border-radius: 9999px; /* rounded-full */
+
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1); /* shadow-lg */
+
+  transition-property: background-color;
+  transition-duration: 150ms; /* transition-colors */
+
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.button__menu:hover {
+  background-color: #2563eb; /* hover:bg-blue-600 */
+}
+.header-btn-login {
+  padding: 0.5rem 1.5rem;
+  color: #374151;
+  font-size: 19px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.header-btn-login:hover {
+  color: #111827;
+}
+.header-btn-appointment {
+  padding: 0.75rem 2rem;
+  background-color: #14b8a6;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.header-btn-appointment:hover {
+  background-color: #0d9488;
+}
+
+.header-btn-register {
+  padding: 0.5rem 1.5rem;
+  background-color: #14b8a6;
+  font-size: 19px;
+  color: white;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.header-btn-register:hover {
+  background-color: #0d9488;
+}
