@@ -1,8 +1,10 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { PatientDetailPage } from '../PatientDetail/PatientDetailPage';
-
-
-export function PatientDetailPageWrapper() {
+import { PatientFull } from '../PatientFull/PatientFull';
+import { Usernow } from '../../../redux/authSlice';
+interface Wrapper {
+  user: Usernow;
+}
+export function PatientDetailPageWrapper({user} : Wrapper) {
   // 1. Получаем данные из состояния навигации
   const location = useLocation();
 
@@ -10,7 +12,7 @@ export function PatientDetailPageWrapper() {
   console.log(fullName, "FULL")
 
   const patient = location.state?.patient 
-  
+  console.log(patient, "PERERE")
 
  
   
@@ -25,4 +27,4 @@ export function PatientDetailPageWrapper() {
     );
   }
   
- return <PatientDetailPage patient={patient} fullName={fullName} />}
+ return <PatientFull patient={patient} user={user} />}

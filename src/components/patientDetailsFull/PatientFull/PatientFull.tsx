@@ -1,21 +1,35 @@
 import { useState } from 'react';
 import { User, ArrowLeft, FileText, Syringe, Activity, Eye, HeartPulse, Calendar } from 'lucide-react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
-import "./PatientDetailPage.scss"
-
+import "./Patientfull.scss"
+import { Visits } from './Visits/Visits';
+import { Usernow } from '../../../redux/authSlice';
 interface Patient {
-  fullName: string;
-  gender: string;
-  dateOfBirth: string;
-  medicalCardNumber: string;
+  address: string;
+  age: string;
+  birthday: string;         // дата рождения
+  branchId: number;
+  contacts: string;
+  father: string;
+  fatherPhone: string;
+  fio: string;              // полное имя
+  firstName: string;
+  gender: string;            // "жен"
+  genderId: number;          // 2
+  id: number;
+  lastName: string | null;
+  mother: string;
+  motherPhone: string;
+  nib: string;               // номер медкарты
 }
+
 
 interface PatientDetailPageProps {
   patient: Patient;
-  fullName: string | undefined;
+  user: Usernow;
 }
 
-export function PatientDetailPage({ patient, fullName }: PatientDetailPageProps) {
+export function PatientFull({ patient, user }: PatientDetailPageProps) {
   const [activeTab, setActiveTab] = useState('sickLeave');
 //     const { fullName } = useParams<{ fullName: string }>();
 //  const location = useLocation();
@@ -30,7 +44,7 @@ export function PatientDetailPage({ patient, fullName }: PatientDetailPageProps)
     { id: 'laboratory', label: 'Лабораторные исследования', icon: Activity },
     { id: 'monitoring', label: 'Активное наблюдение', icon: Eye },
     { id: 'examination', label: 'Диспансеризация', icon: HeartPulse },
-    { id: 'appointments', label: 'Приёмы и услуги', icon: Calendar },
+    { id: 'visits', label: 'Приёмы и услуги', icon: Calendar },
   ];
 
   // Mock data
@@ -80,12 +94,12 @@ export function PatientDetailPage({ patient, fullName }: PatientDetailPageProps)
             <User className={patient.gender === 'Мужской' ? 'male' : 'female'} />
           </div>
           <div className="patient-detail-info">
-            <h2>{patient.fullName}</h2>
+            {/* <h2>{patient.fullName}</h2>
             <div className="patient-detail-meta">
               <span>Пол: {patient.gender}</span>
               <span>Дата рождения: {patient.dateOfBirth}</span>
               <span>Мед. карта: {patient.medicalCardNumber}</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -230,27 +244,9 @@ export function PatientDetailPage({ patient, fullName }: PatientDetailPageProps)
         )}
 
         {/* Приёмы и услуги */}
-        {activeTab === 'appointments' && (
+        {activeTab === 'visits' && (
           <div>
-            <h3>Приёмы и услуги</h3>
-            <div className="patient-items-list">
-              {appointments.map((appt, index) => (
-                <div key={index} className="patient-item">
-                  <div className="patient-item-header">
-                    <div>
-                      <p className="patient-item-title">{appt.service}</p>
-                      <p className="patient-item-description">Врач: {appt.doctor}</p>
-                      <p className="patient-item-meta">
-                        {appt.date} в {appt.time}
-                      </p>
-                    </div>
-                    <span className={`patient-status-badge ${appt.status === 'Завершён' ? 'green' : 'blue'}`}>
-                      {appt.status}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <Visits patient={patient} user={user}/>
           </div>
         )}
       </div>

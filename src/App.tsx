@@ -27,9 +27,9 @@ export default function App() {
         <Route path="/" element={<Navigate to="/doctors" replace />} />
           <Route path="/doctors" element={<AppointmentsPage />} />
           <Route path="/profile" element={<ProfilePage user={user}/>} />
-          <Route path="/patients" element={<PatientsPage />} />
+          <Route path="/patients" element={<PatientsPage user={user}/>} />
           <Route path="/schedule" element={<SchedulePage />} />
-          <Route path="/patientsfullinfo/:fullName" element={<PatientDetailPageWrapper />} />
+          <Route path="/patientsfullinfo/:fullName" element={<PatientDetailPageWrapper user={user}/>}  />
         </Route>
       </Routes>
     </>

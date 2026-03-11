@@ -1,25 +1,30 @@
-import { PatientCard } from '../components/PatientCard/PatientCard';
+import React, {useEffect, useState} from 'react';
+import { PatientCard } from './PatientCard/PatientCard';
 import { Users } from 'lucide-react';
+import { Usernow } from '../redux/authSlice';
 import './patientsPage.scss'
+import axios from 'axios';
 // interface PatientsPageProps {
 //   onPatientSelect: (patient: any) => void;
 // }
-
-export function PatientsPage() {
-  const patients = [
-    {
-      fullName: 'Иванова Мария Ивановна',
-      gender: 'Женский',
-      dateOfBirth: '10.05.2012',
-      medicalCardNumber: 'МК-2012-00456',
-    },
-    {
-      fullName: 'Петров Александр Сергеевич',
-      gender: 'Мужской',
-      dateOfBirth: '22.08.2014',
-      medicalCardNumber: 'МК-2014-00892',
-    },
-  ];
+interface ProfilePatientsProps {
+  user: Usernow;
+}
+export function PatientsPage({user} : ProfilePatientsProps) {
+  const [patients, setPatients] = useState([]);
+ 
+   const fetchPatients = async () => {
+   
+    try {
+      const response = await axios.post('/api/office/patient/list', {});
+      setPatients(response.data.data);
+    } catch (err) {
+      console.log(err)
+    } 
+  };
+  useEffect(() => {
+    fetchPatients();
+  }, []);
 
   return (
     <div>
@@ -37,11 +42,9 @@ export function PatientsPage() {
         {patients.map((patient, index) => (
           <PatientCard
             key={index}
+            user={user}
             patient={patient}
-            fullName={patient.fullName}
-            gender={patient.gender}
-            dateOfBirth={patient.dateOfBirth}
-            medicalCardNumber={patient.medicalCardNumber}
+           
            
           />
         ))}
