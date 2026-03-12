@@ -23,7 +23,7 @@ interface PatientFullData {
 }
 interface PatientCardProps {
   patient: PatientFullData;
-  user: Usernow; // если нужен – убедись, что User импортирован или объявлен
+  user: Usernow | null; // если нужен – убедись, что User импортирован или объявлен
 }
 
 export function PatientCard({ patient, user }: PatientCardProps) {

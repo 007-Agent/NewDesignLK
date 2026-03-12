@@ -4,13 +4,12 @@ import { Users } from 'lucide-react';
 import { Usernow } from '../redux/authSlice';
 import './patientsPage.scss'
 import axios from 'axios';
-// interface PatientsPageProps {
-//   onPatientSelect: (patient: any) => void;
-// }
+
 interface ProfilePatientsProps {
-  user: Usernow;
+  user: Usernow | null;
 }
 export function PatientsPage({user} : ProfilePatientsProps) {
+  console.log(user)
   const [patients, setPatients] = useState([]);
  
    const fetchPatients = async () => {
@@ -22,9 +21,13 @@ export function PatientsPage({user} : ProfilePatientsProps) {
       console.log(err)
     } 
   };
+  
   useEffect(() => {
+    if(user !== null) {
     fetchPatients();
-  }, []);
+  }
+    
+  }, [user]);
 
   return (
     <div>

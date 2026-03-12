@@ -4,7 +4,7 @@ import { Header } from './components/Header/Header';
 import { ProfilePage } from './components/ProfilePage';
 import { PatientsPage } from './components/PatientsPage';
 import { SchedulePage } from './components/SchedulePage';
-import { AppointmentsPage } from './components/AppointmentsPage';
+import { AppointmentsPage } from './Appointments/AppointmentsPage';
 import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { PatientDetailPageWrapper } from './components/patientDetailsFull/PatientWrapperDetail/PatientDetailWrapper';
@@ -25,7 +25,7 @@ export default function App() {
         {/* Все маршруты обернуты в Layout */}
         <Route element={<Layout />}>
         <Route path="/" element={<Navigate to="/doctors" replace />} />
-          <Route path="/doctors" element={<AppointmentsPage />} />
+          <Route path="/doctors" element={<AppointmentsPage user={user}/>} />
           <Route path="/profile" element={<ProfilePage user={user}/>} />
           <Route path="/patients" element={<PatientsPage user={user}/>} />
           <Route path="/schedule" element={<SchedulePage />} />

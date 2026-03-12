@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { User, ArrowLeft, FileText, Syringe, Activity, Eye, HeartPulse, Calendar } from 'lucide-react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import Medicaments from './Medicaments/Medicaments';
 import "./Patientfull.scss"
 import { Visits } from './Visits/Visits';
 import { Usernow } from '../../../redux/authSlice';
-interface Patient {
+import Contracts from './Contracts/Contracts';
+export interface Patient {
   address: string;
   age: string;
   birthday: string;         // дата рождения
@@ -26,7 +28,7 @@ interface Patient {
 
 interface PatientDetailPageProps {
   patient: Patient;
-  user: Usernow;
+  user: Usernow | null;
 }
 
 export function PatientFull({ patient, user }: PatientDetailPageProps) {
@@ -34,19 +36,25 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
 //     const { fullName } = useParams<{ fullName: string }>();
 //  const location = useLocation();
   const navigate = useNavigate();
-  
+   const formatDate = (dateStr: string) => {
+  const [year, month, day] = dateStr.split('-');
+  return `${day}.${month}.${year}`;
+};
+
   // Пытаемся получить пациента из state
   // const patient1 = location.state?.patient;
 
   const tabs = [
+    { id: 'contracts', label: 'Договоры', icon: FileText },
     { id: 'sickLeave', label: 'Больничные листы', icon: FileText },
     { id: 'vaccination', label: 'Вакцинация', icon: Syringe },
+    { id: 'terrapy', label: 'Антибактериальная терапия', icon: Syringe },
     { id: 'laboratory', label: 'Лабораторные исследования', icon: Activity },
     { id: 'monitoring', label: 'Активное наблюдение', icon: Eye },
     { id: 'examination', label: 'Диспансеризация', icon: HeartPulse },
     { id: 'visits', label: 'Приёмы и услуги', icon: Calendar },
   ];
-
+  
   // Mock data
   const sickLeaves = [
     { id: '001', dateFrom: '10.01.2024', dateTo: '17.01.2024', diagnosis: 'ОРВИ', status: 'Закрыт' },
@@ -94,12 +102,12 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
             <User className={patient.gender === 'Мужской' ? 'male' : 'female'} />
           </div>
           <div className="patient-detail-info">
-            {/* <h2>{patient.fullName}</h2>
+            <h2>{patient.fio}</h2>
             <div className="patient-detail-meta">
               <span>Пол: {patient.gender}</span>
-              <span>Дата рождения: {patient.dateOfBirth}</span>
-              <span>Мед. карта: {patient.medicalCardNumber}</span>
-            </div> */}
+              <span>Дата рождения: {formatDate(patient.birthday)}</span>
+              <span>Мед. карта: {patient.nib}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -125,6 +133,13 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
 
       {/* Tab Content */}
       <div className="patient-tab-content">
+
+       {activeTab === 'contracts' && (
+          <div>
+            <Contracts patient={patient} user={user}/>
+          </div>
+        )}
+
         {/* Больничные листы */}
         {activeTab === 'sickLeave' && (
           <div>
@@ -172,6 +187,13 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
                 </div>
               ))}
             </div>
+          </div>
+        )}
+
+
+         {activeTab === 'terrapy' && (
+          <div>
+            <Medicaments patient={patient} user={user}/>
           </div>
         )}
 

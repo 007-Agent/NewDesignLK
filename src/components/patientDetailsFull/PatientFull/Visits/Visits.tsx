@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
+import {RefreshCw} from 'lucide-react'
 import { Usernow } from '../../../../redux/authSlice';
 import { Visit } from './Visit/Visit';
 import { Visited } from './Visit/Visit';
@@ -27,7 +28,7 @@ interface Patient {
 
 interface PatientDetailPageProps {
   patient: Patient;
-  user: Usernow;
+  user: Usernow | null;
  
 }
 export function Visits ({patient, user} :PatientDetailPageProps ) {
@@ -59,6 +60,11 @@ export function Visits ({patient, user} :PatientDetailPageProps ) {
             setWait(false)
           }
         })
+        .finally(() => {
+          if (isMounted.current) {
+            setWait(false)                          // выключаем спиннер
+          }
+          })
     }
   }
   const useMessageEffect = (info : any) => {
@@ -108,28 +114,36 @@ export function Visits ({patient, user} :PatientDetailPageProps ) {
     }
   }
     return (
-      <div>
-            <div className="patient-items-list">{visitItems}</div>
-
-      <div className='pajer_list'>
-        <button
-        className='button_click'
-          onClick={goToPreviousPage}
-          disabled={currentPage === 1}
-          >
-          ← Предыдущая
-        </button>
-        <span>
-          Страница {currentPage} из {totalPages}
-        </span>
-        <button
-         className='button_click'
-          onClick={goToNextPage}
-          disabled={currentPage === totalPages || totalPages === 0}>
-          Следующая →
-        </button>
-      </div>
-      </div>
-    )
+    <div>
+      {wait ? (
+        // Показываем спиннер по центру, пока идёт загрузка
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '200px',
+          
+        }}>
+           
+          <RefreshCw className='spinner'/>
+        </div>
+      ) : (
+        <>
+          <div className="patient-items-list">{visitItems}</div>
+          {totalPages > 0 && (
+            <div className='pajer_list'>
+              <button className='button_click' onClick={goToPreviousPage} disabled={currentPage === 1}>
+                ← Предыдущая
+              </button>
+              <span>Страница {currentPage} из {totalPages}</span>
+              <button className='button_click' onClick={goToNextPage} disabled={currentPage === totalPages}>
+                Следующая →
+              </button>
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  )
      
 }

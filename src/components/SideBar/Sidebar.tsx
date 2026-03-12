@@ -25,7 +25,7 @@ export function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps)
   const handleExitUser = () => {
     dispatch(logoutUser());
     dispatch(setMenuOpen(false));
-    
+ window.location.reload();
   };
   return (
     <>

@@ -2,7 +2,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { PatientFull } from '../PatientFull/PatientFull';
 import { Usernow } from '../../../redux/authSlice';
 interface Wrapper {
-  user: Usernow;
+  user: Usernow | null;
 }
 export function PatientDetailPageWrapper({user} : Wrapper) {
   // 1. Получаем данные из состояния навигации
