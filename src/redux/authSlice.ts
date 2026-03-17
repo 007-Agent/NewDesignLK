@@ -57,11 +57,17 @@ export const loginUser = createAsyncThunk<
     }
   }
 );
-export const checkAuth  = createAsyncThunk('auth/check', async () => {
-  const response = await axios.get('/api/login/check');
-  return response.data.data;
-  
-})
+
+const savedUser = localStorage.getItem('user');
+const initialState: AuthState = {
+  user: savedUser ? JSON.parse(savedUser) : null,
+  status: 'idle',
+  checkStatus: 'idle',
+  logoutStatus: 'idle',
+  error: null,
+  menuOpen: false,
+};
+
 
 export const logoutUser = createAsyncThunk(
   'auth/logout',
@@ -78,14 +84,7 @@ export const logoutUser = createAsyncThunk(
 
 const authSlice = createSlice({
   name: 'auth',
- initialState: {
-    user: null,
-    status: 'idle',
-    checkStatus: 'idle',
-    logoutStatus: 'idle',
-    error: null,
-    menuOpen: false,
-  } as AuthState,
+ initialState,
   reducers: {
     logout: (state) => {
       state.user = null;
@@ -103,29 +102,21 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.user = action.payload;
+        localStorage.setItem('user', JSON.stringify(action.payload));
         
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload as string || 'Ошибка входа';
       })
-      .addCase(checkAuth.pending, (state) => {
-        state.checkStatus = 'loading';
-      })
-      .addCase(checkAuth.fulfilled, (state, action) => {
-        state.checkStatus = 'succeeded';
-        state.user = action.payload; // Устанавливаем пользователя при успешной проверке
-      })
-      .addCase(checkAuth.rejected, (state, action) => {
-        state.checkStatus = 'failed';
-        state.error = action.payload as string || 'Ошибка проверки';
-      })
+      
       .addCase(logoutUser.pending, (state) => {
         state.logoutStatus = 'loading'; // Устанавливаем статус в loading
       })
       .addCase(logoutUser.fulfilled, (state) => {
         state.logoutStatus = 'succeeded'; // Устанавливаем статус в succeeded
         state.user = null; // Сбрасываем пользователя
+        localStorage.removeItem('user');
       })
       .addCase(logoutUser.rejected, (state, action) => {
         state.logoutStatus = 'failed'; // Устанавливаем статус в failed

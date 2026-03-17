@@ -109,6 +109,9 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
               <span>Мед. карта: {patient.nib}</span>
             </div>
           </div>
+          <button className="header-btn-appointment">
+          Записаться к врачу!
+        </button>
         </div>
       </div>
 

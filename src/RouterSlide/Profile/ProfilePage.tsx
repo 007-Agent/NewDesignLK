@@ -1,21 +1,35 @@
 import { User, Mail, Phone, Calendar, Users } from 'lucide-react';
-import { Usernow } from '../redux/authSlice';
+// import { Usernow } from '../redux/authSlice';
+import './profile.scss'
+
+interface Profile {
+  id: number;
+uuid: string;
+firstName: string;
+lastName: string;
+middleName: string;
+birthday: string;
+email: string;
+phone: string;
+username: string | null;
+name: string | null;
+polId: number;
+stateId: number;
+authorities: string[];
+captcha: any;
+agreed: number;
+}
 interface ProfilePageProps {
-  user: Usernow | null;
+  user: Profile | null;
 }
 export function ProfilePage({ user }: ProfilePageProps) {
-  const userData = {
-    fullName: 'Иванов Иван Иванович',
-    email: 'ivanov@example.com',
-    phone: '+7 (495) 123-45-67',
-    dateOfBirth: '15.03.1985',
-    gender: 'Мужской',
-    children: [
-      { name: 'Иванова Мария Ивановна', age: 12 },
-      { name: 'Иванов Петр Иванович', age: 8 },
-    ],
-  };
+  console.log(user)
 
+  const formatDate = (dateStr: string) => {
+  const [year, month, day] = dateStr.split('-');
+  return `${day}.${month}.${year}`;
+};
+ 
   return (
     <div className="max-w-4xl">
       <h2 className="mb-8">Профиль пользователя</h2>
@@ -27,8 +41,10 @@ export function ProfilePage({ user }: ProfilePageProps) {
             <User className="w-12 h-12 text-white" />
           </div>
           <div>
-            <h3 className="mb-1">{userData.fullName}</h3>
-            <p className="text-gray-500">Пациент</p>
+           <h3 className="Family__type">
+  {user?.lastName} {user?.firstName} {user?.middleName}
+</h3>
+            
           </div>
         </div>
 
@@ -44,7 +60,7 @@ export function ProfilePage({ user }: ProfilePageProps) {
               </div>
               <div>
                 <p className="text-sm text-gray-500 mb-1">Email</p>
-                <p className="text-gray-900">{userData.email}</p>
+                <p className="text-gray-900">{user?.email}</p>
               </div>
             </div>
 
@@ -55,7 +71,7 @@ export function ProfilePage({ user }: ProfilePageProps) {
               </div>
               <div>
                 <p className="text-sm text-gray-500 mb-1">Телефон</p>
-                <p className="text-gray-900">{userData.phone}</p>
+                <p className="text-gray-900">{user?.phone}</p>
               </div>
             </div>
 
@@ -66,7 +82,7 @@ export function ProfilePage({ user }: ProfilePageProps) {
               </div>
               <div>
                 <p className="text-sm text-gray-500 mb-1">Дата рождения</p>
-                <p className="text-gray-900">{userData.dateOfBirth}</p>
+                <p className="text-gray-900">{formatDate(user!.birthday)}</p>
               </div>
             </div>
 
@@ -77,40 +93,16 @@ export function ProfilePage({ user }: ProfilePageProps) {
               </div>
               <div>
                 <p className="text-sm text-gray-500 mb-1">Пол</p>
-                <p className="text-gray-900">{userData.gender}</p>
+                <p className="text-gray-900">
+  {user?.polId === 1 ? 'Мужской' : 'Женский'}
+</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Children */}
-        <div className="pt-8 border-t border-gray-200">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center">
-              <Users className="w-5 h-5 text-orange-600" />
-            </div>
-            <h3>Дети</h3>
-          </div>
-
-          <div className="space-y-4">
-            {userData.children.map((child, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                    <User className="w-5 h-5 text-gray-600" />
-                  </div>
-                  <div>
-                    <p className="text-gray-900">{child.name}</p>
-                    <p className="text-sm text-gray-500">{child.age} лет</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      
 
         {/* Edit Button */}
         <div className="mt-8 pt-8 border-t border-gray-200">

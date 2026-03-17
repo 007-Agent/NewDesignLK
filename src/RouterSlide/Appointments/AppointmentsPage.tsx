@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react'
 import { Calendar, Clock, User, MapPin, FileText } from 'lucide-react';
 import {RefreshCw} from 'lucide-react'
 import './AppointmentsPage.scss';
-import { Usernow } from '../redux/authSlice';
+import { Usernow } from '../../redux/authSlice';
 import axios from 'axios';
 import Reception from './Reception/Reception';
 interface AppointmentsProps {
@@ -11,6 +11,7 @@ interface AppointmentsProps {
 }
 export function AppointmentsPage(props : AppointmentsProps) {
   const user = props.user;
+  console.log(props.user)
   const [visits, setVisits] = useState([]);
  const [wait, setWait] = useState(false);
 
@@ -64,6 +65,7 @@ export function AppointmentsPage(props : AppointmentsProps) {
       ) : (
         <>
            {result}
+           
         </>
       
       )}

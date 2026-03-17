@@ -23,6 +23,7 @@ interface ReceptionProps {
 }
 export default function Reception({visit} : ReceptionProps) {
     const visited = visit;
+    console.log(visit, "VCVCV")
     const { patient, visits } = visit;
       const formatDate = (dateStr: string) => {
   const [year, month, day] = dateStr.split('-');
@@ -57,11 +58,12 @@ export default function Reception({visit} : ReceptionProps) {
                     {/* Doctor Info */}
                     <div className="appointment-info">
                       <div className="appointment-doctor">
-                        <div className="appointment-doctor-avatar">
+                        {/* <div className="appointment-doctor-avatar">
                           <User />
-                        </div>
+                        </div> */}
                         <div>
-                          <p className="appointment-doctor-name">{visit.resource}</p>
+                          <span></span>
+                          <p className="appointment-doctor-name">Врач: {visit.resource}</p>
                           
                         </div>
                       </div>

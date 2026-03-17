@@ -1,6 +1,8 @@
 // 
 
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 import { Menu, Home, User, Users, Calendar, Shield, LogOut } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch } from '../../redux/hooks';
@@ -13,18 +15,20 @@ interface SidebarProps {
 }
 
 export function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps) {
+  const navigate = useNavigate();
   const menuItems = [
     { label: 'Профиль', page: '/profile', icon: Home },
     { label: 'Записи', page: '/doctors', icon: User },
     { label: 'Пациенты', page: '/patients', icon: Users },
     { label: 'Расписание', page: '/schedule', icon: Calendar },
-    { label: 'Конфиденциальность', page: '/privacy', icon: Shield },
+    { label: 'Конфиденциальность', page: '/policy', icon: Shield },
    
   ];
     const dispatch = useAppDispatch();
   const handleExitUser = () => {
     dispatch(logoutUser());
     dispatch(setMenuOpen(false));
+    navigate('/doctors');
  window.location.reload();
   };
   return (
