@@ -10,6 +10,22 @@
     rgba(255, 255, 255, 0)
   );
 }
+.sidebar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 320px; // ширина сайдбара, должна совпадать с шириной самого Sidebar
+  z-index: 40;
+  transform: translateX(-100%);
+  transition: transform 0.4s ease-in-out; // регулируйте скорость здесь
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  // На десктопе панель всегда видна и переключается на relative
+}
 .header__layuot {
   display: grid;
   grid-template-columns: 56px 1fr auto; /* левая колонка фиксирована */
@@ -91,6 +107,20 @@
 .header__center {
   display: flex;
   justify-content: center; /* центрируем содержимое */
+  .first {
+    font-size: 10px;
+
+    color: rgb(189, 122, 81);
+    text-align: center;
+  }
+  .second {
+    text-align: center;
+    font-size: 28px;
+  }
+  .third {
+    font-size: 10px;
+    text-align: center;
+  }
 }
 
 .header__right {

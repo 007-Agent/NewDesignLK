@@ -2,28 +2,36 @@ import React, {useState} from 'react';
 import { Activity, Menu } from 'lucide-react';
 import { Sidebar } from '../SideBar/Sidebar';
 import { LoginForm } from '../Login/LoginForn';
+// import logo from '../../../docs/logo'
 import './header.scss'
 
 import { useAppSelector } from '../../redux/hooks';
 export function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const user = useAppSelector((state) => state.auth.user);
+    const logo = new URL('../../../docs/logo.png', import.meta.url).href;
   return (
     <>
        
 
       {/* Контейнер сайдбара с анимацией */}
-      <div className={`
-        fixed top-0 left-0 h-full z-40
-        transform transition-all duration-300 ease-in-out
-        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-        lg:translate-x-0 lg:relative lg:z-0
-      `}>
-        <Sidebar
-          isMobileMenuOpen={isMobileMenuOpen}
-          setIsMobileMenuOpen={setIsMobileMenuOpen}
-        />
-      </div>
+      {/* <div className={`
+  fixed top-0 left-0 h-full z-40
+  transform transition-all duration-[100] ease-in-out
+  ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+  lg:translate-x-0 lg:relative lg:z-0
+`}>
+  <Sidebar
+    isMobileMenuOpen={isMobileMenuOpen}
+    setIsMobileMenuOpen={setIsMobileMenuOpen}
+  />
+</div> */}
+<div className={`sidebar-wrapper ${isMobileMenuOpen ? 'open' : ''}`}>
+  <Sidebar
+  isMobileMenuOpen={isMobileMenuOpen}
+    setIsMobileMenuOpen={setIsMobileMenuOpen}
+  />
+</div>
 
       {/* Затемнение фона */}
       {isMobileMenuOpen && (
@@ -48,17 +56,21 @@ export function Header() {
     )}
   </div>
         <div className="header__center">
-    <div className="flex items-center gap-3">
-      <div className="w-10 h-10 bg-teal-500 rounded-lg flex items-center justify-center">
-        <Activity className="w-6 h-6 text-white" />
-      </div>
-      <h1 className="text-xl">Medicare Clinic</h1>
-    </div>
+    <div >
+          <div className='first'>
+            ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ
+          </div>
+          <div className='second'>ДЕТСКИЙ МЕДИЦИНСКИЙ ЦЕНТР</div>
+          <div className='third'>
+            УПРАВЛЕНИЯ ДЕЛАМИ ПРЕЗИДЕНТА РОССИЙСКОЙ ФЕДЕРАЦИИ
+          </div>
+        </div>
   </div>
 
   {/* Правая колонка (кнопка записи и логин) */}
   <div className="header__right">
-    <button className="header-btn-appointment">Записаться к врачу!</button>
+    {/* <button className="header-btn-appointment">Записаться к врачу!</button> */}
+    <img src={logo} alt="" style={{width: '70px', height: '70px'}}/>
     {!user && <LoginForm />}
   </div>
 </div>

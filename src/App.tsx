@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PatientDetailPageWrapper } from './components/patientDetailsFull/PatientWrapperDetail/PatientDetailWrapper';
 import Policy from './RouterSlide/Policy/Policy.tsx';
 import Layout from '../src/components/Layout';
-import './App.css'
+import './App.scss'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 export default function App() {

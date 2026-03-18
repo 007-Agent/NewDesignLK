@@ -43,7 +43,7 @@ export function AppointmentsPage(props : AppointmentsProps) {
           <Calendar />
         </div>
         <div className="appointments-header-title">
-          <h2>Записи к врачу</h2>
+          <h2 className='appoinments__doctors'>Записи к врачу</h2>
           {/* <p className="appointments-header-count">
             Активных записей: {appointmentsData.reduce((acc, child) => acc + child.appointments.length, 0)}
           </p> */}

@@ -75,15 +75,7 @@ export function PatientCard({ patient, user }: PatientCardProps) {
       </div>
 
       {/* Action Button */}
-      <button 
-        onClick={(e) => {
-          e.stopPropagation();
-          
-        }}
-        className="patient-card-action"
-      >
-        Подробнее
-      </button>
+      
     </div>
   );
 }

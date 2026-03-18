@@ -4,6 +4,7 @@ import { Users } from 'lucide-react';
 import { Usernow } from '../redux/authSlice';
 import './patientsPage.scss'
 import axios from 'axios';
+import {RefreshCw} from 'lucide-react'
 
 interface ProfilePatientsProps {
   user: Usernow | null;
@@ -11,15 +12,17 @@ interface ProfilePatientsProps {
 export function PatientsPage({user} : ProfilePatientsProps) {
   console.log(user)
   const [patients, setPatients] = useState([]);
- 
+ const [wait, setWait] = useState(false);
    const fetchPatients = async () => {
-   
+   setWait(true);
     try {
       const response = await axios.post('/api/office/patient/list', {});
       setPatients(response.data.data);
     } catch (err) {
       console.log(err)
-    } 
+    } finally {
+      setWait(false); // выключаем спиннер после завершения (даже при ошибке)
+    }
   };
   
   useEffect(() => {
@@ -31,7 +34,20 @@ export function PatientsPage({user} : ProfilePatientsProps) {
 
   return (
     <div>
-      <div className="patients-page-header">
+      { wait ? (
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '200px',
+          
+        }}>
+           
+          <RefreshCw className='spinner'/>
+        </div>
+      ) : (
+        <>
+          <div className="patients-page-header">
         <div className="patients-header-icon">
           <Users />
         </div>
@@ -52,6 +68,9 @@ export function PatientsPage({user} : ProfilePatientsProps) {
           />
         ))}
       </div>
+        </>
+        
+      )}
     </div>
   );
 }

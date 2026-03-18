@@ -1,6 +1,6 @@
 import React, { useState} from 'react'
 import { NewsCard } from './NewsCard'
-import { Footer } from './Footer';
+
 import { Sidebar } from './SideBar/Sidebar';
 import { Header } from './Header/Header';
 export default function Main() {
@@ -58,7 +58,7 @@ export default function Main() {
                     </div>
                   </section>
     
-                  <Footer />
+              
                 </>
   )
 }
