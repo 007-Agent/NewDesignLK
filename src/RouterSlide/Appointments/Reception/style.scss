@@ -98,7 +98,7 @@
 .appointment-card {
   background-color: #f9fafb;
   border-radius: 0.75rem;
-  padding: 1.5rem;
+  padding: 13px;
 }
 
 .appointment-datetime {
@@ -126,7 +126,7 @@
   display: grid;
   grid-template-columns: 1fr;
 
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 @media (min-width: 768px) {
@@ -240,8 +240,9 @@
 
 .appointment-btn-cancel,
 .appointment-btn-reschedule {
-  padding: 8px 32px;
+  padding: 4px 32px;
   border: none;
+  height: 35px;
   border-radius: 0.5rem;
   font-size: 15px;
   font-weight: 600;

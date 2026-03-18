@@ -2,7 +2,7 @@
 
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import { X } from 'lucide-react';
 import { Menu, Home, User, Users, Calendar, Shield, LogOut } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch } from '../../redux/hooks';
@@ -38,6 +38,7 @@ export function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps)
      <aside className="sidebar">
   <div className="sidebar__container">
     <nav className="sidebar__nav">
+    
       {menuItems.map((item, index) => {
         const Icon = item.icon;
         return (
@@ -55,12 +56,11 @@ export function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps)
         );
       })}
     </nav>
-    <button onClick={handleExitUser}>Выход</button>
+      < X className='close_panel' onClick={() => setIsMobileMenuOpen(false)}/>
+    <button onClick={handleExitUser} className='sidebar__exit'>Выход</button>
     {/* Футер сайдбара */}
     <div className="sidebar__footer">
-      <div className="sidebar__footer-icon-wrapper">
-        <Menu className="sidebar__footer-icon" />
-      </div>
+     
     </div>
   </div>
 </aside>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Calendar, Clock, User, MapPin, FileText } from 'lucide-react';
-import { Patient } from '../../components/patientDetailsFull/PatientFull/PatientFull';
+import { Patient } from '../../../components/patientDetailsFull/PatientFull/PatientFull';
 import './style.scss'
 export interface Visit {
   cabinet: string;

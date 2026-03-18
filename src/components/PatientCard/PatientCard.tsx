@@ -48,8 +48,10 @@ export function PatientCard({ patient, user }: PatientCardProps) {
           <User className={patient.gender === 'муж' ? 'male' : 'female'} />
         </div>
         <div>
-          <h3 className="patient-name">{patient.fio}</h3>
-          <p className="patient-gender">{patient.gender}</p>
+         <h3 className="patient-name">
+  {patient.fio.split(' ').slice(0, 2).join(' ')}
+</h3>
+          
         </div>
       </div>
 

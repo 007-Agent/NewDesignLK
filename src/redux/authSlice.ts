@@ -117,6 +117,7 @@ const authSlice = createSlice({
         state.logoutStatus = 'succeeded'; // Устанавливаем статус в succeeded
         state.user = null; // Сбрасываем пользователя
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
       })
       .addCase(logoutUser.rejected, (state, action) => {
         state.logoutStatus = 'failed'; // Устанавливаем статус в failed

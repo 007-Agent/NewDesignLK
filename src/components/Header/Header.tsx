@@ -3,6 +3,7 @@ import { Activity, Menu } from 'lucide-react';
 import { Sidebar } from '../SideBar/Sidebar';
 import { LoginForm } from '../Login/LoginForn';
 import './header.scss'
+
 import { useAppSelector } from '../../redux/hooks';
 export function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -34,26 +35,33 @@ export function Header() {
 
       <header className="header__content">
         <div className="header__layuot">
-          <button
+
+
+<div className="header__left">
+    {!isMobileMenuOpen && (
+      <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         className="button__menu"
       >
         <Menu className="w-8 h-8" />
       </button>
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-teal-500 rounded-lg flex items-center justify-center">
-            <Activity className="w-6 h-6 text-white" />
-          </div>
-          <h1 className="text-xl">Medicare Clinic</h1>
-        </div>
-        <div className="flex items-center gap-4 p-r-50">
-        <button className="header-btn-appointment">
-          Записаться к врачу!
-        </button>
-        </div>
+    )}
+  </div>
+        <div className="header__center">
+    <div className="flex items-center gap-3">
+      <div className="w-10 h-10 bg-teal-500 rounded-lg flex items-center justify-center">
+        <Activity className="w-6 h-6 text-white" />
+      </div>
+      <h1 className="text-xl">Medicare Clinic</h1>
+    </div>
+  </div>
 
-          {!user && <LoginForm />}
-        </div>
+  {/* Правая колонка (кнопка записи и логин) */}
+  <div className="header__right">
+    <button className="header-btn-appointment">Записаться к врачу!</button>
+    {!user && <LoginForm />}
+  </div>
+</div>
         
       </header>
     </>

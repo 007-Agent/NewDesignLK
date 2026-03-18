@@ -1,11 +1,11 @@
 .patient-card {
   background-color: rgb(84, 177, 177);
   border-radius: 0.75rem;
-  padding: 2rem;
+  padding: 25px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   transition: all 0.3s;
   cursor: pointer;
-  width: 300px;
+  width: 420px;
 }
 
 .patient-card:hover {
@@ -19,12 +19,12 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 5px;
 }
 
 .patient-avatar {
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 3.2rem;
+  height: 3.2rem;
   border-radius: 9999px;
   display: flex;
   align-items: center;
@@ -64,7 +64,6 @@
 .patient-details {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
 .patient-detail-item {
@@ -90,9 +89,11 @@
 }
 
 .patient-card-action {
-  margin-top: 1.5rem;
-  width: 100%;
-  padding: 0.625rem;
+  margin-top: 15px;
+  width: 180px;
+
+  text-align: center;
+  padding: 4px;
   background-color: rgba(255, 255, 255, 0.2);
   color: #ffffff;
   border-radius: 0.5rem;
