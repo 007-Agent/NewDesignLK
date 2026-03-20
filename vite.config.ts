@@ -29,7 +29,7 @@
       outDir: 'build',
     },
    server: {
-    port: 9000,
+    port: 8000,
     host: true,
     proxy: {
       '/api': {

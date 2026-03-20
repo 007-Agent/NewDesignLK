@@ -52,38 +52,22 @@ export default function Reception({visit} : ReceptionProps) {
               <div className="appointments-list">
                 {visits.map((visit, i) => (
                   <div key={i} className="appointment-card">
-                    {/* Date and Time */}
-                    
-    
-                    {/* Doctor Info */}
-                    <div className="appointment-info">
-                      <div className="appointment-doctor">
-                        {/* <div className="appointment-doctor-avatar">
-                          <User />
-                        </div> */}
-                        <div>
-                          <span></span>
-                          <p className="appointment-doctor-name">Врач: {visit.resource}</p>
-                          
-                        </div>
-                      </div>
-    
-                      {/* Service */}
-                      <div className="appointment-detail">
+                   <div className="appointment-info">
+                    <div className="appointment-detail">
                         <FileText />
                         <div>
-                          <p className="appointment-label">Специальность</p>
+                         
                           <p className="appointment-value">{visit.speciality}</p>
                         </div>
                       </div>
-    
-                     <div className="appointment-actions">
-                        <button className="appointment-btn-cancel">Отменить</button>
-                        
+                      <div className="appointment-doctor">
+                      
+                       
+                          <span></span>
+                          <p className="appointment-doctor-name">Врач: {visit.resource}</p>
+                          
+                       
                       </div>
-                     
-                    </div>
-    
                     <div className="appointment-datetime">
                       <div className="appointment-date">
                         <Calendar />
@@ -94,6 +78,15 @@ export default function Reception({visit} : ReceptionProps) {
                         <span>{visit.time}</span>
                       </div>
                     </div>
+    
+                     <div className="appointment-actions">
+                        <button className="appointment-btn-cancel">Отменить</button>
+                        
+                      </div>
+                     
+                    </div>
+    
+                    
                     
                   </div>
                 ))}
