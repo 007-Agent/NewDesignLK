@@ -29,20 +29,17 @@ interface PatientCardProps {
 export function PatientCard({ patient, user }: PatientCardProps) {
   const usernow = user;
   const navigate = useNavigate();
-  //   const handleCardClick = () => {
-  //   // Переход на страницу детальной информации
-  //   navigate(`/patientsfullinfo/${fullName}/${patient}`);
-  // };
+ 
   const handleCardClick = () => {
    
     navigate(`/patientsfullinfo/${patient.fio}`, {
-      state: { patient } // Весь объект пациента
+      state: { patient } 
     });
   };
 
   return (
     <div  className="patient-card"  onClick={handleCardClick} >
-      {/* Patient Avatar and Name */}
+     
       <div className="patient-card-header">
         <div className={`patient-avatar ${patient.gender === 'муж' ? 'male' : 'female'}`}>
           <User className={patient.gender === 'муж' ? 'male' : 'female'} />

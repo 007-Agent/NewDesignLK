@@ -31,7 +31,7 @@ export function ProfilePage({ user }: ProfilePageProps) {
 };
  
   return (
-    <div className="max-w-4xl">
+    <div className="profile__main">
       <h2 className="mb-8">Профиль пользователя</h2>
 
       <div className="bg-white rounded-xl shadow-sm p-8">

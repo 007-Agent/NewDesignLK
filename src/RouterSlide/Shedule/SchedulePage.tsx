@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Calendar, Clock, MapPin, Building2, User } from 'lucide-react';
-
+import  './SchedulePage.scss'
 export function SchedulePage() {
   const [selectedBranch, setSelectedBranch] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('');
@@ -36,7 +36,7 @@ export function SchedulePage() {
   ];
 
   return (
-    <div>
+    <div className='shedule__header'>
       <div className="flex items-center gap-4 mb-8">
         <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center">
           <Calendar className="w-6 h-6 text-teal-600" />

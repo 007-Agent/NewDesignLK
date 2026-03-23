@@ -6,6 +6,7 @@ import "./Patientfull.scss"
 import { Visits } from './Visits/Visits';
 import { Usernow } from '../../../redux/authSlice';
 import Contracts from './Contracts/Contracts';
+import {AppointmentModal} from '../../AppointmentModal/AppointmentModal';
 export interface Patient {
   address: string;
   age: string;
@@ -33,6 +34,7 @@ interface PatientDetailPageProps {
 
 export function PatientFull({ patient, user }: PatientDetailPageProps) {
   const [activeTab, setActiveTab] = useState('sickLeave');
+  const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
 //     const { fullName } = useParams<{ fullName: string }>();
 //  const location = useLocation();
   const navigate = useNavigate();
@@ -88,7 +90,7 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
    navigate('/patients');
  }
   return (
-    <div>
+    <div className='patient__font'>
       {/* Back Button */}
       <button onClick={onBack} className="patient-detail-back">
         <ArrowLeft />
@@ -109,7 +111,7 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
               <span>Мед. карта: {patient.nib}</span>
             </div>
           </div>
-          <button className="header-btn-appointment">
+          <button className="header-btn-appointment" onClick={() => setIsAppointmentModalOpen(true)}>
           Записаться к врачу!
         </button>
         </div>
@@ -275,6 +277,11 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
           </div>
         )}
       </div>
+      <AppointmentModal 
+        isOpen={isAppointmentModalOpen}
+        onClose={() => setIsAppointmentModalOpen(false)}
+        patient = {patient}
+      />
     </div>
   );
 }

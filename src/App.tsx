@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAppSelector } from './redux/hooks';
+import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { Header } from './components/Header/Header';
 import { ProfilePage } from './RouterSlide/Profile/ProfilePage.tsx';
 import { PatientsPage } from './components/PatientsPage';
@@ -11,13 +11,31 @@ import { PatientDetailPageWrapper } from './components/patientDetailsFull/Patien
 import Policy from './RouterSlide/Policy/Policy.tsx';
 import Layout from '../src/components/Layout';
 import './App.scss'
+import { fetchSpecialties } from './redux/Departament/Specialities.ts';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-export default function App() {
-  const { user, checkStatus } = useAppSelector((state) => state.auth);
-  console.log(user, "USSR")
-  
 
+
+
+export default function App() {
+ 
+  const { user, checkStatus } = useAppSelector((state) => state.auth);
+  const [specialtiesRequested, setSpecialtiesRequested] = useState(false);
+  console.log(user, "USSR")
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+   
+    if (user && !specialtiesRequested) {
+     
+      const timer = setTimeout(() => {
+        dispatch(fetchSpecialties());
+        setSpecialtiesRequested(true);
+      }, 2000);
+      
+      
+      return () => clearTimeout(timer);
+    }
+  }, [user, dispatch, specialtiesRequested]);
   return (
     <>
     <Header />
