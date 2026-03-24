@@ -1,8 +1,10 @@
 import { Divide } from 'lucide-react'
-import React from 'react'
+import React, {useState} from 'react'
 import { Usernow } from '../../../redux/authSlice';
 import { Patient } from '../../patientDetailsFull/PatientFull/PatientFull';
 import Person from './Person/Person';
+
+import './intervals.scss'
 
 interface TimeSlot {
   time: string;
@@ -31,7 +33,7 @@ interface IntervalsProps {
 export default function Intervals({user, patient, intervals} : IntervalsProps) {
 
   console.log(intervals, "INNI")
- 
+  const [selectedDoctor, setSelectedDoctor] = useState<Number | null>(null);
   const persons = intervals.map((person, index) => (
     <Person
       
@@ -42,6 +44,6 @@ export default function Intervals({user, patient, intervals} : IntervalsProps) {
       
     />
   ))
-  return intervals.length ? <div >{persons}</div> : null
+  return intervals.length ? <div className='Intervals__content'>{persons}</div> : null
 }
 

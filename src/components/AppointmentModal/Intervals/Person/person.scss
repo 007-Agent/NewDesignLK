@@ -1,0 +1,53 @@
+.doctor-card {
+  display: flex;
+
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.doctor-card:hover {
+  border-color: #fff7ed;
+  background-color: #f8f8f8;
+}
+.clear_icon {
+  color: #374151;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  width: 43px;
+  height: 36px;
+}
+
+.doctor-card.selected {
+  border: 2px solid #e5e7eb;
+
+  display: flex;
+  flex-direction: column;
+  .doctor-availability {
+    display: none;
+  }
+}
+
+.doctor-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.doctor-namee {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 4px;
+  color: inherit;
+}
+.doctor-availability {
+  font-size: 15px;
+  color: #00b700;
+}
