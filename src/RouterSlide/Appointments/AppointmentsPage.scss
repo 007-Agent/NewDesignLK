@@ -1,12 +1,25 @@
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
 .appointments-page-header {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
   justify-content: center;
-   font-family: "Inter";
 }
-
+.appointments-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6b7280;
+  font-size: 23px;
+}
+.number__opportunity {
+  text-align: center;
+  font-family: "Inter";
+  font-size: 18px;
+  color: rgb(134, 40, 12);
+  margin: 16px 0px 0px;
+}
 .appointments-header-icon {
   width: 2.5rem;
   height: 2.5rem;

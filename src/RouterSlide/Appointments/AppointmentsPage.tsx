@@ -51,25 +51,18 @@ export function AppointmentsPage(props : AppointmentsProps) {
       </div>
     <div>
       {wait ? (
-        // Показываем спиннер по центру, пока идёт загрузка
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          minHeight: '200px',
-          
-        }}>
-           
-          <RefreshCw className='spinner'/>
-        </div>
-      ) : (
-        <>
-           {result}
-           
-        </>
-      
-      )}
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
+            <RefreshCw className='spinner' />
+          </div>
+        ) : visits.length === 0 ? (
+          <div className="appointments-empty">
+            На данный момент записи к врачу отсутствуют
+          </div>
+        ) : (
+          result
+        )}
     </div>
+    <p className='number__opportunity'>Единый телефон поддержки +7 495 727-11-66</p>
     </div>
     
   );

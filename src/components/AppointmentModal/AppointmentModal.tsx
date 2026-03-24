@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { X, Calendar as CalendarIcon } from 'lucide-react';
+import {RefreshCw} from 'lucide-react'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './appointment.scss';
@@ -40,7 +41,7 @@ interface RefactoredItem {
 const refactorIntervals = (intervals: IntervalItem[]): RefactoredItem[] => {
   
    if (!intervals || !Array.isArray(intervals)) return [];
-
+   
   return intervals.reduce<RefactoredItem[]>((acc, cur) => {
           const { date, time, visitId, person, branch } = cur
           const foundItem = acc.find(
@@ -61,7 +62,7 @@ const refactorIntervals = (intervals: IntervalItem[]): RefactoredItem[] => {
 
 export function AppointmentModal({ isOpen, onClose, patient }: AppointmentModalProps) {
   
-
+const [wait, setWait] = useState(false)
 const [specId, setSpecId] = useState<number | undefined>();
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
@@ -124,10 +125,16 @@ const [specId, setSpecId] = useState<number | undefined>();
     .then(response => {
       setIntervals(refactorIntervals(response.data.data));
       setLoading(true)
+       setWait(true)   
     })
     .catch(error => {
       console.error('Ошибка при получении интервалов:', error);
-    });
+    })
+    .finally(() => {
+          
+            setWait(false)                          // выключаем спиннер
+          
+    })
   }
 }, [fromDate, dateTo, specId]);
  const formatDateToISO = (date: Date | null): string => {
@@ -180,26 +187,6 @@ const [specId, setSpecId] = useState<number | undefined>();
     return date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
   };
 
-//   const handleSubmit = () => {
-//     if (dateFrom && dateTo && specialty && selectedDate && selectedTime) {
-//       // Проверяем, что dateFrom не позже dateTo
-//       if (new Date(dateFrom) > new Date(dateTo)) {
-//         alert('Дата начала не может быть позже даты окончания');
-//         return;
-//       }
-      
-//       alert(`Запись создана:\nСпециальность: ${specialty}\nДата: ${formatDate(selectedDate)}\nВремя: ${selectedTime}`);
-//       onClose();
-//       // Сброс формы
-//       setDateFrom(null);
-//       setDateTo(null);
-//       setSpecialty('');
-//       setSelectedDate('');
-//       setSelectedTime('');
-//     } else {
-//       alert('Пожалуйста, заполните все поля');
-//     }
-//   };
 
   if (!isOpen) return null;
 
@@ -275,15 +262,30 @@ console.log(specId, "SPCIDD")
 
           
         </div>
-         {loading ? (
-            <Intervals
+        {wait ? (
+                // Показываем спиннер по центру, пока идёт загрузка
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  minHeight: '200px',
+                  
+                }}>
+                   
+                  <RefreshCw className='spinner'/>
+                </div>
+              ) : (
+                <>
+              <Intervals
               
               intervals={intervals}
               user={user}
               patient={patient}
              
             />
-          ) : null}
+                </>
+              )}
+         
       </div>
     </div>
   );
