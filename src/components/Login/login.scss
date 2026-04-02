@@ -38,6 +38,52 @@
   align-items: center;
   justify-content: center;
 }
+.login-tabs {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+}
+
+.login-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    color: #14b8a6;
+  }
+
+  &.active {
+    color: #14b8a6;
+    border-bottom-color: #14b8a6;
+  }
+}
+
+.login-content {
+  // дополнительных стилей не требуется, форма уже имеет отступы
+}
+
+.login-error {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.login-submit:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
 
 .login-close:hover {
   color: #111827;
