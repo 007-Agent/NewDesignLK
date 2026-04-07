@@ -53,21 +53,6 @@ export default function Reception({visit} : ReceptionProps) {
                 {visits.map((visit, i) => (
                   <div key={i} className="appointment-card">
                    <div className="appointment-info">
-                    <div className="appointment-detail">
-                        <FileText />
-                        <div>
-                         
-                          <p className="appointment-value">{visit.speciality}</p>
-                        </div>
-                      </div>
-                      <div className="appointment-doctor">
-                      
-                       
-                          <span></span>
-                          <p className="appointment-doctor-name">Врач: {visit.resource}</p>
-                          
-                       
-                      </div>
                     <div className="appointment-datetime">
                       <div className="appointment-date">
                         <Calendar />
@@ -78,6 +63,25 @@ export default function Reception({visit} : ReceptionProps) {
                         <span>{visit.time}</span>
                       </div>
                     </div>
+                      <div className="appointment-doctor">
+                      
+                       
+                          <span></span>
+                          <p className="appointment-doctor-name">Врач: {visit.resource}</p>
+                          
+                       
+                      </div>
+
+                    <div className="appointment-detail">
+                        <FileText />
+                        <div>
+                         
+                          <p className="appointment-value">{visit.speciality}</p>
+                        </div>
+                      </div>
+
+
+                    
     
                      <div className="appointment-actions">
                         <button className="appointment-btn-cancel">Отменить</button>
