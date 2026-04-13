@@ -3,9 +3,8 @@
   align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
- 
-    font-family: "Inter";
-  
+
+  font-family: "Inter";
 }
 
 .patients-header-icon {
@@ -36,8 +35,13 @@
 }
 
 .patients-grid {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  /* align-content: center; */
+  margin: 0 auto;
+  max-width: 421px;
   gap: 1.5rem;
 }
 
