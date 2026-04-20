@@ -6,7 +6,9 @@ import "./Patientfull.scss"
 import { Visits } from './Visits/Visits';
 import { Usernow } from '../../../redux/authSlice';
 import Contracts from './Contracts/Contracts';
+import Vaccinations from './Vacination/Vacinations';
 import {AppointmentModal} from '../../AppointmentModal/AppointmentModal';
+import Analyzes from './Analyzes/Analyzes';
 export interface Patient {
   address: string;
   age: string;
@@ -35,16 +37,14 @@ interface PatientDetailPageProps {
 export function PatientFull({ patient, user }: PatientDetailPageProps) {
   const [activeTab, setActiveTab] = useState('sickLeave');
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
-//     const { fullName } = useParams<{ fullName: string }>();
-//  const location = useLocation();
+
   const navigate = useNavigate();
    const formatDate = (dateStr: string) => {
   const [year, month, day] = dateStr.split('-');
   return `${day}.${month}.${year}`;
 };
 
-  // Пытаемся получить пациента из state
-  // const patient1 = location.state?.patient;
+
 
   const tabs = [
     { id: 'contracts', label: 'Договоры', icon: FileText },
@@ -63,15 +63,10 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
     { id: '002', dateFrom: '15.12.2023', dateTo: '22.12.2023', diagnosis: 'Грипп', status: 'Закрыт' },
   ];
 
-  const vaccinations = [
-    { name: 'Полиомиелит', date: '15.09.2023', nextDate: '15.09.2024', status: 'Выполнено' },
-    { name: 'Корь, краснуха, паротит', date: '10.08.2023', nextDate: '-', status: 'Выполнено' },
-  ];
 
-  const labResults = [
-    { name: 'Общий анализ крови', date: '20.12.2023', result: 'Норма', status: 'Завершено' },
-    { name: 'Биохимический анализ', date: '18.12.2023', result: 'Норма', status: 'Завершено' },
-  ];
+ 
+
+ 
 
   const monitoring = [
     { condition: 'Аллергия на пыльцу', doctor: 'Смирнов И.П.', period: 'Март - Июнь 2024' },
@@ -82,10 +77,7 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
     { year: '2024', date: '-', status: 'Запланирована', result: '-' },
   ];
 
-  const appointments = [
-    { date: '14.01.2024', time: '10:00', doctor: 'Смирнов И.П.', service: 'Консультация педиатра', status: 'Завершён' },
-    { date: '20.01.2024', time: '14:30', doctor: 'Смирнов И.П.', service: 'Плановый осмотр', status: 'Запланирован' },
-  ];
+  
  const onBack = () => {
    navigate('/patients');
  }
@@ -172,26 +164,8 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
 
         {/* Вакцинация */}
         {activeTab === 'vaccination' && (
-          <div>
-            <h3>Вакцинация</h3>
-            <div className="patient-items-list">
-              {vaccinations.map((vaccine, index) => (
-                <div key={index} className="patient-item">
-                  <div className="patient-item-header">
-                    <div>
-                      <p className="patient-item-title">{vaccine.name}</p>
-                      <p className="patient-item-description">Дата: {vaccine.date}</p>
-                    </div>
-                    <span className="patient-status-badge green">
-                      {vaccine.status}
-                    </span>
-                  </div>
-                  <p className="patient-item-meta">
-                    Следующая: {vaccine.nextDate}
-                  </p>
-                </div>
-              ))}
-            </div>
+          <div className='vaccina__box'>
+            <Vaccinations patient={patient} user={user}/>
           </div>
         )}
 
@@ -205,25 +179,8 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
         {/* Лабораторные исследования */}
         {activeTab === 'laboratory' && (
           <div>
-            <h3>Лабораторные исследования</h3>
-            <div className="patient-items-list">
-              {labResults.map((lab, index) => (
-                <div key={index} className="patient-item">
-                  <div className="patient-item-header">
-                    <div>
-                      <p className="patient-item-title">{lab.name}</p>
-                      <p className="patient-item-description">Дата: {lab.date}</p>
-                    </div>
-                    <span className="patient-status-badge blue">
-                      {lab.status}
-                    </span>
-                  </div>
-                  <p className="patient-item-meta">
-                    Результат: {lab.result}
-                  </p>
-                </div>
-              ))}
-            </div>
+          
+            < Analyzes patient={patient} user={user}/>
           </div>
         )}
 

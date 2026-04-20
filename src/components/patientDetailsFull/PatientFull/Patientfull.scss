@@ -130,7 +130,14 @@
   padding: 1.5rem;
   border: 2px solid rgb(84, 177, 177);
 }
-
+.vaccina__box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter";
+  font-size: 18px;
+  gap: 10px 0;
+}
 .patient-tab-content h3 {
   margin-bottom: 1.5rem;
 }
