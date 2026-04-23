@@ -9,6 +9,7 @@ import Contracts from './Contracts/Contracts';
 import Vaccinations from './Vacination/Vacinations';
 import {AppointmentModal} from '../../AppointmentModal/AppointmentModal';
 import Analyzes from './Analyzes/Analyzes';
+import Observations from './Observations/Observations';
 export interface Patient {
   address: string;
   age: string;
@@ -187,16 +188,7 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
         {/* Активное наблюдение */}
         {activeTab === 'monitoring' && (
           <div>
-            <h3>Активное наблюдение</h3>
-            <div className="patient-items-list">
-              {monitoring.map((item, index) => (
-                <div key={index} className="patient-item">
-                  <p className="patient-item-title">{item.condition}</p>
-                  <p className="patient-item-meta">Врач: {item.doctor}</p>
-                  <p className="patient-item-meta">Период: {item.period}</p>
-                </div>
-              ))}
-            </div>
+            <Observations patient={patient} user={user}/>
           </div>
         )}
 

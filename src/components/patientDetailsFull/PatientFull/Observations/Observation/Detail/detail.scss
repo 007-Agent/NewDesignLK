@@ -1,0 +1,79 @@
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+.medical-tables {
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: "Inter", sans-serif;
+
+  .table-section {
+    margin-bottom: 2rem;
+    font-family: "Inter", sans-serif;
+
+    h3 {
+      margin: 0 0 0.75rem 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      border-left: 4px solid #0d6efd;
+      padding-left: 0.75rem;
+    }
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    min-width: 600px; // обеспечивает скролл при сужении
+
+    th,
+    td {
+      padding: 12px 16px;
+      text-align: left;
+      border: 1px solid #e2e8f0;
+      font-size: 15px;
+    }
+
+    th {
+      background-color: #f8fafc;
+      font-weight: 600;
+      color: #0f172a;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    td {
+      color: #1e293b;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+
+  // Специфические стили для разных таблиц (можно расширить)
+
+  .visits-table td:last-child,
+  .visits-table th:last-child {
+    color: #475569;
+    font-style: italic;
+  }
+
+  // Адаптив для экранов меньше 640px
+  @media (max-width: 640px) {
+    table {
+      font-size: 0.75rem;
+
+      th,
+      td {
+        padding: 8px 12px;
+      }
+    }
+  }
+}
