@@ -85,7 +85,9 @@ export function Visits ({patient, user} :PatientDetailPageProps ) {
     }
   }, [patient]) // при изменении patient перезагружаем визиты
 
-  
+   if (!items || items.length === 0) {
+    return <div className="no-data-message">Нет доступных данных</div>;
+  }
   const filteredItems = items.filter(item => item.active === 0 )
   const visitItems = filteredItems
     .slice((currentPage - 1) * clientsPerPage, currentPage * clientsPerPage)

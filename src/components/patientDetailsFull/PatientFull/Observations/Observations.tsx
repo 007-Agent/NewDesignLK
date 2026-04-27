@@ -33,19 +33,6 @@ class Observations extends React.Component<ObservationProps, AnalyzesState > {
     this.mounted = false
   }
 
-//   refresh() {
-//     if (this.props.patientId > 0) {
-//       post({
-//         url: '/rest/office/patient/observations',
-//         data: {
-//           patientId: this.props.patientId,
-//           helpId: null
-//         },
-//         sender: this,
-//         target: 'items'
-//       })
-//     }
-//   }
   refresh() {
     const patientId = this.props.patient.id;
     
@@ -62,7 +49,10 @@ class Observations extends React.Component<ObservationProps, AnalyzesState > {
   }
 
   render() {
-    
+    const results = this.state.items;
+    if (!results || results.length === 0) {
+      return <div className="no-data-message">Нет доступных данных</div>;
+    }
     let items = null
     if (this.state.items) {
       items = this.state.items.map((v, i) => {

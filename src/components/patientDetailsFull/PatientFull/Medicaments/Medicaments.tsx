@@ -53,6 +53,9 @@ export default function Medicaments({patient, user} : MedicamentsProps) {
     };
   }, [patientId]);
   console.log(items, "TT")
+  if (!items || items.length === 0) {
+    return <div className="no-data-message">Нет доступных данных</div>;
+  }
 
    const itemsMedicaments = items.map((v, i) => (
       <Medicament key={i}  medicament={v} />

@@ -29,6 +29,7 @@ export function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps)
     dispatch(logoutUser());
     dispatch(setMenuOpen(false));
     navigate('/doctors');
+    setIsMobileMenuOpen(false)
  
   };
   return (

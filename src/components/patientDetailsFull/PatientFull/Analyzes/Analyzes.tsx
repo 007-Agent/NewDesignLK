@@ -53,7 +53,9 @@ class Analyzes extends React.Component<AnalyzesProps, AnalyzesState> {
   }
 
   render() {
-  
+    if (!this.state.items || this.state.items.length === 0) {
+      return <div className="no-data-message">Нет доступных данных</div>;
+    }
     let items = this.state.items.map((v, i) => (
       <Analysis
         key={i}

@@ -77,7 +77,10 @@ handleDownload = async () => {
   }
 
   render() {
-    
+    const results = this.state.items;
+    if (!results || results.length === 0) {
+      return <div className="no-data-message">Нет доступных данных</div>;
+    }
     let items = this.state.items.map((v, i) => {
       return <Vaccinacya key={i}  vaccination={v} />
     })

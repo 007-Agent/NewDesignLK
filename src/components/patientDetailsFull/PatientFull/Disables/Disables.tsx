@@ -17,7 +17,7 @@ interface DisableState {
 class Disables extends React.Component<DisableProps, DisableState > {
     mounted: boolean = false;
   constructor(props : DisableProps) {
-
+    
 
     super(props)
     this.state = {
@@ -52,7 +52,9 @@ class Disables extends React.Component<DisableProps, DisableState > {
   }
 
   render() {
-
+      if (!this.state.items || this.state.items.length === 0) {
+      return <div className="no-data-message">Нет доступных данных</div>;
+    }
 
     let items = this.state.items.map((v, i) => {
       return (
