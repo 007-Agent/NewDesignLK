@@ -1,6 +1,6 @@
 import React from 'react'
 import "./vacinacya.scss"
-
+import { formatDate } from '../../../../../utils/utils';
 interface VaccinaItem {
   date: string;      // "2025-08-07"
   group: string;     // "Туб.Диагностика"
@@ -35,19 +35,11 @@ class Vaccinacya extends React.Component<VacinaProps> {
    
   }
 
-
-  formatDate (dateStr: string)  {
-  const [year, month, day] = dateStr.split('-');
-  return `${day}.${month}.${year}`;
-}
-
- 
-
-  render() {
+render() {
     
     return (
       <div  className='main__content'>
-        <div>{this.formatDate(this.props.vaccination.date)}</div>
+        <div>{formatDate(this.props.vaccination.date)}</div>
         <div >{this.props.vaccination.group}</div>
         <div>({this.props.vaccination.name})</div>
         {this.props.vaccination.series ? (

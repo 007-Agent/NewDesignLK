@@ -1,6 +1,7 @@
 import React from 'react';
 import { Usernow } from '../../../../../redux/authSlice';
 import { Patient } from '../../PatientFull';
+import { formatDate } from '../../../../../utils/utils';
 import "./analysis.scss"
 interface AnalysisItem {
   date: string;
@@ -32,15 +33,12 @@ class Analysis extends React.Component<AnalysisProps, AnalysisState> {
       this.setState({ show: event.show });
     }
   }
-formatDate (dateStr: string)  {
-  const [year, month, day] = dateStr.split('-');
-  return `${day}.${month}.${year}`;
-}
+
 
   render() {
     const label = (
       <>
-      <div>{this.formatDate(this.props.analysis.date)}</div>
+      <div>{formatDate(this.props.analysis.date)}</div>
         <div>{this.props.analysis.name}</div>
       </>
         

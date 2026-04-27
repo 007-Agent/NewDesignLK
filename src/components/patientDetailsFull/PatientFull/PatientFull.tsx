@@ -10,6 +10,9 @@ import Vaccinations from './Vacination/Vacinations';
 import {AppointmentModal} from '../../AppointmentModal/AppointmentModal';
 import Analyzes from './Analyzes/Analyzes';
 import Observations from './Observations/Observations';
+import Disables from './Disables/Disables';
+import { formatDate } from '../../../utils/utils';
+
 export interface Patient {
   address: string;
   age: string;
@@ -40,10 +43,7 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
 
   const navigate = useNavigate();
-   const formatDate = (dateStr: string) => {
-  const [year, month, day] = dateStr.split('-');
-  return `${day}.${month}.${year}`;
-};
+
 
 
 
@@ -141,25 +141,7 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
         {/* Больничные листы */}
         {activeTab === 'sickLeave' && (
           <div>
-            <h3>Больничные листы</h3>
-            <div className="patient-items-list">
-              {sickLeaves.map((leave) => (
-                <div key={leave.id} className="patient-item">
-                  <div className="patient-item-header">
-                    <div>
-                      <p className="patient-item-title">№ {leave.id}</p>
-                      <p className="patient-item-description">Диагноз: {leave.diagnosis}</p>
-                    </div>
-                    <span className="patient-status-badge green">
-                      {leave.status}
-                    </span>
-                  </div>
-                  <p className="patient-item-meta">
-                    Период: {leave.dateFrom} - {leave.dateTo}
-                  </p>
-                </div>
-              ))}
-            </div>
+           <Disables patient={patient} user={user}/>
           </div>
         )}
 

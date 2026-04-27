@@ -1,7 +1,7 @@
 import { User, Mail, Phone, Calendar, Users } from 'lucide-react';
 // import { Usernow } from '../redux/authSlice';
 import './profile.scss'
-
+import { formatDate } from '../../utils/utils';
 interface Profile {
   id: number;
 uuid: string;
@@ -25,10 +25,7 @@ interface ProfilePageProps {
 export function ProfilePage({ user }: ProfilePageProps) {
   console.log(user)
 
-  const formatDate = (dateStr: string) => {
-  const [year, month, day] = dateStr.split('-');
-  return `${day}.${month}.${year}`;
-};
+
  
   return (
     <div className="profile__main">

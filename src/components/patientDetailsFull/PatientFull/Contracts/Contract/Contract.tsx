@@ -1,5 +1,6 @@
 import React from 'react'
 import './contract.scss'
+import { formatDate } from '../../../../../utils/utils';
 export interface ContractData {
   date: string;            
   dateSign: string | null; 
@@ -16,11 +17,7 @@ interface ContractProps {
 }
 export default function Contract(props : ContractProps) {
     const contract = props.contract;
-     const formatDate = (dateStr: string) => {
-  const [year, month, day] = dateStr.split('-');
-  return `${day}.${month}.${year}`;
-};
-   
+
     
 
     return (

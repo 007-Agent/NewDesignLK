@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './visit.scss'
+import { formatDate } from '../../../../../utils/utils';
 // import { Usernow } from '../../../../../redux/authSlice';
 interface Patient {
   address: string;
@@ -53,24 +54,11 @@ interface VisitProps {
 export function Visit ({ visit, patient, onRefresh, onGetMessage }: VisitProps) {
     const [show, setShow] = useState(false)
 
- const formatDate = (dateStr: string) => {
-  const [year, month, day] = dateStr.split('-');
-  return `${day}.${month}.${year}`;
-};
-
-// Обрезаем время до часов и минут
 const formatTime = (timeStr: string) => {
   return timeStr.slice(0, 5); // "10:00" из "10:00:00"
 };
 
-  
-
-//   const onClose = ( event: React.FormEvent) => {
-//     setShow(false)
-//     if (event.refresh && onRefresh) onRefresh()
-//   }
-
-  const onShow = () => {
+    const onShow = () => {
     setShow(true)
   }
 
