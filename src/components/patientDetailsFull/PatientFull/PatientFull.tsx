@@ -58,21 +58,6 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
     { id: 'visits', label: 'Приёмы и услуги', icon: Calendar },
   ];
   
-  // Mock data
-  const sickLeaves = [
-    { id: '001', dateFrom: '10.01.2024', dateTo: '17.01.2024', diagnosis: 'ОРВИ', status: 'Закрыт' },
-    { id: '002', dateFrom: '15.12.2023', dateTo: '22.12.2023', diagnosis: 'Грипп', status: 'Закрыт' },
-  ];
-
-
- 
-
- 
-
-  const monitoring = [
-    { condition: 'Аллергия на пыльцу', doctor: 'Смирнов И.П.', period: 'Март - Июнь 2024' },
-  ];
-
   const examinations = [
     { year: '2023', date: '15.05.2023', status: 'Пройдена', result: 'Здоров' },
     { year: '2024', date: '-', status: 'Запланирована', result: '-' },
