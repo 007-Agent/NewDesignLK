@@ -1,0 +1,160 @@
+.cancel-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.cancel-modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.cancel-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.2s;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cancel-modal-close:hover {
+  color: #111827;
+}
+
+.cancel-modal-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.cancel-modal-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 24px;
+  padding-right: 32px;
+}
+
+.cancel-modal-patient {
+  background: #f3f4f6;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.cancel-modal-patient-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.cancel-modal-patient-card {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.cancel-modal-appointment {
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 20px 0;
+  margin-bottom: 24px;
+}
+
+.cancel-modal-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cancel-modal-info-row:last-child {
+  margin-bottom: 0;
+}
+
+.cancel-modal-label {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.cancel-modal-value {
+  font-size: 14px;
+  color: #111827;
+  font-weight: 600;
+  text-align: right;
+}
+
+.cancel-modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.cancel-modal-btn-back,
+.cancel-modal-btn-confirm {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.cancel-modal-btn-back {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.cancel-modal-btn-back:hover {
+  background: #e5e7eb;
+}
+
+.cancel-modal-btn-confirm {
+  background: #ef4444;
+  color: white;
+}
+
+.cancel-modal-btn-confirm:hover {
+  background: #dc2626;
+}

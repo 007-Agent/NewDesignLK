@@ -89,7 +89,7 @@ export function Visits ({patient, user} :PatientDetailPageProps ) {
     return <div className="no-data-message">Нет доступных данных</div>;
   }
   const filteredItems = items.filter(item => item.active === 0 )
-  const visitItems = filteredItems
+  const visitItems = items
     .slice((currentPage - 1) * clientsPerPage, currentPage * clientsPerPage)
     .map((v, i) => (
       <Visit

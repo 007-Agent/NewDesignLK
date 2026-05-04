@@ -71,20 +71,22 @@ const formatTime = (timeStr: string) => {
   ) : null
 
   const cancel = visit.active ? (
-    <button  onClick={onShow}>
+    <button  onClick={onShow}   className="cancel-button" 
+          
+          aria-label="Отменить запись">
         Отменить запись
       </button>
     
   ) : null
 
-//   const edit = visit.active ? (
-//     <Edit
-//       show={show}
-//       visit={visit}
-//       patient={patient}
-//       onClose={onClose}
-//     />
-//   ) : null
+  const edit = visit.active ? (
+    <Edit
+      show={show}
+      visit={visit}
+      patient={patient}
+    
+    />
+  ) : null
 
   return (
     <div  className="visit-item">
@@ -101,9 +103,13 @@ const formatTime = (timeStr: string) => {
                       
                         
                     </div>
-                    <span className={`visit-status-badge ${visit.active === 0 ? 'green' : 'blue'}`}>
-                          {visit.active === 0 ? 'Приём завершён' : ''}
-                        </span>
+                     {visit.active === 0 ? (
+        <span className={`visit-status-badge green`}>
+          Приём завершён
+        </span>
+      ) : (
+       cancel
+      )}
                   </div>
 
       </div>
