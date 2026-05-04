@@ -22,13 +22,16 @@ export function Authorization({ onSuccess }: AuthorizationProps) {
     try {
       await dispatch(loginUser({ username, password })).unwrap();
       onSuccess?.(); // закрываем модалку
+      navigate('/doctors');
     } catch (err: any) {
       setError(err.message || 'Ошибка авторизации');
+      console.log(err.message)
     } finally {
       setLoading(false);
-      navigate('/doctors');
+      
     }
   };
+  console.log(error)
 
   return (
     <form onSubmit={handleSubmit} className="login-form">
@@ -66,6 +69,7 @@ export function Authorization({ onSuccess }: AuthorizationProps) {
       <button type="submit" className="login-submit" disabled={loading}>
         {loading ? 'Загрузка...' : 'Войти'}
       </button>
+      {error && <div className="login-error">{error}</div>}
     </form>
   );
 }

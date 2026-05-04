@@ -87,21 +87,21 @@ const formatTime = (timeStr: string) => {
 //   ) : null
 
   return (
-    <div  className="patient-item">
+    <div  className="visit-item">
       
-         <div className="patient-item-header">
-                    <div>
-                    
-                        <p className="patient-item-title">{visit.specialityName}</p>
-                        <p className="patient-item-doctor">Врач: {visit.doctorName}</p>
-                        <p className="patient_time">
-                         Время визита: {formatDate(visit.date)} в {formatTime(visit.from)}
+         <div className="visit-item-header">
+                    <div className='visit__card'>
+                         <p className="visit_time">
+                         {formatDate(visit.date)}   {formatTime(visit.from)}
                         </p>
+                        <p className="visit-item-title">{visit.specialityName}</p>
+                        <p className="visit-item-doctor">Врач: {visit.doctorName}</p>
+                       
                  
                       
                         
                     </div>
-                    <span className={`patient-status-badge ${visit.active === 0 ? 'green' : 'blue'}`}>
+                    <span className={`visit-status-badge ${visit.active === 0 ? 'green' : 'blue'}`}>
                           {visit.active === 0 ? 'Приём завершён' : ''}
                         </span>
                   </div>

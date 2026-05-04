@@ -1,32 +1,39 @@
-.patient-item {
+.visit-item {
   background-color: #f9fafb;
   border-radius: 0.5rem;
 
   font-size: 16px;
 }
 
-.patient-item-header {
+.visit-item-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
 }
 
-.patient-item-title {
+.visit-item-title {
   font-weight: 600;
   color: #1f2937;
   margin-bottom: 0.25rem;
 }
-
-.patient-item-doctor {
+.visit__card {
+  width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 20px;
+  justify-content: space-between;
+}
+.visit-item-doctor {
   color: #6b7280;
   margin-bottom: 0.25rem;
 }
 
-.patient_time {
+.visit_time {
   color: #101011;
 }
 
-.patient-status-badge {
+.visit-status-badge {
   padding: 10px 15px;
   border-radius: 9999px;
   font-size: 0.75rem;
@@ -34,18 +41,18 @@
   white-space: nowrap;
 }
 
-.patient-status-badge.green {
+.visit-status-badge.green {
   background-color: #d1fae5;
   color: #065f46;
   font-size: 15px;
 }
 
-.patient-status-badge.blue {
+.visit-status-badge.blue {
   background-color: #dbeafe;
   color: #1e40af;
 }
 
-.patient-status-badge.yellow {
+.visit-status-badge.yellow {
   background-color: #fef3c7;
   color: #92400e;
 }
