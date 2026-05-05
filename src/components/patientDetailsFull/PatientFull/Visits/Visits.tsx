@@ -71,11 +71,7 @@ export function Visits ({patient, user} :PatientDetailPageProps ) {
    
     setMes(info)
   }
-  useEffect(() => {
-    if (message.length !== 0) {
-      fetchVisits()
-    }
-  }, [message])
+
 
   useEffect(() => {
     isMounted.current = true

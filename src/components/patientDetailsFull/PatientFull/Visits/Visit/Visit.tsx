@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './visit.scss'
 import { formatDate } from '../../../../../utils/utils';
 // import { Usernow } from '../../../../../redux/authSlice';
+import Edit from './Edit/Edit';
 interface Patient {
   address: string;
   age: string;
@@ -58,6 +59,11 @@ const formatTime = (timeStr: string) => {
   return timeStr.slice(0, 5); // "10:00" из "10:00:00"
 };
 
+const onClose = () => {
+    setShow(false)
+    
+  }
+
     const onShow = () => {
     setShow(true)
   }
@@ -79,14 +85,10 @@ const formatTime = (timeStr: string) => {
     
   ) : null
 
-  const edit = visit.active ? (
-    <Edit
-      show={show}
-      visit={visit}
-      patient={patient}
-    
-    />
-  ) : null
+ 
+  const edit = (visit.active && show) ? (
+  <Edit show={show} visit={visit} patient={patient}  onClose={onClose}  onRefresh={onRefresh}/>
+) : null
 
   return (
     <div  className="visit-item">
@@ -111,6 +113,8 @@ const formatTime = (timeStr: string) => {
        cancel
       )}
                   </div>
+
+                  {edit}
 
       </div>
       

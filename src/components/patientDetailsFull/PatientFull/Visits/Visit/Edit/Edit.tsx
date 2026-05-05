@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import  './edit.scss'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios';
+import { X } from 'lucide-react';
 import { formatDate } from '../../../../../../utils/utils'
 
 interface Patient {
@@ -45,9 +46,10 @@ export interface Visited {
 }
 interface EditProps {
   patient: Patient;
-  
+  show: boolean;
   visit: Visited;
-
+  onClose?: () => void;
+  onRefresh: () => void; 
 }
 
 
@@ -57,9 +59,9 @@ const Edit = (props : EditProps) => {
   const visit = props.visit || {}
   const patient = props.patient || {}
   const show = props.show
-
-  const [error, setError] = useState(null)
-  const [message, setMessage] = useState(null)
+  console.log(visit, patient, "Props content")
+  const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState("")
 
 
 
@@ -77,61 +79,56 @@ const Edit = (props : EditProps) => {
 //   }
 const cancelVisit = async () => {
   try {
-    await axios.post('/api/visit/clear', { visitId: visit.id, patientId: patient.id });
+    await axios.post('/api/visit/clear', {
+      visitId: visit.id,
+      patientId: patient.id
+    });
     setMessage('Запись отменена');
+    if (props.onClose) {
+    props.onClose();
+    if(props.onRefresh){
+        props.onRefresh()
+    }
+  }
   } catch (error) {
-    const errorMessage = error.response?.data?.error?.message || error.message || 'Ошибка отмены';
+    console.error(error);
+    let errorMessage = 'Ошибка отмены';
+    if (error instanceof AxiosError) {
+      errorMessage = error.response?.data?.error?.message || error.message;
+    } else if (error instanceof Error) {
+      errorMessage = error.message;
+    }
     setError(errorMessage);
   }
 };
 
-  const onClose = event => {
-    if ('ok' === event.button) {
-      if (props.onClose) props.onClose({ refresh: true })
-    } else if ('continue' === event.button) {
-      if (props.onClose) props.onClose()
-    } else if ('save' === event.button) {
-      cancelVisit()
-    } else if ('cancel' === event.button) {
-      if (props.onClose) props.onClose()
-    }
+  const onClose = () => {
+  if (props.onClose) {
+    props.onClose();
   }
+};
 
   useEffect(() => {
     if (show) {
-      setMessage(null)
+      setMessage("")
       setError(null)
     }
   }, [show])
 
-//   const content = visit ? (
-//     <div style={style.content}>
-//       <div style={style.caption}>{'Отменить запись?'}</div>
-//       <TGroup style={style.group} label={'Пациент'}>
-//         <div style={style.row}>
-//           <div style={style.date}>{patient.nib}</div>
-//           <div style={style.time}>{patient.fio}</div>
-//         </div>
-//       </TGroup>
-//       <TGroup style={style.group} label={'Запись'}>
-//         {renderVisit()}
-//       </TGroup>
-//     </div>
-//   ) : null
 
-  return (
-     <div className="cancel-modal-overlay" onClick={onClose}>
+return (
+     <div className="cancel-modal-overlay" >
       <div className="cancel-modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="cancel-modal-close" onClick={onClose}>
-          <X />
+        <button className="cancel-modal-close" >
+          <X onClick={onClose}/>
         </button>
 
         <h2 className="cancel-modal-title">Отменить запись?</h2>
 
         <div className="cancel-modal-patient">
-          <div className="cancel-modal-patient-name">{patientName}</div>
+          <div className="cancel-modal-patient-name">{patient.fio}</div>
           <div className="cancel-modal-patient-card">
-            Медицинская карта: {medicalCardNumber}
+            Медицинская карта: {patient.nib}
           </div>
         </div>
 
@@ -139,16 +136,16 @@ const cancelVisit = async () => {
           <div className="cancel-modal-info-row">
             <span className="cancel-modal-label">Дата и время:</span>
             <span className="cancel-modal-value">
-              {appointmentDate} в {appointmentTime}
+              {formatDate(visit.date)} в {visit.from}
             </span>
           </div>
           <div className="cancel-modal-info-row">
             <span className="cancel-modal-label">Специальность:</span>
-            <span className="cancel-modal-value">{specialty}</span>
+            <span className="cancel-modal-value">{visit.specialityName}</span>
           </div>
           <div className="cancel-modal-info-row">
             <span className="cancel-modal-label">Врач:</span>
-            <span className="cancel-modal-value">{doctorName}</span>
+            <span className="cancel-modal-value">{visit.doctorName}</span>
           </div>
         </div>
 
@@ -156,8 +153,8 @@ const cancelVisit = async () => {
           <button className="cancel-modal-btn-back" onClick={onClose}>
             Назад
           </button>
-          
-          <button className="cancel-modal-btn-confirm" onClick={handleCancel}>
+
+          <button className="cancel-modal-btn-confirm" onClick={cancelVisit}>
             Отменить запись
           </button>
         </div>
