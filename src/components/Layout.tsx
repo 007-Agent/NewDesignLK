@@ -24,8 +24,8 @@ export default function Layout() {
       )}
 
       {/* Основной контент */}
-      <main className="min-h-screen lg:ml-64">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-8">
+      <main className="h-screen overflow-y-auto">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-8 ">
           {/* Outlet - здесь будут отображаться все страницы */}
           <Outlet />
         

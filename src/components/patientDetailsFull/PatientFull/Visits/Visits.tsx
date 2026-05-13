@@ -81,67 +81,81 @@ export function Visits ({patient, user} :PatientDetailPageProps ) {
     }
   }, [patient]) // при изменении patient перезагружаем визиты
 
-   if (!items || items.length === 0) {
+  if (wait) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
+        <RefreshCw className="spinner" />
+      </div>
+    );
+  }
+
+  // 2. Если загрузка окончена, но данных нет – сообщение
+  if (!items || items.length === 0) {
     return <div className="no-data-message">Нет доступных данных</div>;
   }
-  const filteredItems = items.filter(item => item.active === 0 )
+
+  // 3. Данные есть – рендерим список и пагинацию
   const visitItems = items
     .slice((currentPage - 1) * clientsPerPage, currentPage * clientsPerPage)
     .map((v, i) => (
       <Visit
         key={i}
-        
         patient={patient}
         visit={v}
         onRefresh={fetchVisits}
-        onGetMessage={useMessageEffect}
+        onGetMessage={(info) => {} /* ваш колбэк */}
       />
-    ))
+    ));
 
-  const totalPages = Math.ceil(items.length / clientsPerPage)
+  const totalPages = Math.ceil(items.length / clientsPerPage);
+  const goToPreviousPage = () => currentPage > 1 && setCurrentPage(currentPage - 1);
+  const goToNextPage = () => currentPage < totalPages && setCurrentPage(currentPage + 1);
 
-  const goToPreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1)
-    }
-  }
-
-  const goToNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1)
-    }
-  }
-    return (
+  return (
     <div>
-      {wait ? (
-        // Показываем спиннер по центру, пока идёт загрузка
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          minHeight: '200px',
-          
-        }}>
-           
-          <RefreshCw className='spinner'/>
-        </div>
-      ) : (
-        <>
-          <div className="patient-items-list">{visitItems}</div>
-          {totalPages > 0 && (
-            <div className='pajer_list'>
-              <button className='button_click' onClick={goToPreviousPage} disabled={currentPage === 1}>
-                ← Предыдущая
-              </button>
-              <span>Страница {currentPage} из {totalPages}</span>
-              <button className='button_click' onClick={goToNextPage} disabled={currentPage === totalPages}>
-                Следующая →
-              </button>
-            </div>
-          )}
-        </>
-      )}
+  {/* patient-items-list: margin-bottom 25px */}
+  <div className="mb-[25px]">{visitItems}</div>
+
+  {totalPages > 0 && (
+    /* pajer_list: display flex, align-items center, justify-content center, gap 0 15px */
+    <div className="flex items-center justify-center gap-x-[15px]">
+       <button
+    className="
+      cursor-pointer select-none box-border
+      flex items-center justify-center
+      py-[3px] px-2 max-[500px]:py-2 max-[500px]:px-4
+      bg-[rgba(42,239,137,0.35)] text-black
+      rounded-[8px] text-center
+      font-['Arial'] text-[18px] max-[500px]:text-[14px]
+      w-[220px] max-[500px]:w-full
+    "
+    onClick={goToPreviousPage}
+    disabled={currentPage === 1}
+  >
+    ← Предыдущая
+  </button>
+
+  <span className="text-center font-['Arial'] text-[18px] max-[500px]:text-[14px]">
+    Страница {currentPage} из {totalPages}
+  </span>
+
+  <button
+    className="
+      cursor-pointer select-none box-border
+      flex items-center justify-center
+      py-[3px] px-2 max-[500px]:py-2 max-[500px]:px-4
+      bg-[rgba(42,239,137,0.35)] text-black
+      rounded-[8px] text-center
+      font-['Arial'] text-[18px] max-[500px]:text-[14px]
+      w-[220px] max-[500px]:w-full
+    "
+    onClick={goToNextPage}
+    disabled={currentPage === totalPages}
+  >
+    Следующая →
+  </button>
     </div>
-  )
-     
+  )}
+</div>
+  );
 }

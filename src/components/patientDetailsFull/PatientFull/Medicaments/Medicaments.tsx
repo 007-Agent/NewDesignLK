@@ -2,18 +2,19 @@ import React, { useState, useEffect, useRef} from 'react';
 // import Medicament from './Medicament'
 import './medicaments.scss'
 import { Usernow } from '../../../../redux/authSlice';
+import {RefreshCw} from 'lucide-react'
 import { Patient } from '../PatientFull';
 import  Medicament  from './Medocament/Medicament';
 import axios from 'axios';
 interface MedicamentsProps {
   patient: Patient;
   user: Usernow | null;
- 
+
 }
 export default function Medicaments({patient, user} : MedicamentsProps) {
 
     const [items, setItems] = useState([]);
-      const [wait, setWait] = useState(false);
+      const [wait, setWait] = useState(true);
       const isMounted = useRef(true);
       const patientId = patient.id;
 
@@ -53,6 +54,15 @@ export default function Medicaments({patient, user} : MedicamentsProps) {
     };
   }, [patientId]);
   console.log(items, "TT")
+  if (wait) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
+        <RefreshCw className="spinner" />
+      </div>
+    );
+  }
+
+  // 2. Если загрузка окончена, но данных нет – сообщение
   if (!items || items.length === 0) {
     return <div className="no-data-message">Нет доступных данных</div>;
   }

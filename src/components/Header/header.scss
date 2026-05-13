@@ -129,3 +129,8 @@
   align-items: center;
   gap: 1rem; /* gap-4 */
 }
+@media (max-width: 500px) {
+  .header__content {
+    margin-bottom: 100px;
+  }
+}

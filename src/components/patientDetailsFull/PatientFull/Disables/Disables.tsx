@@ -12,7 +12,7 @@ interface DisableProps {
 }
 interface DisableState {
   items: any[];      // лучше заменить на конкретный тип анализа, если есть
- 
+  wait: boolean;
 }
 class Disables extends React.Component<DisableProps, DisableState > {
     mounted: boolean = false;
@@ -21,7 +21,8 @@ class Disables extends React.Component<DisableProps, DisableState > {
 
     super(props)
     this.state = {
-      items: []
+      items: [],
+      wait: true
     }
     this.refresh = this.refresh.bind(this)
 
@@ -38,11 +39,12 @@ class Disables extends React.Component<DisableProps, DisableState > {
 
  refresh() {
     const patientId = this.props.patient.id;
-    
+    this.setState({ wait: true });
     axios.post('/api/office/patient/disable', { patientId })
       .then(response => {
         if (this.mounted) {
           this.setState({ items: response.data.data });
+          this.setState({ wait: false });
         }
       })
       .catch(error => {
@@ -52,7 +54,16 @@ class Disables extends React.Component<DisableProps, DisableState > {
   }
 
   render() {
-      if (!this.state.items || this.state.items.length === 0) {
+     if (this.state.wait) {
+      return (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
+          <div className="spinner" /> {/* или ваша иконка */}
+        </div>
+      );
+    }
+
+    // 2. Загрузка окончена, данных нет
+    if (!this.state.items || this.state.items.length === 0) {
       return <div className="no-data-message">Нет доступных данных</div>;
     }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import Observation from './Observation/Observation';
 import './observations.scss'
 import { Usernow } from '../../../../redux/authSlice';
+import {RefreshCw} from 'lucide-react'
 import { Patient } from '../PatientFull';
 import axios from 'axios';
 interface ObservationProps {
@@ -11,7 +12,7 @@ interface ObservationProps {
 }
 interface AnalyzesState {
   items: any[];      // лучше заменить на конкретный тип анализа, если есть
-  
+  wait: boolean
 }
 
 class Observations extends React.Component<ObservationProps, AnalyzesState > {
@@ -19,7 +20,8 @@ class Observations extends React.Component<ObservationProps, AnalyzesState > {
   constructor(props : ObservationProps) {
     super(props)
     this.state = {
-      items: []
+      items: [],
+      wait: true
     }
     this.refresh = this.refresh.bind(this)
   }
@@ -35,24 +37,35 @@ class Observations extends React.Component<ObservationProps, AnalyzesState > {
 
   refresh() {
     const patientId = this.props.patient.id;
-    
+     this.setState({ wait: true });
     axios.post('/rest/office/patient/observations', { patientId })
       .then(response => {
         if (this.mounted) {
           this.setState({ items: response.data.data });
+           this.setState({ wait: false });
         }
       })
       .catch(error => {
         console.error('Ошибка загрузки анализов:', error);
-      
+         this.setState({ wait: false });
       });
   }
 
   render() {
-    const results = this.state.items;
-    if (!results || results.length === 0) {
+     if (this.state.wait) {
+      return (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
+          <RefreshCw className="spinner" />
+        </div>
+      );
+    }
+
+    // 2. Загрузка окончена, данных нет
+    if (!this.state.items || this.state.items.length === 0) {
       return <div className="no-data-message">Нет доступных данных</div>;
     }
+    const results = this.state.items;
+ 
     let items = null
     if (this.state.items) {
       items = this.state.items.map((v, i) => {

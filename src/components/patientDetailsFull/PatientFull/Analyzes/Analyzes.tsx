@@ -20,7 +20,7 @@ class Analyzes extends React.Component<AnalyzesProps, AnalyzesState> {
     super(props);
     this.state = {
       items: [],
-      wait: false,
+      wait: true,
     
     };
     this.refresh = this.refresh.bind(this);
@@ -52,26 +52,31 @@ class Analyzes extends React.Component<AnalyzesProps, AnalyzesState> {
       });
   }
 
-  render() {
+   render() {
+    // 1. Сначала проверяем, идёт ли загрузка
+    if (this.state.wait) {
+      return (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
+          <div className="spinner" /> {/* или ваша иконка */}
+        </div>
+      );
+    }
+
+    // 2. Загрузка окончена, данных нет
     if (!this.state.items || this.state.items.length === 0) {
       return <div className="no-data-message">Нет доступных данных</div>;
     }
-    let items = this.state.items.map((v, i) => (
+
+    // 3. Данные есть – отображаем
+    const items = this.state.items.map((v, i) => (
       <Analysis
         key={i}
-          patientId={this.props.patient.id}
-          analysis={v}
-        
-     
+        patientId={this.props.patient.id}
+        analysis={v}
       />
     ));
 
-    return (
-      <div className='analyzes__content'>
-        {items}
-   
-      </div>
-    );
+    return <div className="analyzes__content">{items}</div>;
   }
 }
 

@@ -3,6 +3,7 @@ import "./vacin.scss"
 import { Printer } from 'lucide-react';
 import { Usernow } from '../../../../redux/authSlice';
 import { Patient } from '../PatientFull';
+import { download } from '../../../../utils/utils';
 import Vaccinacya from './Vacinacya/Vaccinacya';
 import axios from 'axios';
 interface AnalyzesProps {
@@ -14,6 +15,7 @@ interface AnalyzesProps {
 interface AnalyzesState {
   items: any[];      // лучше заменить на конкретный тип анализа, если есть
   orderId: null;
+  wait: boolean;
  
 }
 class Vaccinations extends React.Component<AnalyzesProps,AnalyzesState> {
@@ -22,7 +24,8 @@ class Vaccinations extends React.Component<AnalyzesProps,AnalyzesState> {
     super(props)
     this.state = {
       items: [],
-      orderId: null
+      orderId: null,
+      wait: true
     }
     this.refresh = this.refresh.bind(this)
     // this.handleDownload = this.handleDownload.bind(this)
@@ -38,6 +41,7 @@ class Vaccinations extends React.Component<AnalyzesProps,AnalyzesState> {
   }
 
 handleDownload = async () => {
+
   const patientId = this.props.patient.id;
   const orderId = this.state.orderId;
   const fileName = 'Vaccination.pdf';
@@ -59,31 +63,44 @@ handleDownload = async () => {
     // показать уведомление пользователю
   }
 };
-  refresh() {
+
+
+refresh() {
     const patientId = this.props.patient.id;
-   
+    this.setState({ wait: true });
     axios.post('/api/office/patient/vaccinations', { patientId })
       .then(response => {
         if (this.mounted) {
           this.setState({ items: response.data.data});
         }
+          this.setState({ wait: false });
       })
       .catch(error => {
         console.error('Ошибка загрузки анализов:', error);
         if (this.mounted) {
-         
+           this.setState({ wait: false });
         }
       });
   }
 
   render() {
-    const results = this.state.items;
-    if (!results || results.length === 0) {
+
+    if (this.state.wait) {
+      return (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
+          <div className="spinner" /> {/* или ваша иконка */}
+        </div>
+      );
+    }
+
+    // 2. Загрузка окончена, данных нет
+    if (!this.state.items || this.state.items.length === 0) {
       return <div className="no-data-message">Нет доступных данных</div>;
     }
     let items = this.state.items.map((v, i) => {
       return <Vaccinacya key={i}  vaccination={v} />
     })
+      console.log(this.props.patient.id)
     return (
       <React.Fragment>
         <div >

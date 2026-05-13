@@ -31,7 +31,7 @@ interface Contracts {
 }
 function Contracts({patient, user} : Contracts) {
   const [items, setItems] = useState([]);
-  const [wait, setWait] = useState(false);
+  const [wait, setWait] = useState(true);
   const isMounted = useRef(true);
   const patientId = patient.id;
   // Сброс флага монтирования при размонтировании
@@ -77,17 +77,26 @@ function Contracts({patient, user} : Contracts) {
   
   
 
-  // Рендеринг элементов списка
+ if (wait) {
+    return (
+      <div className="contracts_content" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
+        {/* Замените <div className="spinner" /> на ваш компонент спиннера (например, RefreshCw) */}
+        <div className="spinner" />
+      </div>
+    );
+  }
+
+  // 2. Загрузка окончена, данных нет
+  if (!items || items.length === 0) {
+    return <div className="no-data-message">Нет доступных данных</div>;
+  }
+
+  // 3. Данные есть – рендерим список
   const itemsElements = items.map((v, i) => (
-    <Contract key={i}  contract={v} />
+    <Contract key={i} contract={v} />
   ));
 
-  return (
-    <div className='contracts_content'>
-      {itemsElements}
-      
-    </div>
-  );
+  return <div className="contracts_content">{itemsElements}</div>;
 }
 
-export default Contracts
+export default Contracts;
