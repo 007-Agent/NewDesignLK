@@ -14,18 +14,7 @@ export function Header() {
     <>
        
 
-      {/* Контейнер сайдбара с анимацией */}
-      {/* <div className={`
-  fixed top-0 left-0 h-full z-40
-  transform transition-all duration-[100] ease-in-out
-  ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-  lg:translate-x-0 lg:relative lg:z-0
-`}>
-  <Sidebar
-    isMobileMenuOpen={isMobileMenuOpen}
-    setIsMobileMenuOpen={setIsMobileMenuOpen}
-  />
-</div> */}
+
 <div className={`sidebar-wrapper ${isMobileMenuOpen ? 'open' : ''}`}>
   <Sidebar
   isMobileMenuOpen={isMobileMenuOpen}

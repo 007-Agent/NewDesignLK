@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PatientDetailPageWrapper } from './components/patientDetailsFull/PatientWrapperDetail/PatientDetailWrapper';
 import Policy from './RouterSlide/Policy/Policy';
 import Layout from '../src/components/Layout';
+import { HomePage } from './components/Main/Main';
 import './App.scss'
 import { fetchSpecialties } from './redux/Departament/Specialities';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -19,7 +20,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
 export default function App() {
- 
+
   const { user, checkStatus } = useAppSelector((state) => state.auth);
   const [specialtiesRequested, setSpecialtiesRequested] = useState(false);
   console.log(user, "USSR")
@@ -41,19 +42,14 @@ export default function App() {
     <>
     <Header />
       <Routes>
-        {/* Все маршруты обернуты в Layout */}
-        {/* <Route element={<Layout />}> */}
-        {/* <Route path="/" element={<Navigate to="/doctors" replace />} />
-          <Route path="/doctors" element={<AppointmentsPage user={user}/>} />
-          <Route path="/profile" element={<ProfilePage user={user}/>} />
-          <Route path="/patients" element={<PatientsPage user={user}/>} />
-          <Route path="/schedule" element={<SchedulePage />} />
-          <Route path="/policy" element={<Policy user={user}/>} />
-          <Route path="/patientsfullinfo/:fullName" element={<PatientDetailPageWrapper user={user}/>}  />
-        </Route> */}
-
+      
         <Route element={<Layout />}>
   <Route path="/" element={<Navigate to="/doctors" replace />} />
+    <Route path="/home" element={
+    <PrivateRoute user={user}>
+      <HomePage user={user} />
+    </PrivateRoute>
+  } />
   <Route path="/doctors" element={
     <PrivateRoute user={user}>
       <AppointmentsPage user={user} />
