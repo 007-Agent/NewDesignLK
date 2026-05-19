@@ -59,10 +59,10 @@ export function HomePage(props : AppointmentsProps) {
     <div className="home-page">
       <div className="home-content-wrapper">
         {/* Новости теперь идут ПЕРВЫМИ (были акциями) */}
-        <section className="news-section">
-          <h3 className="section-title">Последние новости</h3>
+        <div className="news-section">
+          <h3 className="section-title">Актуальные акции</h3>
           <div className="news-list">
-            {newsItems.map((item, index) => (
+            {promotions.map((item, index) => (
               <div key={index} className="news-item">
                 <div className="news-item-image-wrapper">
                   <img src={item.image} alt={item.title} className="news-item-image" />
@@ -71,26 +71,26 @@ export function HomePage(props : AppointmentsProps) {
               </div>
             ))}
           </div>
-        </section>
+        </div>
 
         {/* Акции теперь идут ВТОРЫМИ (были новостями) */}
-        <section className="promotions-section">
-          <h3 className="section-title">Актуальные акции</h3>
+        <div className="promotions-section">
+          <h3 className="section-title">Новости</h3>
           <div className="promotions-grid">
-            {promotions.map((promo, index) => (
+            {newsItems.map((promo, index) => (
               <div key={index} className="promotion-card">
                 <div className="promotion-image-wrapper">
                   <img src={promo.image} alt={promo.title} className="promotion-image" />
-                  <div className="promotion-badge">{promo.discount}</div>
+                  
                 </div>
                 <div className="promotion-content">
                   <h4 className="promotion-title">{promo.title}</h4>
-                  <p className="promotion-description">{promo.description}</p>
+                  
                 </div>
               </div>
             ))}
           </div>
-        </section>
+        </div>
       </div>
     </div>
   );

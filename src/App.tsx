@@ -44,7 +44,7 @@ export default function App() {
       <Routes>
       
         <Route element={<Layout />}>
-  <Route path="/" element={<Navigate to="/doctors" replace />} />
+  <Route path="/" element={<Navigate to="/home" replace />} />
     <Route path="/home" element={
     <PrivateRoute user={user}>
       <HomePage user={user} />

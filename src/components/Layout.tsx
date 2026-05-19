@@ -13,7 +13,6 @@ export default function Layout() {
     <>
 
 
-<div className="min-h-[83vh] bg-gray-50 relative overflow-auto">
       
 
      
@@ -25,7 +24,7 @@ export default function Layout() {
       )}
 
       {/* Основной контент */}
-      <main className="min-h-[83vh] overflow-auto">
+        <main className="h-[82vh] overflow-y-auto bg-white/25 ">
       <div className={`
         mx-auto px-6 lg:px-12 py-8
         ${isHomePage 
@@ -36,7 +35,7 @@ export default function Layout() {
         <Outlet />
       </div>
     </main>
-    </div>
+    
     </>
     
   );

@@ -102,13 +102,13 @@ refresh() {
     })
       console.log(this.props.patient.id)
     return (
-      <React.Fragment>
+      <div className='relative'>
         <div >
            <Printer className='print_vac' onClick={this.handleDownload}/>
         </div>
         {items}
     
-      </React.Fragment>
+      </div>
     )
   }
 }

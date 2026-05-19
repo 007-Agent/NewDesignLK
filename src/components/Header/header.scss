@@ -108,10 +108,11 @@
 .header__center {
   display: flex;
   justify-content: center; /* центрируем содержимое */
+  padding-left: 80px;
   .first {
     font-size: 10px;
 
-    color: rgb(189, 122, 81);
+    color: #0abab5;
     text-align: center;
   }
   .second {
@@ -125,9 +126,11 @@
 }
 
 .header__right {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 1rem; /* gap-4 */
+  cursor: pointer;
 }
 @media (max-width: 500px) {
   .header__content {

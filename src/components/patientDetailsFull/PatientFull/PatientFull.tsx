@@ -39,9 +39,9 @@ interface PatientDetailPageProps {
 }
 
 export function PatientFull({ patient, user }: PatientDetailPageProps) {
-  const [activeTab, setActiveTab] = useState('sickLeave');
-  const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
 
+  const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState<string | null>(null);
   const navigate = useNavigate();
 
 
@@ -62,12 +62,15 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
     { year: '2023', date: '15.05.2023', status: 'Пройдена', result: 'Здоров' },
     { year: '2024', date: '-', status: 'Запланирована', result: '-' },
   ];
-
+  const handleTabClick = (tabId: string) => {
+    setActiveTab(activeTab === tabId ? null : tabId);
+  };
   
  const onBack = () => {
    navigate('/patients');
  }
   return (
+    <>
     <div className='patient__font'>
       {/* Back Button */}
       <button onClick={onBack} className="patient-detail-back">
@@ -95,103 +98,58 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="patient-tabs">
-        <div className="patient-tabs-list">
-          {tabs.map((tab) => {
-            const Icon = tab.icon;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`patient-tab ${activeTab === tab.id ? 'active' : 'inactive'}`}
-              >
-                <Icon />
-                {tab.label}
-              </button>
-            );
-          })}
-        </div>
-      </div>
+     
+    
 
       {/* Tab Content */}
-      <div className="patient-tab-content">
-
-       {activeTab === 'contracts' && (
-          <div>
-            <Contracts patient={patient} user={user}/>
-          </div>
-        )}
-
-        {/* Больничные листы */}
-        {activeTab === 'sickLeave' && (
-          <div>
-           <Disables patient={patient} user={user}/>
-          </div>
-        )}
-
-        {/* Вакцинация */}
-        {activeTab === 'vaccination' && (
-          <div className='vaccina__box'>
-            <Vaccinations patient={patient} user={user}/>
-          </div>
-        )}
-
-
-         {activeTab === 'terrapy' && (
-          <div>
-            <Medicaments patient={patient} user={user}/>
-          </div>
-        )}
-
-        {/* Лабораторные исследования */}
-        {activeTab === 'laboratory' && (
-          <div>
-          
-            < Analyzes patient={patient} user={user}/>
-          </div>
-        )}
-
-        {/* Активное наблюдение */}
-        {activeTab === 'monitoring' && (
-          <div>
-            <Observations patient={patient} user={user}/>
-          </div>
-        )}
-
-        {/* Диспансеризация */}
-        {activeTab === 'examination' && (
-          <div>
-            <h3>Диспансеризация</h3>
-            <div className="patient-items-list">
-              {examinations.map((exam, index) => (
-                <div key={index} className="patient-item">
-                  <div className="patient-item-header">
-                    <div>
-                      <p className="patient-item-title">Диспансеризация {exam.year}</p>
-                      <p className="patient-item-description">
-                        {exam.date !== '-' ? `Дата: ${exam.date}` : 'Дата не назначена'}
-                      </p>
-                    </div>
-                    <span className={`patient-status-badge ${exam.status === 'Пройдена' ? 'green' : 'yellow'}`}>
-                      {exam.status}
-                    </span>
+      <div className="vertical-tabs">
+       {tabs.map((tab) => {
+  const Icon = tab.icon; // Теперь это компонент
+  return (
+    <div key={tab.id} className="tab-section">
+      <div
+        className={`tab-header ${activeTab === tab.id ? 'active' : 'inactive'}`}
+        onClick={() => handleTabClick(tab.id)}
+      >
+        <Icon size={20} /> {/* Рендерим компонент иконки */}
+        <span className="tab-label">{tab.label}</span>
+      </div>
+      {activeTab === tab.id && (
+              <div className="tab-content">
+                {tab.id === 'contracts' && <Contracts patient={patient} user={user} />}
+                {tab.id === 'sickLeave' && <Disables patient={patient} user={user} />}
+                {tab.id === 'vaccination' && <Vaccinations patient={patient} user={user} />}
+                {tab.id === 'terrapy' && <Medicaments patient={patient} user={user} />}
+                {tab.id === 'laboratory' && <Analyzes patient={patient} user={user} />}
+                {tab.id === 'monitoring' && <Observations patient={patient} user={user} />}
+                {tab.id === 'examination' && (
+                  <div className="examination-list">
+                    <h3>Диспансеризация</h3>
+                    {examinations.map((exam, index) => (
+                      <div key={index} className="examination-item">
+                        <div className="examination-header">
+                          <div>
+                            <p className="examination-title">Диспансеризация {exam.year}</p>
+                            <p className="examination-date">
+                              {exam.date !== '-' ? `Дата: ${exam.date}` : 'Дата не назначена'}
+                            </p>
+                          </div>
+                          <span className={`status-badge ${exam.status === 'Пройдена' ? 'completed' : 'pending'}`}>
+                            {exam.status}
+                          </span>
+                        </div>
+                        <p className="examination-result">Результат: {exam.result}</p>
+                      </div>
+                    ))}
                   </div>
-                  <p className="patient-item-meta">
-                    Результат: {exam.result}
-                  </p>
-                </div>
-              ))}
-            </div>
+                )}
+                {tab.id === 'visits' && <Visits patient={patient} user={user} />}
+              </div>
+            )}
           </div>
-        )}
-
-        {/* Приёмы и услуги */}
-        {activeTab === 'visits' && (
-          <div>
-            <Visits patient={patient} user={user}/>
-          </div>
-        )}
+   
+  );
+})}
       </div>
       <AppointmentModal 
         isOpen={isAppointmentModalOpen}
@@ -199,5 +157,8 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
         patient = {patient}
       />
     </div>
+    </>
+    
+
   );
 }
