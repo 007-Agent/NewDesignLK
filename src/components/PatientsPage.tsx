@@ -33,7 +33,7 @@ export function PatientsPage({user} : ProfilePatientsProps) {
   }, [user]);
 
   return (
-    <div>
+    <div className='patient_main'>
       { wait ? (
         <div style={{
           display: 'flex',

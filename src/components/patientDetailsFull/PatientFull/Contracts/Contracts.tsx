@@ -79,7 +79,7 @@ function Contracts({patient, user} : Contracts) {
 
  if (wait) {
     return (
-      <div className="contracts_content" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
+      <div className="contracts_content" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '40px' }}>
         {/* Замените <div className="spinner" /> на ваш компонент спиннера (например, RefreshCw) */}
         <div className="spinner" />
       </div>
@@ -87,9 +87,9 @@ function Contracts({patient, user} : Contracts) {
   }
 
   // 2. Загрузка окончена, данных нет
-  if (!items || items.length === 0) {
-    return <div className="no-data-message">Нет доступных данных</div>;
-  }
+  // if (!items || items.length === 0) {
+  //   return <div className="no-data-message">Нет доступных данных</div>;
+  // }
 
   // 3. Данные есть – рендерим список
   const itemsElements = items.map((v, i) => (

@@ -6,7 +6,7 @@
 // import { loginUser } from '../../redux/authSlice';
 interface LoginFormProps {
   isOpen: boolean;
-  onClose: () => void;
+  onClose: () => void
 }
 
 // export function LoginForm() {
@@ -74,6 +74,7 @@ import { useState } from 'react';
 import './login.scss';
 import { Authorization } from './Auth/Authorization';
 import { Registration } from './Registration/Registartion';
+import logotip from "../../../docs/logotip.jpg"
 
 interface LoginFormProps {
   isOpen: boolean;
@@ -93,7 +94,7 @@ export function LoginForm() {
         <button className="login-close" >
           <X />
         </button>
-
+        <img src={logotip} alt="" className='auth_logo'/>
         {/* Табы сверху */}
         <div className="login-tabs">
           <button

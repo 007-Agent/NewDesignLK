@@ -56,16 +56,16 @@ class Analyzes extends React.Component<AnalyzesProps, AnalyzesState> {
     // 1. Сначала проверяем, идёт ли загрузка
     if (this.state.wait) {
       return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '40px' }}>
           <div className="spinner" /> {/* или ваша иконка */}
         </div>
       );
     }
 
     // 2. Загрузка окончена, данных нет
-    if (!this.state.items || this.state.items.length === 0) {
-      return <div className="no-data-message">Нет доступных данных</div>;
-    }
+    // if (!this.state.items || this.state.items.length === 0) {
+    //   return <div className="no-data-message">Нет доступных данных</div>;
+    // }
 
     // 3. Данные есть – отображаем
     const items = this.state.items.map((v, i) => (

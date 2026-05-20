@@ -37,7 +37,7 @@ export function AppointmentsPage(props : AppointmentsProps) {
     <Reception visit={v} key={i}/>
   ))
   return (
-    <div>
+    <div className="appoint__str">
       <div className="appointments-page-header">
         <div className="appointments-header-icon">
           <Calendar />

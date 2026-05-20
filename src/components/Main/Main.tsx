@@ -3,7 +3,7 @@ import { Tag } from 'lucide-react';
 import { NewsCard } from '../NewsCard';
 import "./main.scss"
 import { Usernow } from '../../redux/authSlice';
-
+import action from "../../../public/images/action-3.jpg"
 interface AppointmentsProps {
   user: Usernow | null;
 }
@@ -11,25 +11,25 @@ interface AppointmentsProps {
 export function HomePage(props : AppointmentsProps) {
   const promotions = [
     {
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      image: '../../../public/images/action-1.png',
       title: 'Скидка 20% на первый прием',
       description: 'Специальное предложение для новых пациентов',
       discount: '-20%',
     },
     {
-      image: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      image: '../../../public/images/action-1.png',
       title: 'Комплексное обследование',
       description: 'Полное обследование организма со скидкой 30%',
       discount: '-30%',
     },
     {
-      image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      image: '../../../public/images/action-3.jpg',
       title: 'Детская вакцинация',
       description: 'Бесплатная консультация педиатра при вакцинации',
       discount: 'Бесплатно',
     },
     {
-      image: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      image: '../../../public/images/OneVisit.png',
       title: 'Семейная карта здоровья',
       description: 'Скидка 15% на все услуги для всей семьи',
       discount: '-15%',
@@ -38,15 +38,15 @@ export function HomePage(props : AppointmentsProps) {
 
   const newsItems = [
     {
-      image: 'https://images.unsplash.com/photo-1662414185445-b9a05e26dba0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      image: '../../../public/images/action-1.png',
       title: 'Новый филиал открыт в центре города',
     },
     {
-      image: 'https://images.unsplash.com/photo-1584982751601-97dcc096659c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      image: '../../../public/images/Авангард.jpg',
       title: 'Новые специалисты в нашей команде',
     },
     {
-      image: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      image: '../../../public/images/Аптека3.jpg',
       title: 'Обновленные стандарты безопасности',
     },
     {

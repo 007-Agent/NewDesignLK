@@ -23,5 +23,5 @@ interface ProfilePageProps {
 }
 
 export const PrivateRoute = ({ children, user} : ProfilePageProps) => {
-  return user ? children : <Navigate to="/doctors" replace />;
+  return user ? children : <Navigate to="/home" replace />;
 };

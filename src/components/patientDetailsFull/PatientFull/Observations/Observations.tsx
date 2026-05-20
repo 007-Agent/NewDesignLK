@@ -54,16 +54,16 @@ class Observations extends React.Component<ObservationProps, AnalyzesState > {
   render() {
      if (this.state.wait) {
       return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '40px' }}>
           <RefreshCw className="spinner" />
         </div>
       );
     }
 
     // 2. Загрузка окончена, данных нет
-    if (!this.state.items || this.state.items.length === 0) {
-      return <div className="no-data-message">Нет доступных данных</div>;
-    }
+    // if (!this.state.items || this.state.items.length === 0) {
+    //   return <div className="no-data-message">Нет доступных данных</div>;
+    // }
     const results = this.state.items;
  
     let items = null

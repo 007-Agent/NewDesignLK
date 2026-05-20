@@ -90,9 +90,9 @@ export function Visits ({patient, user} :PatientDetailPageProps ) {
   }
 
   // 2. Если загрузка окончена, но данных нет – сообщение
-  if (!items || items.length === 0) {
-    return <div className="no-data-message">Нет доступных данных</div>;
-  }
+  // if (!items || items.length === 0) {
+  //   return <div className="no-data-message">Нет доступных данных</div>;
+  // }
 
   // 3. Данные есть – рендерим список и пагинацию
   const visitItems = items

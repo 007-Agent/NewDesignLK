@@ -2,41 +2,49 @@ import React, {useState} from 'react';
 import { Activity, Menu } from 'lucide-react';
 import { Sidebar } from '../SideBar/Sidebar';
 import { LoginForm } from '../Login/LoginForn';
-// import logo from '../../../docs/logo'
+import { setMenuOpen } from '../../redux/authSlice';
 import { FaClipboardUser } from "react-icons/fa6";
 import './header.scss'
-// import { Usernow } from '../../redux/authSlice';
+
 import { ProfileLogoutIcon } from './Icon/ProfileLogoutIcon ';
+import logotip from "../../../docs/logotip-2.png"
 
-
-import { useAppSelector } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 export function Header() {
     const [showLogoutIcon, setShowLogoutIcon] = useState(false); 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const user = useAppSelector((state) => state.auth.user);
+    const menuOpen  = useAppSelector((state) => state.auth.menuOpen);
     const logo = new URL('../../../docs/logo.png', import.meta.url).href;
+      const dispatch = useAppDispatch();
 
   const handleShowIcon = () => {
         setShowLogoutIcon(!showLogoutIcon); // переключаем показ иконки
     };
+     const toggleMenu = () => {
+    dispatch(setMenuOpen(!menuOpen));
+  };
+  const closeMenu = () => {
+    dispatch(setMenuOpen(false));
+  };
 
   return (
     <>
        
 
 
-<div className={`sidebar-wrapper ${isMobileMenuOpen ? 'open' : ''}`}>
+<div className={`sidebar-wrapper ${menuOpen ? 'open' : ''}`}>
   <Sidebar
-  isMobileMenuOpen={isMobileMenuOpen}
-    setIsMobileMenuOpen={setIsMobileMenuOpen}
+      isMobileMenuOpen={menuOpen}
+          setIsMobileMenuOpen={closeMenu}
   />
 </div>
 
       {/* Затемнение фона */}
-      {isMobileMenuOpen && (
+      {menuOpen  && (
         <div 
           className="fixed inset-0  bg-opacity-50 z-30 lg:hidden"
-          onClick={() => setIsMobileMenuOpen(false)}
+        onClick={closeMenu}
         />
       )}
 
@@ -47,7 +55,8 @@ export function Header() {
 <div className="header__left">
     {!isMobileMenuOpen && (
       <button
-        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        // onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        onClick={toggleMenu}
         className="button__menu"
       >
         <Menu className="w-8 h-8" />
@@ -73,11 +82,11 @@ export function Header() {
     <h3 className="text-[18px] font-normal cursor-pointer">
       Здравствуйте, <strong>{user?.firstName}</strong>
     </h3>
-    <FaClipboardUser className="w-10 h-10 text-teal-500 cursor-pointer"/>
+    <FaClipboardUser className="w-10 h-10 text-[#2197ed] cursor-pointer"/>
     {showLogoutIcon && <ProfileLogoutIcon />}
   </>
 ) : (
-  <img src={logo} alt="logo" style={{width: '70px', height: '70px'}} />
+  <img src={logotip} alt="" className='auth_logo'/>
 )}
     
     

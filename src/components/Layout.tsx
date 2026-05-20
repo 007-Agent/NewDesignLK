@@ -24,9 +24,9 @@ export default function Layout() {
       )}
 
       {/* Основной контент */}
-        <main className="h-[82vh] overflow-y-auto bg-white/25 ">
+        <main className="h-[82vh] overflow-y-auto bg-white/25 [scrollbar-gutter:stable]">
       <div className={`
-        mx-auto px-6 lg:px-12 py-8
+        mx-auto  lg:px-12 py-8
         ${isHomePage 
           ? 'max-w-[calc(7/6*100%)]'  // увеличиваем на ~30% (примерно как 130%)
           : 'max-w-7xl'

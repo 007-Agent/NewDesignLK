@@ -1,19 +1,7 @@
 .patient-card {
-  // background-color: rgb(84, 177, 177);
-  // border-radius: 0.75rem;
-  // padding: 25px;
-  // box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  // transition: all 0.3s;
-  // cursor: pointer;
-  // width: 420px;
-
   background-color: #f8f8f8;
   border-radius: 8px;
   border: 3px solid rgb(84, 177, 177);
-  // outline-color: color-mix ↳
-  //   color-mix(in oklab, oklch(0.708 0 0) 50%, transparent) ↳
-  //   color-mix(in oklab, #a1a1a1 50%, transparent) ↳ #a1a1a180
-  //   (in oklab, var(--ring) 50%, transparent);
   padding: 25px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   transition: all 0.3s;
@@ -117,4 +105,23 @@
 
 .patient-card-action:hover {
   background-color: rgba(255, 255, 255, 0.3);
+}
+@media (max-width: 450px) {
+  .patient-card {
+    padding: 10px;
+    width: 350px;
+    .patient-name {
+      font-size: 15px;
+    }
+    .patient-avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    .patient-detail-label {
+      font-size: 14px;
+    }
+    .patient-detail-value {
+      font-size: 14px;
+    }
+  }
 }

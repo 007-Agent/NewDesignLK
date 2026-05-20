@@ -56,16 +56,16 @@ export default function Medicaments({patient, user} : MedicamentsProps) {
   console.log(items, "TT")
   if (wait) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '40px' }}>
         <RefreshCw className="spinner" />
       </div>
     );
   }
 
   // 2. Если загрузка окончена, но данных нет – сообщение
-  if (!items || items.length === 0) {
-    return <div className="no-data-message">Нет доступных данных</div>;
-  }
+  // if (!items || items.length === 0) {
+  //   return <div className="no-data-message">Нет доступных данных</div>;
+  // }
 
    const itemsMedicaments = items.map((v, i) => (
       <Medicament key={i}  medicament={v} />

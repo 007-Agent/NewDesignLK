@@ -57,12 +57,12 @@
   border-bottom: 2px solid transparent;
 
   &:hover {
-    color: #14b8a6;
+    color: #2197ed;
   }
 
   &.active {
-    color: #14b8a6;
-    border-bottom-color: #14b8a6;
+    color: #2197ed;
+    border-bottom-color: #2197ed;
   }
 }
 
@@ -126,10 +126,16 @@
     border-color 0.3s,
     box-shadow 0.3s;
 }
-
+.auth_logo {
+  width: 140px;
+  height: 110px;
+  text-align: center;
+  display: flex;
+  margin: 0 auto;
+}
 .login-input:focus {
   outline: none;
-  border-color: #14b8a6;
+  border-color: #2197ed;
   box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
 }
 
@@ -140,7 +146,7 @@
 .login-submit {
   width: 100%;
   padding: 0.875rem 1.5rem;
-  background-color: #14b8a6;
+  background-color: #2197ed;
   color: white;
   border: none;
   border-radius: 0.5rem;
