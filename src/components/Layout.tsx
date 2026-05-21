@@ -24,7 +24,7 @@ export default function Layout() {
       )}
 
       {/* Основной контент */}
-        <main className="h-[82vh] overflow-y-auto bg-white/25 [scrollbar-gutter:stable]">
+        <main className="h-[82vh] overflow-y-auto bg-[#f7f7f7] [scrollbar-gutter:stable]">
       <div className={`
         mx-auto  lg:px-12 py-8
         ${isHomePage 

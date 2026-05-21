@@ -38,41 +38,60 @@ export function PatientCard({ patient, user }: PatientCardProps) {
   };
 
   return (
-    <div  className="patient-card"  onClick={handleCardClick} >
-     
-      <div className="patient-card-header">
-        <div className={`patient-avatar ${patient.gender === 'муж' ? 'male' : 'female'}`}>
-          <User className={patient.gender === 'муж' ? 'male' : 'female'} />
-        </div>
-        <div>
-         <h3 className="patient-name">
-  {patient.fio.split(' ').slice(0, 2).join(' ')}
-</h3>
-          
-        </div>
-      </div>
-
-      {/* Patient Details */}
-      <div className="patient-details">
-        <div className="patient-detail-item">
-          <Calendar />
-          <div>
-            <p className="patient-detail-label">Дата рождения</p>
-            <p className="patient-detail-value">{patient.birthday}</p>
-          </div>
-        </div>
-
-        <div className="patient-detail-item">
-          <FileText />
-          <div>
-            <p className="patient-detail-label">Номер мед. карты</p>
-            <p className="patient-detail-value">{patient.nib}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Action Button */}
-      
+    <div 
+  onClick={handleCardClick}
+  className="
+    group
+    bg-white 
+    rounded-2xl 
+    border-l-8 border-[#2197ed]
+    shadow-md 
+    hover:shadow-xl 
+    transition-all 
+    duration-300 
+    cursor-pointer
+    w-[420px] 
+    max-[450px]:w-[350px]
+    p-5
+  "
+>
+  {/* Шапка: аватар + имя */}
+  <div className="flex items-center gap-4 mb-4">
+    <div className={`
+      w-14 h-14 rounded-full flex items-center justify-center
+      ${patient.gender === 'муж' ? 'bg-blue-100' : 'bg-pink-100'}
+    `}>
+      <User className={`
+        w-8 h-8 
+        ${patient.gender === 'муж' ? 'text-blue-600' : 'text-pink-500'}
+      `} />
     </div>
+    <h3 className="text-xl font-semibold text-gray-800 max-[450px]:text-base">
+      {patient.fio.split(' ').slice(0, 2).join(' ')}
+    </h3>
+  </div>
+
+  {/* Детали: дата рождения + номер карты */}
+  <div className="flex  gap-3">
+    <div className="flex items-center gap-3">
+      <Calendar className="w-5 h-5 text-[#2197ed]" />
+      <div>
+        <p className="text-xs text-gray-500 uppercase tracking-wide">Дата рождения</p>
+        <p className="text-base font-medium text-gray-700 max-[450px]:text-sm">
+          {patient.birthday}
+        </p>
+      </div>
+    </div>
+    <div className="flex items-center gap-3">
+      <FileText className="w-5 h-5 text-[#2197ed]" />
+      <div>
+        <p className="text-xs text-gray-500 uppercase tracking-wide">Номер мед. карты</p>
+        <p className="text-base font-medium text-gray-700 max-[450px]:text-sm">
+          {patient.nib}
+        </p>
+      </div>
+    </div>
+  </div>
+  </div>
   );
 }

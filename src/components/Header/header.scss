@@ -1,14 +1,14 @@
 .header__content {
   width: 100%;
-  /* text-align: center; */
   height: 162px;
-
   padding-top: 30px;
-  background: linear-gradient(
+  background-color: #f7f7f7; // основной цвет
+  background-image: linear-gradient(
     to bottom,
-    rgb(6 79 243 / 20%),
-    rgb(34 180 211 / 0%)
+    rgba(6, 79, 243, 0.2),
+    rgba(34, 180, 211, 0)
   );
+  background-repeat: no-repeat; // чтобы градиент не повторялся
   font-family: "Inter";
 }
 .sidebar-wrapper {

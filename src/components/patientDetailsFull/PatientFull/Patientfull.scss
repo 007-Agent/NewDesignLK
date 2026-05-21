@@ -164,6 +164,9 @@
   animation: fadeIn 0.3s ease;
 }
 @media (max-width: 450px) {
+  .tab-content {
+    margin: 0;
+  }
   .patient-detail-meta {
     display: none;
   }
@@ -177,6 +180,24 @@
     height: 3rem;
   }
   .patient-detail-info h2 {
-    font-size: 15px;
+    font-size: 14px;
+    margin: 0;
+  }
+  .vertical-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 420px;
+    overflow-y: auto;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .tab-header {
+    .tab-label {
+      font-size: 15px;
+    }
+    &svg {
+      font-size: 15px;
+    }
   }
 }

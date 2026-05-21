@@ -102,7 +102,7 @@ refresh() {
     })
       console.log(this.props.patient.id)
     return (
-      <div className='relative'>
+      <div className='relative max-[450px]:w-[400px] max-[450px]: p-[3px] flex flex-col gap-y-[10px]'>
         <div >
            <Printer className='print_vac' onClick={this.handleDownload}/>
         </div>

@@ -35,17 +35,20 @@ const Observation = (props : Observation) => {
         detail.push(<Visit id={ob.id} key={2} />);
     }
 
-    return (
-        <div className='Observation__main'>
-            <div onClick={toggleShow} className='observation__content'>
-                <h2>{year}</h2>
-                <p>{department}</p>
-                <div>{speciality}</div>
-                <div>{result}</div>
-            </div>
-            <div>{detail}</div>
-        </div>
-    );
+ return (
+  <div >
+    <div
+      onClick={toggleShow}
+      className="flex flex-wrap my-4 gap-x-[16px] text-[16px] cursor-pointer  max-[450px]:text-[14px]"
+    >
+      <h2 className="text-[rgb(8,161,54)]">{year}</h2>
+      <p>{department}</p>
+      <div>{speciality}</div>
+      <div>{result}</div>
+    </div>
+    <div>{detail}</div>
+  </div>
+);
 };
 
 export default Observation;

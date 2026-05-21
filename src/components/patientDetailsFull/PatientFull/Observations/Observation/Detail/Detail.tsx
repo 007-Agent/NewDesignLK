@@ -44,37 +44,38 @@ interface MedicalTablesProps {
     }, [id]);
   console.log(diagnoses, "diagnosiss")
   return (
-    <div className="medical-tables">
-      <div className="table-section">
-        <h3>Диагноз:</h3>
-        <div className="table-wrapper">
-          <table className="diagnosis-table">
-            <thead>
-              <tr>
-                <th>Код</th>
-                <th>Диагноз</th>
-                <th>Дата постановки</th>
-                <th>Дата перерегистрации</th>
-                <th>Дата снятия</th>
-              </tr>
-            </thead>
-            <tbody>
-              {diagnoses.map((diag, idx) => (
-                <tr key={idx}>
-                  <td>{diag.code}</td>
-                  <td>{diag.name}</td>
-                  <td>{diag.from}</td>
-                  <td>{diag.reg}</td>
-                  <td>{diag.to}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      
-      </div>
+    <div className="max-w-[1000px] mx-auto font-['Inter']">
+  <div className="mb-8">
+    <h3 className="mb-3 text-xl font-semibold text-gray-900 border-l-4 border-blue-600 pl-3 max-[450px]:text-[16px]">
+      Диагноз:
+    </h3>
+    <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-sm">
+      <table className="w-full border-collapse text-sm min-w-[600px] max-[450px]:max-[450px] max-[450px]:min-w-[0]">
+        <thead>
+          <tr className="bg-gray-50 border-b-2 border-gray-200">
+            <th className="p-3 px-4 text-left font-semibold text-gray-800 border border-gray-200 max-[450px]:p-2">Код</th>
+            <th className="p-3 px-4 text-left font-semibold text-gray-800 border border-gray-200 max-[450px]:p-2">Диагноз</th>
+            <th className="p-3 px-4 text-left font-semibold text-gray-800 border border-gray-200 max-[450px]:p-2">Дата постановки</th>
+            <th className="p-3 px-4 text-left font-semibold text-gray-800 border border-gray-200 max-[450px]:p-2">Дата перерегистрации</th>
+            <th className="p-3 px-4 text-left font-semibold text-gray-800 border border-gray-200 max-[450px]:p-2">Дата снятия</th>
+          </tr>
+        </thead>
+        <tbody>
+          {diagnoses.map((diag, idx) => (
+            <tr key={idx} className="[&:last-child_td]:border-b-0">
+              <td className="p-3 px-4 text-gray-700 border border-gray-200 max-[450px]:p-2">{diag.code}</td>
+              <td className="p-3 px-4 text-gray-700 border border-gray-200 max-[450px]:p-2">{diag.name}</td>
+              <td className="p-3 px-4 text-gray-700 border border-gray-200 max-[450px]:p-2">{diag.from}</td>
+              <td className="p-3 px-4 text-gray-700 border border-gray-200 max-[450px]:p-2">{diag.reg}</td>
+              <td className="p-3 px-4 text-gray-700 border border-gray-200 max-[450px]:p-2">{diag.to}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
   
   );
 };
+

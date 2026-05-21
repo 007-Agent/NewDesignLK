@@ -135,3 +135,10 @@
     transform: translateY(0);
   }
 }
+
+@media (max-width: 450px) {
+  .custom-select-modal-item {
+    font-size: 16px;
+    padding: 4px 22px;
+  }
+}

@@ -38,7 +38,7 @@ class Vaccinacya extends React.Component<VacinaProps> {
 render() {
     
     return (
-      <div  className='main__content'>
+      <div className="flex items-center gap-x-[25px] text-[18px] max-[450px]:text-[14px]">
         <div>{formatDate(this.props.vaccination.date)}</div>
         <div >{this.props.vaccination.group}</div>
         <div>({this.props.vaccination.name})</div>

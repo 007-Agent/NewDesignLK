@@ -22,21 +22,20 @@ export default function Medicament(props : MedicProps) {
     
 
     return (
-        <div  className='medic_item'>
-            <div className='Medicament__list'>
-            <div className='medic__result'>
-                <h2>{formatDate(medicament.date)}</h2>
-                <span>{ medicament.diagnosisCode}</span>
-                <span>{medicament.tradeName}</span>
-               
-            </div>
-            <div >
-                <p className='paraph'>{medicament.medicament}</p>
-            </div>
-                
-            </div>
-            
-        </div>
+        <div className="flex items-center gap-x-[10px] p-[5px] text-[18px] max-w-[750px] mx-auto font-['Inter'] max-[450px]:text-[15px]">
+  <div className="block bg-gray-50 p-2.5 w-full flex flex-col gap-y-[10px]  ">
+    <div className="flex gap-x-[15px]">
+      <h2 className="text-[rgba(42,41,117,0.89)] font-medium">
+        {formatDate(medicament.date)}
+      </h2>
+      <span>{medicament.diagnosisCode}</span>
+      <span>{medicament.tradeName}</span>
+    </div>
+    <div>
+      <p className="italic">{medicament.medicament}</p>
+    </div>
+  </div>
+</div>
     );
 }
 
