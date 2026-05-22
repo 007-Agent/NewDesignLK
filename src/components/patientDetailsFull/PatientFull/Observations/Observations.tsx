@@ -4,6 +4,7 @@ import './observations.scss'
 import { Usernow } from '../../../../redux/authSlice';
 import {RefreshCw} from 'lucide-react'
 import { Patient } from '../PatientFull';
+import { Spinner } from '../../../../Spinner';
 import axios from 'axios';
 interface ObservationProps {
   patient: Patient;
@@ -52,18 +53,11 @@ class Observations extends React.Component<ObservationProps, AnalyzesState > {
   }
 
   render() {
-     if (this.state.wait) {
-      return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '40px' }}>
-          <RefreshCw className="spinner" />
-        </div>
-      );
+   if (this.state.wait) {
+      return <Spinner />;
     }
 
-    // 2. Загрузка окончена, данных нет
-    // if (!this.state.items || this.state.items.length === 0) {
-    //   return <div className="no-data-message">Нет доступных данных</div>;
-    // }
+  
     const results = this.state.items;
  
     let items = null

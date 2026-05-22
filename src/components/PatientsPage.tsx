@@ -4,6 +4,7 @@ import { Users } from 'lucide-react';
 import { Usernow } from '../redux/authSlice';
 import './patientsPage.scss'
 import axios from 'axios';
+import { Spinner } from '../Spinner';
 import {RefreshCw} from 'lucide-react'
 
 interface ProfilePatientsProps {
@@ -34,18 +35,9 @@ export function PatientsPage({user} : ProfilePatientsProps) {
 
   return (
     <div className='patient_main'>
-      { wait ? (
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          minHeight: '200px',
-          
-        }}>
-           
-          <RefreshCw className='spinner'/>
-        </div>
-      ) : (
+      { wait ?  
+        <Spinner/>
+       : (
         <>
           <div className="patients-page-header">
         <div className="patients-header-icon">

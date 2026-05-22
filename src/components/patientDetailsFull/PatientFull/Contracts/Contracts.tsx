@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef} from 'react';
 import { Usernow } from '../../../../redux/authSlice';
 import axios from 'axios';
 import Contract from './Contract/Contract';
+import { Spinner } from '../../../../Spinner';
 import './contracts.scss'
 interface Patient {
   address: string;
@@ -78,13 +79,8 @@ function Contracts({patient, user} : Contracts) {
   
 
  if (wait) {
-    return (
-      <div className="contracts_content" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '40px' }}>
-        {/* Замените <div className="spinner" /> на ваш компонент спиннера (например, RefreshCw) */}
-        <div className="spinner" />
-      </div>
-    );
-  }
+  return <Spinner />;
+}
 
   // 2. Загрузка окончена, данных нет
   // if (!items || items.length === 0) {

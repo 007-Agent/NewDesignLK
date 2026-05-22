@@ -197,3 +197,6 @@ html {
     transform: translateY(0);
   }
 }
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

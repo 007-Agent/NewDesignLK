@@ -63,7 +63,7 @@ export function Header() {
       </button>
     )}
   </div>
-  <button className='btn'>Записаться к врачу</button>
+  {/* <button className='btn'>Записаться к врачу</button> */}
         <div className="header__center">
     <div >
           <div className='first'>

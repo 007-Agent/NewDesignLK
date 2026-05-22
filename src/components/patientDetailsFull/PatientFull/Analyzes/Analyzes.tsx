@@ -4,6 +4,7 @@ import "./analyzes.scss"
 import { Usernow } from '../../../../redux/authSlice';
 import { Patient } from '../PatientFull';
 import Analysis from './Analysis/Analysis';
+import { Spinner } from '../../../../Spinner';
 
 interface AnalyzesProps {
   patient: Patient;
@@ -54,13 +55,9 @@ class Analyzes extends React.Component<AnalyzesProps, AnalyzesState> {
 
    render() {
     // 1. Сначала проверяем, идёт ли загрузка
-    if (this.state.wait) {
-      return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '40px' }}>
-          <div className="spinner" /> {/* или ваша иконка */}
-        </div>
-      );
-    }
+   if (this.state.wait) {
+    return <Spinner />;
+  }
 
     // 2. Загрузка окончена, данных нет
     // if (!this.state.items || this.state.items.length === 0) {

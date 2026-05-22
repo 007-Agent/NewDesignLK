@@ -4,6 +4,7 @@ import {RefreshCw} from 'lucide-react'
 import { Usernow } from '../../../../redux/authSlice';
 import { Visit } from './Visit/Visit';
 import { Visited } from './Visit/Visit';
+import { Spinner } from '../../../../Spinner';
 import './visits.scss'
 interface Patient {
   address: string;
@@ -82,12 +83,8 @@ export function Visits ({patient, user} :PatientDetailPageProps ) {
   }, [patient]) // при изменении patient перезагружаем визиты
 
   if (wait) {
-    return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
-        <RefreshCw className="spinner" />
-      </div>
-    );
-  }
+   return <Spinner />;
+ }
 
   // 2. Если загрузка окончена, но данных нет – сообщение
   // if (!items || items.length === 0) {

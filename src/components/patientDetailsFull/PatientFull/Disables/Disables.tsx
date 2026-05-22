@@ -4,6 +4,7 @@ import "./disables.scss"
 import { Patient } from '../PatientFull';
 import Disable from './Disable/Disable';
 import { Usernow } from '../../../../redux/authSlice';
+import { Spinner } from '../../../../Spinner';
 import axios from 'axios';
 interface DisableProps {
   patient: Patient;
@@ -54,13 +55,16 @@ class Disables extends React.Component<DisableProps, DisableState > {
   }
 
   render() {
-     if (this.state.wait) {
-      return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '40px' }}>
-          <div className="spinner" /> {/* или ваша иконка */}
-        </div>
-      );
-    }
+    //  if (!this.state.wait) {
+    //   return (
+    //     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '40px' }}>
+    //       <div className="spinner" /> {/* или ваша иконка */}
+    //     </div>
+    //   );
+    // }
+    if (this.state.wait) {
+  return <Spinner />;
+}
 
     // 2. Загрузка окончена, данных нет
     // if (!this.state.items || this.state.items.length === 0) {

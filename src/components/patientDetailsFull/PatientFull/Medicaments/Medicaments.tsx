@@ -5,6 +5,7 @@ import { Usernow } from '../../../../redux/authSlice';
 import {RefreshCw} from 'lucide-react'
 import { Patient } from '../PatientFull';
 import  Medicament  from './Medocament/Medicament';
+import { Spinner } from '../../../../Spinner';
 import axios from 'axios';
 interface MedicamentsProps {
   patient: Patient;
@@ -37,13 +38,7 @@ export default function Medicaments({patient, user} : MedicamentsProps) {
             setWait(false)
           }
         })
-     
-     
-     
-
-   
-    
-  };
+     };
 
   // Загружаем данные при монтировании и при изменении patientId
  useEffect(() => {
@@ -54,19 +49,12 @@ export default function Medicaments({patient, user} : MedicamentsProps) {
     };
   }, [patientId]);
   console.log(items, "TT")
-  if (wait) {
-    return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '40px' }}>
-        <RefreshCw className="spinner" />
-      </div>
-    );
+
+   if (wait) {
+    return <Spinner />;
   }
 
-  // 2. Если загрузка окончена, но данных нет – сообщение
-  // if (!items || items.length === 0) {
-  //   return <div className="no-data-message">Нет доступных данных</div>;
-  // }
-
+  
    const itemsMedicaments = items.map((v, i) => (
       <Medicament key={i}  medicament={v} />
     ));

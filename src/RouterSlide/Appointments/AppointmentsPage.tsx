@@ -4,6 +4,7 @@ import {RefreshCw} from 'lucide-react'
 import './AppointmentsPage.scss';
 import { Usernow } from '../../redux/authSlice';
 import axios from 'axios';
+import { Spinner } from '../../Spinner';
 import Reception from './Reception/Reception';
 interface AppointmentsProps {
  
@@ -51,9 +52,7 @@ export function AppointmentsPage(props : AppointmentsProps) {
       </div>
     <div>
       {wait ? (
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
-            <RefreshCw className='spinner' />
-          </div>
+          < Spinner />
         ) : visits.length === 0 ? (
           <div className="appointments-empty">
             На данный момент записи к врачу отсутствуют
