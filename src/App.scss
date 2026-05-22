@@ -4,11 +4,10 @@
   height: 100vh;
   background-color: #1b3d83;
   font-family: "Inter";
-  
 }
 
 .app-main {
-  // min-height: 100vh;
+  min-height: 100vh;
   flex: 1; /* займёт всё оставшееся место после хедера */
   transition: all 0.3s;
 }

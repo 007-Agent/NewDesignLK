@@ -22,7 +22,7 @@ export function Authorization({ onSuccess }: AuthorizationProps) {
     try {
       await dispatch(loginUser({ username, password })).unwrap();
       onSuccess?.(); // закрываем модалку
-      navigate('/doctors');
+      navigate('/home');
     } catch (err: any) {
       setError(err.message || 'Ошибка авторизации');
       console.log(err.message)
@@ -35,7 +35,7 @@ export function Authorization({ onSuccess }: AuthorizationProps) {
 
   return (
     <form onSubmit={handleSubmit} className="login-form">
-      {error && <div className="login-error">{error}</div>}
+      
       <div className="login-field">
         <label htmlFor="login" className="login-label">
           Логин

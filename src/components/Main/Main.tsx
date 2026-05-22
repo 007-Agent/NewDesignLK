@@ -2,7 +2,9 @@ import React, { useState} from 'react'
 import { Tag } from 'lucide-react';
 import { NewsCard } from '../NewsCard';
 import "./main.scss"
+import { MarqueeBar } from '../Marquee/Marquee';
 import { Usernow } from '../../redux/authSlice';
+import dmc from "../../../public/images/dmc-photo.jpg"
 import action from "../../../public/images/action-3.jpg"
 interface AppointmentsProps {
   user: Usernow | null;
@@ -57,6 +59,7 @@ export function HomePage(props : AppointmentsProps) {
 
   return (
     <div className="home-page">
+      <MarqueeBar/>
       <div className="home-content-wrapper">
         {/* Новости теперь идут ПЕРВЫМИ (были акциями) */}
         <div className="news-section">
@@ -71,6 +74,7 @@ export function HomePage(props : AppointmentsProps) {
               </div>
             ))}
           </div>
+          <img src={dmc} alt="" />
         </div>
 
         {/* Акции теперь идут ВТОРЫМИ (были новостями) */}
@@ -92,6 +96,7 @@ export function HomePage(props : AppointmentsProps) {
           </div>
         </div>
       </div>
+      
     </div>
   );
 }

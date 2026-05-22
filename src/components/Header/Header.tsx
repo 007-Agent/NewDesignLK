@@ -7,7 +7,7 @@ import { FaClipboardUser } from "react-icons/fa6";
 import './header.scss'
 
 import { ProfileLogoutIcon } from './Icon/ProfileLogoutIcon ';
-import logotip from "../../../docs/logotip-2.png"
+import logotip from "../../../docs/logotip.png"
 
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 export function Header() {
@@ -52,7 +52,7 @@ export function Header() {
         <div className="header__layuot">
 
 
-<div className="header__left">
+  <div className="header__left">
     {!isMobileMenuOpen && (
       <button
         // onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -63,6 +63,7 @@ export function Header() {
       </button>
     )}
   </div>
+  <button className='btn'>Записаться к врачу</button>
         <div className="header__center">
     <div >
           <div className='first'>

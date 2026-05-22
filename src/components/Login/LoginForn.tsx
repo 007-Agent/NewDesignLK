@@ -74,7 +74,7 @@ import { useState } from 'react';
 import './login.scss';
 import { Authorization } from './Auth/Authorization';
 import { Registration } from './Registration/Registartion';
-import logotip from "../../../docs/logotip.jpg"
+import logotip from "../../../docs/logotip.png"
 
 interface LoginFormProps {
   isOpen: boolean;
