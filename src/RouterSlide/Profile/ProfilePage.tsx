@@ -34,11 +34,11 @@ export function ProfilePage({ user }: ProfilePageProps) {
       <div className="bg-white rounded-xl shadow-sm p-8">
         {/* Profile Header */}
         <div className="flex items-center gap-6 mb-8 pb-8 border-b border-gray-200">
-          <div className="w-24 h-24 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full flex items-center justify-center">
+          <div className="w-24 h-24 bg-[#2197ed] from-teal-400 to-teal-600 rounded-full flex items-center justify-center">
             <User className="w-12 h-12 text-white" />
           </div>
           <div>
-           <h3 className="Family__type">
+           <h3 className="text-[17px]">
   {user?.lastName} {user?.firstName} {user?.middleName}
 </h3>
             
@@ -103,7 +103,7 @@ export function ProfilePage({ user }: ProfilePageProps) {
 
         {/* Edit Button */}
         <div className="mt-8 pt-8 border-t border-gray-200">
-          <button className="px-8 py-3 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-colors shadow-sm">
+          <button className="px-8 py-3 bg-[#f5bf03] text-white rounded-lg cursor-pointer transition-colors shadow-sm">
             Редактировать профиль
           </button>
         </div>

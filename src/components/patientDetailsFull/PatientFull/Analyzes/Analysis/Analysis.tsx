@@ -2,7 +2,7 @@ import React from 'react';
 import { Usernow } from '../../../../../redux/authSlice';
 import { Patient } from '../../PatientFull';
 import { formatDate } from '../../../../../utils/utils';
-import "./analysis.scss"
+
 interface AnalysisItem {
   date: string;
   id: number;
@@ -46,7 +46,7 @@ class Analysis extends React.Component<AnalysisProps, AnalysisState> {
     );
 
     return (
-      <div onClick={() => this.setState({ show: !this.state.show })} className='analysis__box'>
+      <div onClick={() => this.setState({ show: !this.state.show })}  className="flex gap-x-5 cursor-pointer">
         {label}
       </div>
     );

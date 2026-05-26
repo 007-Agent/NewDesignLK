@@ -55,23 +55,10 @@ class Disables extends React.Component<DisableProps, DisableState > {
   }
 
   render() {
-    //  if (!this.state.wait) {
-    //   return (
-    //     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '40px' }}>
-    //       <div className="spinner" /> {/* или ваша иконка */}
-    //     </div>
-    //   );
-    // }
+    
     if (this.state.wait) {
   return <Spinner />;
-}
-
-    // 2. Загрузка окончена, данных нет
-    // if (!this.state.items || this.state.items.length === 0) {
-    //   return <div className="no-data-message">Нет доступных данных</div>;
-    // }
-
-    let items = this.state.items.map((v, i) => {
+}let items = this.state.items.map((v, i) => {
       return (
         <React.Fragment>
           <Disable key={i}  disable={v} />

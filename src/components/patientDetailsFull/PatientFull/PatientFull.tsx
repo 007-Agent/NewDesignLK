@@ -11,6 +11,7 @@ import {AppointmentModal} from '../../AppointmentModal/AppointmentModal';
 import Analyzes from './Analyzes/Analyzes';
 import Observations from './Observations/Observations';
 import Disables from './Disables/Disables';
+import Documentation from './Documentaion/Documentation';
 import { formatDate } from '../../../utils/utils';
 
 export interface Patient {
@@ -56,6 +57,7 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
     { id: 'monitoring', label: 'Активное наблюдение', icon: Eye },
     { id: 'examination', label: 'Диспансеризация', icon: HeartPulse },
     { id: 'visits', label: 'Приёмы и услуги', icon: Calendar },
+    { id: 'documentation', label: 'Медицинская документация', icon: Syringe },
   ];
   
   const examinations = [
@@ -71,7 +73,7 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
  }
   return (
     <>
-    <div className='patient__font'>
+    <div className="max-w-[1020px] mx-auto block">
       {/* Back Button */}
       <button onClick={onBack} className="patient-detail-back">
         <ArrowLeft />
@@ -144,6 +146,7 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
                   </div>
                 )}
                 {tab.id === 'visits' && <Visits patient={patient} user={user} />}
+                {tab.id === 'documentation' && <Documentation patient={patient} user={user} />}
               </div>
             )}
           </div>

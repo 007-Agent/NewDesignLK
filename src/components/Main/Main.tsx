@@ -4,8 +4,12 @@ import { NewsCard } from '../NewsCard';
 import "./main.scss"
 import { MarqueeBar } from '../Marquee/Marquee';
 import { Usernow } from '../../redux/authSlice';
-import dmc from "../../../public/images/dmc-photo.jpg"
-import action from "../../../public/images/action-3.jpg"
+import dmc from "../../assets/images/dmc-photo.jpg"
+import action1 from "../../assets/images/action-1.png"
+import action2 from "../../assets/images/action-2.png"
+import action3 from "../../assets/images/action-3.jpg"
+import action4 from "../../assets/images/action-3.jpg"
+
 interface AppointmentsProps {
   user: Usernow | null;
 }
@@ -13,25 +17,25 @@ interface AppointmentsProps {
 export function HomePage(props : AppointmentsProps) {
   const promotions = [
     {
-      image: '../../../public/images/action-1.png',
+      image: action1,
       title: 'Скидка 20% на первый прием',
       description: 'Специальное предложение для новых пациентов',
       discount: '-20%',
     },
     {
-      image: '../../../public/images/action-1.png',
+      image: action2,
       title: 'Комплексное обследование',
       description: 'Полное обследование организма со скидкой 30%',
       discount: '-30%',
     },
     {
-      image: '../../../public/images/action-3.jpg',
+      image: action3,
       title: 'Детская вакцинация',
       description: 'Бесплатная консультация педиатра при вакцинации',
       discount: 'Бесплатно',
     },
     {
-      image: '../../../public/images/OneVisit.png',
+      image: action4,
       title: 'Семейная карта здоровья',
       description: 'Скидка 15% на все услуги для всей семьи',
       discount: '-15%',

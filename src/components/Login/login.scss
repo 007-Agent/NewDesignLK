@@ -41,7 +41,6 @@
 .login-tabs {
   display: flex;
   border-bottom: 1px solid #e5e7eb;
-  margin-bottom: 1.5rem;
 }
 
 .login-tab {
@@ -103,7 +102,7 @@
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.5rem;
 }
 
 .login-field {
@@ -118,7 +117,7 @@
 
 .login-input {
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 1rem;
   border: 1px solid #d1d5db;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -145,7 +144,7 @@
 
 .login-submit {
   width: 100%;
-  padding: 0.875rem 1.5rem;
+  padding: 10px;
   background-color: #2197ed;
   color: white;
   border: none;
@@ -156,5 +155,5 @@
 }
 
 .login-submit:hover {
-  background-color: #0d9488;
+  background-color: #f5bf03;
 }

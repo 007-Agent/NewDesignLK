@@ -1,5 +1,5 @@
 import React from 'react'
-import './medic.scss'
+
 export interface Medicament {
   date: string;           // Дата в формате YYYY-MM-DD
   diagnosis: string;      // Диагноз с кодом и описанием

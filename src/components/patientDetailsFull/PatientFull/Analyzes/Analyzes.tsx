@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import "./analyzes.scss"
+
 import { Usernow } from '../../../../redux/authSlice';
 import { Patient } from '../PatientFull';
 import Analysis from './Analysis/Analysis';
@@ -73,7 +73,7 @@ class Analyzes extends React.Component<AnalyzesProps, AnalyzesState> {
       />
     ));
 
-    return <div className="analyzes__content">{items}</div>;
+    return <div className="flex flex-col mx-auto w-full text-center gap-y-[15px]">{items}</div>;
   }
 }
 

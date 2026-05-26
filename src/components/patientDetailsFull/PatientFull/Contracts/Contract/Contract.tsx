@@ -21,7 +21,7 @@ export default function Contract(props : ContractProps) {
     
 
     return (
-        <div  className='contract_item'>
+       <div key={contract.id} className="flex items-center justify-center gap-x-[10px] text-[15px] p-[5px] bg-gray-50">
             <div >
                 {contract.number}
             </div>

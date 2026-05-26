@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../../../redux/hooks';
+import Captcha from '../Captcha/Captcha';
 // предположим, что такой экшен есть
 import "../login.scss"
 interface RegistrationProps {
@@ -12,8 +13,8 @@ export function Registration({ onSwitchToLogin }: RegistrationProps) {
     firstName: '',
     captcha: '',       // сюда будем сохранять введённый пользователем код
   });
-const [password, setPassword] = useState(null);
-const [confirm, setConfirm] = useState(null);
+const [password, setPassword] = useState<string>('');
+const [confirm, setConfirm] = useState<string>('');
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -39,6 +40,8 @@ const [confirm, setConfirm] = useState(null);
       setLoading(false);
     }
   };
+
+
 
   return (
     <form onSubmit={handleSubmit} className="login-form">
@@ -78,7 +81,7 @@ const [confirm, setConfirm] = useState(null);
         <input
           id="regPassword"
           type="password"
-          value={password}
+         
           onChange={(e) => setPassword(e.target.value)}
           className="login-input"
           placeholder="Минимум 6 символов"
@@ -92,7 +95,7 @@ const [confirm, setConfirm] = useState(null);
         <input
           id="regConfirmPassword"
           type="password"
-          value={confirm}
+          
           onChange={(e) => setConfirm(e.target.value)}
           className="login-input"
           placeholder="Повторите пароль"
@@ -103,19 +106,18 @@ const [confirm, setConfirm] = useState(null);
 
       <div className="login-field">
         <label htmlFor="captcha" className="login-label">Код с картинки</label>
-        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-          <img src="/api/login/captcha" alt="captcha" style={{ height: '40px' }} />
-          <input
-            id="captcha"
-            type="text"
-            value={user.captcha}
-            onChange={(e) => updateUserField('captcha', e.target.value)}
-            className="login-input"
-            placeholder="Введите код"
-            required
-            disabled={loading}
-          />
-        </div>
+        
+          <Captcha />
+       <input
+      id="captcha"
+      type="text"
+   
+      onChange={(e) => updateUserField('captcha', e.target.value)}
+      className="login-input"
+      placeholder="Введите код"
+      required
+      disabled={loading}
+    />
       </div>
 
       <button type="submit" className="login-submit" disabled={loading}>

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import './visit.scss';
+
 import axios from 'axios';
 // Интерфейсы данных
 
