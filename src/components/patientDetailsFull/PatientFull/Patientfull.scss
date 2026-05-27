@@ -201,3 +201,17 @@
     }
   }
 }
+@media (max-width: 420px) {
+  .vertical-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+    overflow-y: auto;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .tab-content{
+    
+  }
+}

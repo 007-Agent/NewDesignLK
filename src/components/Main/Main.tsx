@@ -10,6 +10,10 @@ import action2 from "../../assets/images/action-2.png"
 import action3 from "../../assets/images/action-3.jpg"
 import action4 from "../../assets/images/action-3.jpg"
 
+import new2 from  "../../assets/images/Авангард.jpg"
+import new1 from "../../assets/images/action-1.png"
+import new3 from "../../assets/images/Аптека3.jpg"
+
 interface AppointmentsProps {
   user: Usernow | null;
 }
@@ -44,19 +48,19 @@ export function HomePage(props : AppointmentsProps) {
 
   const newsItems = [
     {
-      image: '../../../public/images/action-1.png',
+      image: new1,
       title: 'Новый филиал открыт в центре города',
     },
     {
-      image: '../../../public/images/Авангард.jpg',
+      image: new2,
       title: 'Новые специалисты в нашей команде',
     },
     {
-      image: '../../../public/images/Аптека3.jpg',
+      image: new3,
       title: 'Обновленные стандарты безопасности',
     },
     {
-      image: 'https://images.unsplash.com/photo-1721076749160-e5a08d53c787?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      image: new3,
       title: 'Современное медицинское оборудование',
     },
   ];
@@ -78,7 +82,7 @@ export function HomePage(props : AppointmentsProps) {
               </div>
             ))}
           </div>
-          <img src={dmc} alt="" />
+          <img src={dmc} alt="" className='img-new'/>
         </div>
 
         {/* Акции теперь идут ВТОРЫМИ (были новостями) */}

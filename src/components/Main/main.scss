@@ -212,3 +212,49 @@
     font-size: 20px;
   }
 }
+@media (max-width: 450px) {
+  .home-page {
+    padding: 0;
+  }
+  .home-content-wrapper {
+    flex-direction: column;
+  }
+  .news-section {
+    height: 610px;
+    max-width: 385px;
+    margin: 0 auto;
+  }
+  .img-new {
+    display: none;
+  }
+  .news-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .promotion-image {
+    width: 187px;
+    height: 244px;
+    object-fit: cover;
+  }
+  .promotion-card {
+    width: 188px;
+  }
+  .promotion-image-wrapper {
+    height: 250px;
+  }
+  .promotion-content {
+    padding: 0;
+    h4 {
+      font-size: 14px;
+      padding-left: 10px;
+    }
+  }
+  .promotions-section {
+    max-width: 388px;
+    margin: 0 auto;
+  }
+  .marquee-content {
+    animation: marquee 10s linear infinite;
+  }
+}

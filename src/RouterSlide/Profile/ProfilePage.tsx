@@ -29,12 +29,12 @@ export function ProfilePage({ user }: ProfilePageProps) {
  
   return (
     <div className="profile__main">
-      <h2 className="mb-8">Профиль пользователя</h2>
+      
 
       <div className="bg-white rounded-xl shadow-sm p-8">
         {/* Profile Header */}
         <div className="flex items-center gap-6 mb-8 pb-8 border-b border-gray-200">
-          <div className="w-24 h-24 bg-[#2197ed] from-teal-400 to-teal-600 rounded-full flex items-center justify-center">
+          <div className="w-24 h-24 bg-[#2197ed] from-teal-400 to-teal-600 rounded-full flex items-center justify-center max-[450px]:w-18 max-[450px]:h-18">
             <User className="w-12 h-12 text-white" />
           </div>
           <div>

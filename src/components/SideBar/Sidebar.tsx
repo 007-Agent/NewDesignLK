@@ -1,5 +1,5 @@
 // 
-
+import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { X } from 'lucide-react';
@@ -26,8 +26,18 @@ export function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps)
     { label: 'Конфиденциальность', page: '/policy', icon: Shield },
    
   ];
+
+
     const dispatch = useAppDispatch();
-  const handleExitUser = () => {
+const sidebarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isMobileMenuOpen && sidebarRef.current) {
+      sidebarRef.current.scrollTop = 0;
+    }
+  }, [isMobileMenuOpen]);
+   
+const handleExitUser = () => {
     dispatch(logoutUser());
     dispatch(setMenuOpen(false));
     navigate('/doctors');
@@ -38,8 +48,8 @@ export function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps)
     <>
      
 
-     <aside className="sidebar">
-  <div className="sidebar__container">
+     <aside   className="sidebar">
+  <div className="sidebar__container" ref={sidebarRef}>
     <nav className="sidebar__nav">
     
       {menuItems.map((item, index) => {
