@@ -17,7 +17,7 @@ import './App.scss'
 import { fetchSpecialties } from './redux/Departament/Specialities';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { checkAuth } from './redux/authSlice';
-
+import { fetchSchedule } from './redux/Departament/SheduleRequest';
 
 
 export default function App() {
@@ -40,10 +40,13 @@ export default function App() {
       navigate('/home', { replace: true });
     }
   }, [navigate]);
+  
+useEffect(() => {
+  dispatch(checkAuth());
+  dispatch(fetchSchedule());
+}, [dispatch]);
 
-   useEffect(() => {
-    dispatch(checkAuth()); // ← добавить
-  }, [dispatch]);
+ 
 
   useEffect(() => {
    
