@@ -12,7 +12,7 @@ import axios from 'axios';
 import { Patient } from '../patientDetailsFull/PatientFull/PatientFull';
 import { CustomSelectModal } from '../../CustomSelect';
 import Intervals from './Intervals/Intervals';
-
+import { createPortal } from 'react-dom';
 interface IntervalItem {
   date: string;
   time: string;
@@ -61,7 +61,7 @@ const refactorIntervals = (intervals: IntervalItem[]): RefactoredItem[] => {
 }
 
 export function AppointmentModal({ isOpen, onClose, patient }: AppointmentModalProps) {
-  
+console.log(patient, "show modal pat")
 const [wait, setWait] = useState(false)
 const [specId, setSpecId] = useState<number | undefined>();
   const [selectedDate, setSelectedDate] = useState('');
@@ -82,7 +82,7 @@ const [specId, setSpecId] = useState<number | undefined>();
   const { items } = useAppSelector((state) => state.specialities);
    const { user, checkStatus } = useAppSelector((state) => state.auth);
    const branchId = patient.branchId;
-  console.log(items, "OOPOP")
+  
   // Блокировка скролла body при открытии модального окна
   useEffect(() => {
     if (isOpen) {
@@ -190,11 +190,11 @@ const [specId, setSpecId] = useState<number | undefined>();
 
   if (!isOpen) return null;
 
-  console.log(intervals, "CTOVERNET")
-console.log(specId, "SPCIDD")
+//   console.log(intervals, "CTOVERNET")
+// console.log(specId, "SPCIDD")
  const availableDates = getAvailableDates();
   const timeSlots = getTimeSlots();
-  return (
+  return createPortal(
     <div className="appointment-modal-overlay" onClick={onClose}>
       <div className="appointment-modal" onClick={(e) => e.stopPropagation()}>
         <div className="appointment-modal-header">
@@ -287,6 +287,7 @@ console.log(specId, "SPCIDD")
               )}
          
       </div>
-    </div>
+    </div>,
+        document.body
   );
 }

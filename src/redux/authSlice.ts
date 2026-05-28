@@ -32,6 +32,17 @@ interface AuthState {
   menuOpen: boolean
 }
 
+export const checkAuth = createAsyncThunk('auth/check', async (_, { rejectWithValue }) => {
+  try {
+    // Важно: withCredentials для отправки cookie сессии
+    const response = await axios.get('/api/login/check', { withCredentials: true });
+    // Предполагаем, что ответ имеет структуру { data: { ...user } }
+    return response.data.data; // или response.data, смотрите по вашему API
+  } catch (error) {
+    return rejectWithValue(null);
+  }
+});
+
 export const loginUser = createAsyncThunk<
   Usernow,               
   LoginCredentials,     
@@ -96,6 +107,19 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+       .addCase(checkAuth.pending, (state) => {
+    state.checkStatus = 'loading';
+  })
+  .addCase(checkAuth.fulfilled, (state, action) => {
+    state.checkStatus = 'succeeded';
+    state.user = action.payload;
+    localStorage.setItem('user', JSON.stringify(action.payload));
+  })
+  .addCase(checkAuth.rejected, (state) => {
+    state.checkStatus = 'failed';
+    state.user = null;
+    localStorage.removeItem('user');
+  })
       .addCase(loginUser.pending, (state) => {
         state.status = 'loading';
       })

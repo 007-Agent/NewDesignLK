@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { Header } from './components/Header/Header';
 import { ProfilePage } from './RouterSlide/Profile/ProfilePage';
@@ -7,6 +7,7 @@ import { PrivateRoute } from './components/PrivateRoute';
 import { SchedulePage } from './RouterSlide/Shedule/SchedulePage';
 import { AppointmentsPage } from '../src/RouterSlide/Appointments/AppointmentsPage'
 import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { PatientDetailPageWrapper } from './components/patientDetailsFull/PatientWrapperDetail/PatientDetailWrapper';
 import Policy from './RouterSlide/Policy/Policy';
@@ -15,7 +16,7 @@ import { HomePage } from './components/Main/Main';
 import './App.scss'
 import { fetchSpecialties } from './redux/Departament/Specialities';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import { checkAuth } from './redux/authSlice';
 
 
 
@@ -25,6 +26,25 @@ export default function App() {
   const [specialtiesRequested, setSpecialtiesRequested] = useState(false);
   console.log(user, "USSR")
   const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
+
+  const hasRedirected = useRef(false);
+
+  useEffect(() => {
+    if (hasRedirected.current) return;
+    // Определяем, была ли страница перезагружена (F5)
+   const navEntry = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+    if (navEntry?.type === 'reload') {
+      hasRedirected.current = true;
+      navigate('/home', { replace: true });
+    }
+  }, [navigate]);
+
+   useEffect(() => {
+    dispatch(checkAuth()); // ← добавить
+  }, [dispatch]);
+
   useEffect(() => {
    
     if (user && !specialtiesRequested) {
@@ -38,8 +58,9 @@ export default function App() {
       return () => clearTimeout(timer);
     }
   }, [user, dispatch, specialtiesRequested]);
+
   return (
-    <>
+    <div className="app">
     <Header />
       <Routes>
       
@@ -84,8 +105,6 @@ export default function App() {
 </Route>
       </Routes>
 
-    </>
-    
-      
+    </div>
   );
 }

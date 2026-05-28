@@ -9,6 +9,7 @@ export default function Layout() {
   
   // Определяем, находимся ли мы на странице HomePage
   const isHomePage = location.pathname === '/home';
+  const isPatientCards = location.pathname === '/patients'
   return (
     <>
 
@@ -24,7 +25,8 @@ export default function Layout() {
       )}
 
       {/* Основной контент */}
-        <div className="h-[85vh] overflow-y-auto bg-[#f7f7f7] [scrollbar-gutter:stable]">
+        {/* <div className={`h-[85vh]  ${isPatientCards || isHomePage ? 'overflow-y-hidden' : 'overflow-y-auto' } bg-[#f7f7f7] [scrollbar-gutter:stable] ` }> */}
+         <div className="flex-1 overflow-y-auto min-h-0 bg-[#f7f7f7]">
       <div className={`
         mx-auto  
         ${isHomePage 

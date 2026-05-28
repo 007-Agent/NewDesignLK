@@ -85,15 +85,16 @@ useEffect(() => {
   </div>
   {/* <button className='btn'>Записаться к врачу</button> */}
         <div className="header__center">
-    <div >
-          <div className='first'>
-            ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ
-          </div>
-          <div className='second'>ДЕТСКИЙ МЕДИЦИНСКИЙ ЦЕНТР</div>
-          <div className='third'>
-            УПРАВЛЕНИЯ ДЕЛАМИ ПРЕЗИДЕНТА РОССИЙСКОЙ ФЕДЕРАЦИИ
-          </div>
-        </div>
+              {user ? ( <img src={logotip} alt="" className='h-[72px]' />) : "" }
+          <div >
+            <div className='first'>
+               ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ
+            </div>
+            <div className='second'>ДЕТСКИЙ МЕДИЦИНСКИЙ ЦЕНТР</div>
+              <div className='third'>
+               УПРАВЛЕНИЯ ДЕЛАМИ ПРЕЗИДЕНТА РОССИЙСКОЙ ФЕДЕРАЦИИ
+             </div>
+            </div>
   </div>
 
   {/* Правая колонка (кнопка записи и логин) */}

@@ -1,5 +1,5 @@
 // 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { X } from 'lucide-react';
@@ -9,6 +9,9 @@ import { useAppDispatch } from '../../redux/hooks';
 import { logoutUser } from '../../redux/authSlice';
 import { setMenuOpen } from "../../redux/authSlice";
 import { FaFacebookMessenger } from "react-icons/fa6";
+import { OnlineView } from '../OnlineView/OnlineView';
+import { AppointmentModal } from '../AppointmentModal/AppointmentModal';
+import { Patient } from '../patientDetailsFull/PatientFull/PatientFull';
 import './sidebar.scss'
 interface SidebarProps {
   isMobileMenuOpen: boolean;
@@ -26,7 +29,9 @@ export function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps)
     { label: 'Конфиденциальность', page: '/policy', icon: Shield },
    
   ];
-
+   const [showOnlineModal, setShowOnlineModal] = useState(false);
+   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
+const [showAppointmentModal, setShowAppointmentModal] = useState(false);
 
     const dispatch = useAppDispatch();
 const sidebarRef = useRef<HTMLDivElement>(null);
@@ -44,6 +49,13 @@ const handleExitUser = () => {
     setIsMobileMenuOpen(false)
  
   };
+
+const handleSelectPatient = (patient: Patient) => {
+  setShowOnlineModal(false);
+  setIsMobileMenuOpen(false);     // закрыть сайдбар
+  setSelectedPatient(patient);
+  setShowAppointmentModal(true);
+};
   return (
     <>
      
@@ -75,7 +87,7 @@ const handleExitUser = () => {
     <div className="sidebar__footer">
          <div className="sidebar-footer">
             <button
-              
+               onClick={() => setShowOnlineModal(true)}
               className="sidebar-footer-btn sidebar-footer-btn-primary"
             >
               <Calendar />
@@ -101,7 +113,21 @@ const handleExitUser = () => {
           </div>
     </div>
   </div>
+  
+
 </aside>
+<OnlineView
+  isOpen={showOnlineModal}
+  onClose={() => setShowOnlineModal(false)}
+   onSelectPatient={handleSelectPatient}
+/>
+{selectedPatient && (
+  <AppointmentModal
+    isOpen={showAppointmentModal}
+    onClose={() => setShowAppointmentModal(false)}
+    patient={selectedPatient}
+  />
+)}
     </>
   );
 }

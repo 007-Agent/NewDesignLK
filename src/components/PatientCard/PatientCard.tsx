@@ -3,6 +3,8 @@ import { PatientFull } from '../patientDetailsFull/PatientFull/PatientFull';
 import { useNavigate } from 'react-router-dom';
 import './patientcard.scss'
 import { Usernow } from '../../redux/authSlice';
+import { formatDate } from '../../utils/utils';
+import { calculateAge } from '../../utils/utils';
 interface PatientFullData {
   address: string;
   age: string;
@@ -36,6 +38,10 @@ export function PatientCard({ patient, user }: PatientCardProps) {
       state: { patient } 
     });
   };
+ 
+
+  
+  const age = calculateAge(formatDate(patient.birthday));
 
   return (
     <div 
@@ -69,6 +75,7 @@ export function PatientCard({ patient, user }: PatientCardProps) {
     <h3 className="text-xl font-semibold text-gray-800 max-[450px]:text-base">
       {patient.fio.split(' ').slice(0, 2).join(' ')}
     </h3>
+     <span className="text-gray-500 text-[17px]">{age} лет</span>
   </div>
 
   {/* Детали: дата рождения + номер карты */}
