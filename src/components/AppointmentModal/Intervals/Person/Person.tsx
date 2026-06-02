@@ -4,6 +4,7 @@ import { Patient } from '../../../patientDetailsFull/PatientFull/PatientFull';
 import Interval from './Interval/Interval';
 import { CardTime } from './CardTime/CardTime';
 import { X } from 'lucide-react';
+import { ConfirmModal } from './Edit/ConfirmModal';
 import './person.scss'
 interface TimeSlot {
   time: string;
@@ -34,7 +35,8 @@ interface PersonProps {
 }
 export default function Person(props : PersonProps) {
     const person = props.person;
-    
+    const [showEditModal, setShowEditModal] = useState(false);
+
      const [visitId, setVisitId] = useState(0)
   const [index, setIndex] = useState(-1)
    const [selectedDoctor, setSelectedDoctor] = useState<Number | null>(null);
@@ -45,17 +47,20 @@ export default function Person(props : PersonProps) {
 
  
 
-//   const onSign = (event : React.MouseEvent) => {
-//     const id = event.visit?.id
-//     console.log(id, 'IIII')
-//     if (id > 0) setVisitId(id)
-//     else setVisitId(0)
-//   }
-//   const onSign = (visit: { id: number }) => {
-//     setVisitId(visit.id);
-//     // Здесь можно отправить запрос на запись
-//     console.log('Выбран visitId:', visit.id);
-//   };
+  const onSign = (visit: any) => {
+    console.log(visit, "result visit")
+  const id = visit?.id;
+  console.log('onSign called, id:', id);
+  setShowEditModal(true);
+  if (id > 0) {
+    setVisitId(id);
+    console.log('visitId set to:', id);
+  } else {
+    setVisitId(0);
+  }
+   console.log(showEditModal, visitId, "gghghgh")
+};
+
 
   const handleCardClick = () => {
     setIsExpanded(!isExpanded);
@@ -109,8 +114,9 @@ const formatDateDot = (dateStr: string): string => {
       }
     : null;
     console.log(processedPerson, "PRCICI")
-  
+   
     const date = formatDateShort(person.dates[0].date)
+    console.log('Рендер Person, showEditModal:', showEditModal, 'visitId:', visitId);
   return (
     <>
      
@@ -132,10 +138,21 @@ const formatDateDot = (dateStr: string): string => {
           person={props.person}
           user={props.user}
           patient={props.patient}
-          
+          onSign={onSign}
      
-        />
-      )}
+               />
+             )}
+       
+            {showEditModal && visitId > 0 && (
+  <ConfirmModal
+    visitId={visitId}
+    patient={props.patient}
+    onClose={() => {
+      setShowEditModal(false);
+      setVisitId(0);
+    }}
+  />
+)}
                   </div>
                   
                   

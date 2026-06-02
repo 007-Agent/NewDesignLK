@@ -4,7 +4,7 @@ import { Printer } from 'lucide-react';
 import { Usernow } from '../../../../redux/authSlice';
 import { Patient } from '../PatientFull';
 import { download } from '../../../../utils/utils';
-import { Spinner } from '../../../../Spinner';
+import { Spinner } from '../../../Spinner/Spinner';
 import Vaccinacya from './Vacinacya/Vaccinacya';
 import axios from 'axios';
 interface AnalyzesProps {

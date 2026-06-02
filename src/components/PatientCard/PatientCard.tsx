@@ -73,9 +73,9 @@ export function PatientCard({ patient, user }: PatientCardProps) {
       `} />
     </div>
     <h3 className="text-xl font-semibold text-gray-800 max-[450px]:text-base">
-      {patient.fio.split(' ').slice(0, 2).join(' ')}
+      {patient.fio.split(' ').slice(0, 2).join(' ') }, {age} лет
     </h3>
-     <span className="text-gray-500 text-[17px]">{age} лет</span>
+    
   </div>
 
   {/* Детали: дата рождения + номер карты */}

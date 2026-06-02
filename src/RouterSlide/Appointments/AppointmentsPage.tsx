@@ -4,7 +4,7 @@ import {RefreshCw} from 'lucide-react'
 import './AppointmentsPage.scss';
 import { Usernow } from '../../redux/authSlice';
 import axios from 'axios';
-import { Spinner } from '../../Spinner';
+import { Spinner } from '../../components/Spinner/Spinner';
 import Reception from './Reception/Reception';
 interface AppointmentsProps {
  

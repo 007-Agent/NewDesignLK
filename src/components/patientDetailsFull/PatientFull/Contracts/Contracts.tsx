@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef} from 'react';
 import { Usernow } from '../../../../redux/authSlice';
 import axios from 'axios';
 import Contract from './Contract/Contract';
-import { Spinner } from '../../../../Spinner';
+import { Spinner } from '../../../Spinner/Spinner';
 import './contracts.scss'
 interface Patient {
   address: string;

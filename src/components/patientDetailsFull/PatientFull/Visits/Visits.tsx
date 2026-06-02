@@ -4,7 +4,7 @@ import {RefreshCw} from 'lucide-react'
 import { Usernow } from '../../../../redux/authSlice';
 import { Visit } from './Visit/Visit';
 import { Visited } from './Visit/Visit';
-import { Spinner } from '../../../../Spinner';
+import { Spinner } from '../../../Spinner/Spinner';
 import './visits.scss'
 interface Patient {
   address: string;

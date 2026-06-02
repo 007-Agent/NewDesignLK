@@ -4,7 +4,7 @@ import "./disables.scss"
 import { Patient } from '../PatientFull';
 import Disable from './Disable/Disable';
 import { Usernow } from '../../../../redux/authSlice';
-import { Spinner } from '../../../../Spinner';
+import { Spinner } from '../../../Spinner/Spinner';
 import axios from 'axios';
 interface DisableProps {
   patient: Patient;

@@ -4,7 +4,7 @@ import { Users } from 'lucide-react';
 import { Usernow } from '../redux/authSlice';
 import './patientsPage.scss'
 import axios from 'axios';
-import { Spinner } from '../Spinner';
+import { Spinner } from './Spinner/Spinner'
 import {RefreshCw} from 'lucide-react'
 
 interface ProfilePatientsProps {

@@ -23,12 +23,13 @@ interface CardTimeProps {
   user: Usernow | null;
   patient: Patient;
   person: GroupedItem;
-  onSign?: (visitId: number, date: string, time: string) => void;
+  onSign?: (visit: any) => void;
 }
 
 export function CardTime({ user, person, patient, onSign }: CardTimeProps) {
   const [selectedDateIndex, setSelectedDateIndex] = useState<number | null>(null);
   const [selectedDate, setSelectedDate] = useState('');
+  
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const options: Intl.DateTimeFormatOptions = {
@@ -45,10 +46,10 @@ export function CardTime({ user, person, patient, onSign }: CardTimeProps) {
   };
 
 
-  const handleTimeClick = (visitId: number, time: string) => {
+  const handleTimeClick = (visit: any) => {
     if (onSign && selectedDateIndex !== null) {
       const selectedDateStr = person.dates[selectedDateIndex].date;
-      onSign(visitId, selectedDateStr, time);
+      onSign(visit);
     }
   };
 
@@ -56,7 +57,7 @@ export function CardTime({ user, person, patient, onSign }: CardTimeProps) {
 
   const selectedDateObj = selectedDateIndex !== null ? person.dates[selectedDateIndex] : null;
   const intervals = selectedDateObj?.intervals || [];
-
+  console.log(intervals, "intervals doctor")
   return (
     <div className="card-time" onClick={(e) => e.stopPropagation()}>
       <div className="card-time-header">
@@ -84,7 +85,7 @@ export function CardTime({ user, person, patient, onSign }: CardTimeProps) {
                 <button
                   key={interval.id}
                   className="card-time-time-btn"
-                  onClick={() => handleTimeClick(interval.id, interval.time)}
+                  onClick={() => handleTimeClick(interval)}
                 >
                   {interval.time.slice(0, 5)}
                 </button>

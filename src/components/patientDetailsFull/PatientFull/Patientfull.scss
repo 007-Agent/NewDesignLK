@@ -125,7 +125,7 @@
   border-radius: 4px;
   padding: 8px;
   gap: 0 12px;
-  background-image: linear-gradient(to right, rgb(255, 255, 255), #0abab5);
+  background-image: linear-gradient(to right, rgb(255, 255, 255), #2197ed);
 
   &:hover {
     background-color: #e2e8f0;
@@ -159,7 +159,7 @@
 
   background-color: white;
   border-radius: 10px;
-  border-left: 4px solid #0abab5;
+  border-left: 4px solid #2197ed;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   animation: fadeIn 0.3s ease;
 }

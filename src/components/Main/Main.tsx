@@ -1,6 +1,6 @@
 import React, { useState} from 'react'
 import { Tag } from 'lucide-react';
-import { NewsCard } from '../NewsCard';
+import { NewsCard } from '../NewCard/NewsCard';
 import "./main.scss"
 import { MarqueeBar } from '../Marquee/Marquee';
 import { Usernow } from '../../redux/authSlice';

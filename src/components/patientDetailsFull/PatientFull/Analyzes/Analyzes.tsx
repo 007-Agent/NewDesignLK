@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Usernow } from '../../../../redux/authSlice';
 import { Patient } from '../PatientFull';
 import Analysis from './Analysis/Analysis';
-import { Spinner } from '../../../../Spinner';
+import { Spinner } from '../../../Spinner/Spinner';
 
 interface AnalyzesProps {
   patient: Patient;

@@ -1,8 +1,10 @@
 export const formatDate = (dateStr: string): string => {
+  if (!dateStr || typeof dateStr !== 'string') {
+    return '';
+  }
   const [year, month, day] = dateStr.split('-');
   return `${day}.${month}.${year}`;
 };
-
 export function download(url : any, filename : any) {
   let link = document.createElement('a')
   if (filename) {
@@ -25,4 +27,8 @@ export const calculateAge = (birthday: string): number => {
     age--;
   }
   return age;
+};
+
+export const formatTime = (time: string): string => {
+  return time.slice(0, 5);
 };

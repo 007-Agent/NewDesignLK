@@ -4,7 +4,7 @@ import './observations.scss'
 import { Usernow } from '../../../../redux/authSlice';
 import {RefreshCw} from 'lucide-react'
 import { Patient } from '../PatientFull';
-import { Spinner } from '../../../../Spinner';
+import { Spinner } from '../../../Spinner/Spinner';
 import axios from 'axios';
 interface ObservationProps {
   patient: Patient;

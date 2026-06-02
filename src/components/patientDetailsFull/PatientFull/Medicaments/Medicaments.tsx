@@ -4,7 +4,7 @@ import { Usernow } from '../../../../redux/authSlice';
 import {RefreshCw} from 'lucide-react'
 import { Patient } from '../PatientFull';
 import  Medicament  from './Medocament/Medicament';
-import { Spinner } from '../../../../Spinner';
+import { Spinner } from '../../../Spinner/Spinner';
 import axios from 'axios';
 interface MedicamentsProps {
   patient: Patient;

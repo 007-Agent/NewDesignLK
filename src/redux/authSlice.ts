@@ -34,10 +34,15 @@ interface AuthState {
 
 export const checkAuth = createAsyncThunk('auth/check', async (_, { rejectWithValue }) => {
   try {
-    // Важно: withCredentials для отправки cookie сессии
     const response = await axios.get('/api/login/check', { withCredentials: true });
-    // Предполагаем, что ответ имеет структуру { data: { ...user } }
-    return response.data.data; // или response.data, смотрите по вашему API
+    const userData = response.data.data;
+    
+    // Если пользователь не валиден (все поля null или нет id)
+    if (!userData || !userData.id) {
+      return rejectWithValue(null);
+    }
+    
+    return userData;
   } catch (error) {
     return rejectWithValue(null);
   }
@@ -69,9 +74,8 @@ export const loginUser = createAsyncThunk<
   }
 );
 
-const savedUser = localStorage.getItem('user');
 const initialState: AuthState = {
-  user: savedUser ? JSON.parse(savedUser) : null,
+  user: null, // ← не читаем из localStorage
   status: 'idle',
   checkStatus: 'idle',
   logoutStatus: 'idle',

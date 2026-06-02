@@ -31,6 +31,20 @@ export default function App() {
 
   const hasRedirected = useRef(false);
 
+   useEffect(() => {
+   
+    if (user && !specialtiesRequested) {
+     
+      const timer = setTimeout(() => {
+        dispatch(fetchSpecialties());
+        setSpecialtiesRequested(true);
+      }, 2000);
+      
+      
+      return () => clearTimeout(timer);
+    }
+  }, [user, dispatch, specialtiesRequested]);
+
   useEffect(() => {
     if (hasRedirected.current) return;
     // Определяем, была ли страница перезагружена (F5)
@@ -48,19 +62,7 @@ useEffect(() => {
 
  
 
-  useEffect(() => {
-   
-    if (user && !specialtiesRequested) {
-     
-      const timer = setTimeout(() => {
-        dispatch(fetchSpecialties());
-        setSpecialtiesRequested(true);
-      }, 2000);
-      
-      
-      return () => clearTimeout(timer);
-    }
-  }, [user, dispatch, specialtiesRequested]);
+ 
 
   return (
     <div className="app">
