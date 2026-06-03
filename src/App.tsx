@@ -8,42 +8,32 @@ import { SchedulePage } from './RouterSlide/Shedule/SchedulePage';
 import { AppointmentsPage } from '../src/RouterSlide/Appointments/AppointmentsPage'
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
 import { PatientDetailPageWrapper } from './components/patientDetailsFull/PatientWrapperDetail/PatientDetailWrapper';
 import Policy from './RouterSlide/Policy/Policy';
 import Layout from '../src/components/Layout';
 import { HomePage } from './components/Main/Main';
-import './App.scss'
+import './App.css'
 import { fetchSpecialties } from './redux/Departament/Specialities';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { checkAuth } from './redux/authSlice';
 import { fetchSchedule } from './redux/Departament/SheduleRequest';
-
+import { fetchDepartments } from './redux/Departament/Departments';
+import {fetchBranches} from './redux/Departament/Branches'
+import {fetchPersonal} from './redux/Departament/Personal'
 
 export default function App() {
 
   const { user, checkStatus } = useAppSelector((state) => state.auth);
+ 
   const [specialtiesRequested, setSpecialtiesRequested] = useState(false);
-  console.log(user, "USSR")
+
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
 
   const hasRedirected = useRef(false);
 
-   useEffect(() => {
-   
-    if (user && !specialtiesRequested) {
-     
-      const timer = setTimeout(() => {
-        dispatch(fetchSpecialties());
-        setSpecialtiesRequested(true);
-      }, 2000);
-      
-      
-      return () => clearTimeout(timer);
-    }
-  }, [user, dispatch, specialtiesRequested]);
+  
 
   useEffect(() => {
     if (hasRedirected.current) return;
@@ -55,11 +45,26 @@ export default function App() {
     }
   }, [navigate]);
   
+// useEffect(() => {
+//   dispatch(checkAuth());
+//   dispatch(fetchSchedule());
+//   dispatch(fetchDepartments())
+// }, [dispatch]);
 useEffect(() => {
-  dispatch(checkAuth());
-  dispatch(fetchSchedule());
+  const init = async () => {
+    // 1. Сначала проверяем авторизацию
+    await dispatch(checkAuth());
+    
+    // 2. После успешной проверки загружаем все данные
+    dispatch(fetchSchedule());
+    dispatch(fetchDepartments());
+    dispatch(fetchBranches());
+   dispatch(fetchPersonal());
+    dispatch(fetchSpecialties()); // если без таймера
+  };
+  
+  init();
 }, [dispatch]);
-
  
 
  
