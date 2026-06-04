@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Select from 'react-select';
 import { Building2 } from 'lucide-react';
 
@@ -11,12 +11,22 @@ export interface Department {
   };
 }
 
-interface SelectDepartmentProps {
+export interface MainSelectEvent {
+  name: string;
+  data?: any;
+  item: Department | null;
   value: number | null;
-  onChange: (value: number | null) => void;
+}
+
+interface SelectDepartmentProps {
+  value: MainSelectEvent | null;
+  onChange: (event: MainSelectEvent) => void;
   disabled?: boolean;
   options: Department[];
-  selectedBranchId?: number | null;
+  
+  name: string;
+  branchId: number;
+  departmentId: number;
 }
 
 const customStyles = {
@@ -33,37 +43,66 @@ const customStyles = {
   }),
 };
 
-// Кастомный рендер опции (показывает название отделения и филиал под ним)
-const formatOptionLabel = (option: Department) => (
-  <div>
-    <div className="font-medium text-gray-800">{option.name}</div>
-    <div className="text-xs text-gray-400">{option.branch.name}</div>
-  </div>
-);
+function filter(items: any, branchId : number) {
+    if (items) {
+        return items.filter((v : any) => {
+            return !branchId || v.branch.id === branchId;
+        });
+    } else {
+        return [];
+    }
+}
+
+const formatOptionLabel = (option: any) => {
+  console.log('formatOptionLabel called with:', option);
+  return (
+    <div>
+      <div className="font-medium text-gray-800">{option.label}</div>
+      <div className="text-xs text-gray-400">{option.item?.branch?.name}</div>
+    </div>
+  );
+};
 
 export const SelectDepartment: React.FC<SelectDepartmentProps> = ({ 
   value, 
   onChange, 
   disabled, 
   options,
-  selectedBranchId 
+  branchId,
+  name,
 }) => {
-  // Фильтруем отделения по выбранному филиалу
-  const filteredOptions = selectedBranchId 
-    ? options.filter(opt => opt.branch.id === selectedBranchId)
-    : options;
+    const [filteredOptions, setFilteredOptions] = useState<any[]>([]);
+    useEffect(() => {
+  const filtered = filter(options, branchId);
+  setFilteredOptions(filtered);
+}, [options, branchId]);
+//   const filteredOptions = branchId 
+//     ? options.filter(opt => opt.branch.id === branchId)
+//     : options;
 
-  // Преобразуем в формат react-select
+  // ✅ Правильно: сохраняем item (полный объект)
   const selectOptions = filteredOptions.map((opt) => ({
-    ...opt,
     value: opt.id,
     label: opt.name,
+    item: opt,  // ← ключевое исправление!
   }));
 
-  const selectedOption = selectOptions.find(opt => opt.value === value);
+  const selectedOption = selectOptions.find(opt => opt.value === value?.value);
+  console.log(selectOptions, "result 11")
+  console.log('filteredOptions length:', filteredOptions.length);
+  console.log('options length:', options.length);
+  console.log('value?.value:', value?.value);
+console.log('selectedOption:', selectedOption);
 
-  const handleChange = (option: typeof selectedOption) => {
-    onChange(option?.value ?? null);
+
+  const handleChange = (option: any) => {
+    const event = {
+      name: name,
+      data: undefined,
+      item: option?.item || null,
+      value: option?.value || null,
+    };
+    onChange(event);
   };
 
   return (

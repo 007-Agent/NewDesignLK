@@ -3,11 +3,19 @@ import axios from 'axios';
 
 // Тип для элемента расписания (подставьте свои поля)
 export interface ScheduleItem {
-  id: number;
-  date: string;
-  time: string;
-  doctorName: string;
-  // ... другие поля
+  begTime: string;        // "08:30"
+  branchId: number;       // 1
+  branchName: string;     // "Старопанский"
+  cabId: number;          // 24
+  cabName: string;        // "Отделение восстановительной медицины"
+  date: string;           // "2026-06-20"
+  endTime: string;        // "15:00"
+  persId: number;         // 1265
+  persName: string;       // "Виницкая Наталья Александровна"
+  specId: number;         // 31
+  specName: string;       // "рефлексотерапевт"
+  tipWorkId: number;      // 3
+  tipWorkName: string;    // "Специалист"
 }
 
 interface ScheduleState {

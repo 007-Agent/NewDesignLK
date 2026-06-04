@@ -7,7 +7,7 @@ export interface Branch {
   id: number;
   name: string;
 }
-export interface BranchSelectEvent {
+export interface MainSelectEvent {
   name: string;
   data?: any;
   item: Branch | null;
@@ -15,8 +15,8 @@ export interface BranchSelectEvent {
 }
 
 interface SelectBranchProps {
-  value: BranchSelectEvent  | null;  // ← теперь храним весь объект Branch
-  onChange: (event: BranchSelectEvent) => void;  // ← передаём весь объект
+  value: MainSelectEvent  | null;  // ← теперь храним весь объект Branch
+  onChange: (event: MainSelectEvent) => void;  // ← передаём весь объект
   options: Branch[];
   disabled?: boolean;
   name: string;
@@ -54,6 +54,7 @@ export const SelectBranch: React.FC<SelectBranchProps> = ({
   const selectedOption = branchOptions.find(opt => opt.value === value?.value);
 
   const handleChange = (option: any) => {
+    console.log('SelectBranch option:', option); 
     const event = {
       name: name,
       data: undefined,

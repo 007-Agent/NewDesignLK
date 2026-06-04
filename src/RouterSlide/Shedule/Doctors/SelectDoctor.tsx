@@ -15,12 +15,22 @@ export interface Personal {
   };
 }
 
+export interface MainSelectEvent {
+  name: string;
+  data?: any;
+  item: Personal | null;
+  value: number | null;
+}
 
 interface SelectDoctorProps {
-  value: string;
-  onChange: (value: string) => void;
+  value: MainSelectEvent | null;
+  onChange: (event: MainSelectEvent) => void;
   disabled?: boolean;
-  doctors: Personal[];
+  options: Personal[];
+  name: string;
+  branchId?: number;
+  departmentId?: number;
+  personId?: number;
 }
 
 const customStyles = {
@@ -29,20 +39,60 @@ const customStyles = {
     borderColor: state.isFocused ? '#2197ed' : '#e2e8f0',
     boxShadow: state.isFocused ? '0 0 0 1px #2197ed' : 'none',
     '&:hover': { borderColor: '#2197ed' },
+    padding: '2px 0',
+  }),
+  placeholder: (base: any) => ({
+    ...base,
+    color: '#9ca3af',
   }),
 };
+function filter(items: any[], branchId?: number, departmentId?: number) {
+    if (items) {
+        return items.filter((v:any) => {
+            return (!branchId || v.branch.id === branchId) && (!departmentId || v.department.id === departmentId);
+        });
+    } else {
+        return [];
+    }
+}
+
+const formatOptionLabel = (option: any) => (
+  <div>
+    <div className="font-medium text-gray-800">{option.label}</div>
+    <div className="text-xs text-gray-400">{option.item?.department?.name}</div>
+  </div>
+);
+
+
+
 
 export const SelectDoctor: React.FC<SelectDoctorProps> = ({ 
   value, 
   onChange, 
   disabled, 
-  doctors 
+  options,
+  name,
+  departmentId,
+  branchId,
 }) => {
-  const options = doctors.map(d => ({
-    value: d.name,
-    label: d.name,
+    const filteredDoctors = filter(options, branchId, departmentId);
+  const selectOptions = filteredDoctors.map((doctor : any) => ({
+    value: doctor.id,
+    label: doctor.name,
+    item: doctor,  // ← сохраняем полный объект врача
   }));
-  const selectedOption = options.find(opt => opt.value === value);
+  console.log('options length:', options.length);
+  const selectedOption = selectOptions.find((opt) => opt.value === value?.value);
+  console.log(selectOptions, "proverka")
+  const handleChange = (option: any) => {
+    const event: MainSelectEvent = {
+      name: name,
+      data: undefined,
+      item: option?.item || null,
+      value: option?.value || null,
+    };
+    onChange(event);
+  };
 
   return (
     <div>
@@ -51,12 +101,15 @@ export const SelectDoctor: React.FC<SelectDoctorProps> = ({
         Врач
       </label>
       <Select
-        options={options}
+        options={selectOptions}
         value={selectedOption}
-        onChange={(option) => onChange((option as any)?.value || '')}
+        onChange={handleChange}
         placeholder="Выберите врача"
         isDisabled={disabled}
+        isClearable
+        formatOptionLabel={formatOptionLabel}
         styles={customStyles}
+        classNamePrefix="react-select"
       />
     </div>
   );
