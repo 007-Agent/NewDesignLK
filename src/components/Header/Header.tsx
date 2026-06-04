@@ -101,7 +101,7 @@ useEffect(() => {
   <div className="header__right" onClick={handleShowIcon}>
  {user ? (
   <>
-    <h3 className="text-[18px] font-normal cursor-pointer">
+    <h3 className="text-[18px] font-normal cursor-pointer max-[1025px]:text-[15px]">
       Здравствуйте, <strong>{user?.firstName}</strong>
     </h3>
     <FaClipboardUser className="w-10 h-10 text-[#2197ed] cursor-pointer"/>

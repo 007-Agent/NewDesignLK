@@ -26,8 +26,9 @@ export default function Layout() {
 
       {/* Основной контент */}
         {/* <div className={`h-[85vh]  ${isPatientCards || isHomePage ? 'overflow-y-hidden' : 'overflow-y-auto' } bg-[#f7f7f7] [scrollbar-gutter:stable] ` }> */}
-         <div className="flex-1 overflow-y-auto min-h-0 bg-[#f7f7f7] [scrollbar-gutter:stable] max-[450px]:pb-8 pb-10">
+         <div className="flex-1 overflow-y-auto min-h-0 bg-[#f7f7f7] [scrollbar-gutter:stable] max-[450px]:pb-8 pb-10 ">
       <div className={`
+      
         mx-auto  
         ${isHomePage 
           ? 'max-w-[calc(7/6*100%)]'  // увеличиваем на ~30% (примерно как 130%)

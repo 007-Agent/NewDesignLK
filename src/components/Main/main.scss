@@ -196,7 +196,27 @@
 
 @media (max-width: 1024px) {
   .home-content-wrapper {
-    grid-template-columns: 1fr;
+    display: flex;
+    max-width: 654px;
+    margin: 0 auto;
+    gap: 0 30px;
+    flex-direction: column;
+  }
+  .promotion-image {
+    width: 231px;
+    height: 290px;
+    object-fit: cover;
+  }
+  .promotion-card {
+    width: 229px;
+  }
+  .promotions-section {
+    max-width: 475px;
+    margin: 0 auto;
+  }
+  .news-section {
+    height: 700px;
+    margin-bottom: 30px;
   }
 }
 

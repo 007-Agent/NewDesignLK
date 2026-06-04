@@ -173,3 +173,31 @@
   .header__right {
   }
 }
+@media (max-width: 1025px) {
+  .header__content {
+    height: 148px;
+    padding-top: 42px;
+  }
+  .header__right {
+    width: 152px;
+  }
+}
+@media (max-width: 870px) {
+  .header__content {
+    height: 148px;
+    padding-top: 42px;
+  }
+  .header__right {
+    width: 152px;
+  }
+  .header__center img {
+    display: none;
+  }
+  .header__center .second {
+    font-size: 23px;
+  }
+  .button__menu {
+    width: 56px;
+    height: 55px;
+  }
+}

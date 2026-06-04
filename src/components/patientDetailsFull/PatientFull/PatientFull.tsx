@@ -73,7 +73,7 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
  }
   return (
     <>
-    <div className="max-w-[1020px] mx-auto block">
+    <div className="max-w-[1020px] mx-auto block max-[1025px]:px-[10px]">
       {/* Back Button */}
       <button onClick={onBack} className="patient-detail-back">
         <ArrowLeft />
