@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import Document from './Document/Document';
 import { Usernow } from '../../../../redux/authSlice'
-import  "./documentation.scss"
+
 interface Patient {
   address: string;
   age: string;
@@ -121,7 +121,7 @@ useEffect(() => {
         <>
           {items.length > 0 && (
             <>
-              <div className='patient-items-list'>{visitItems}</div>
+              <div className='flex flex-col gap-4'>{visitItems}</div>
               <div >
                 <button
                   onClick={goToPreviousPage}

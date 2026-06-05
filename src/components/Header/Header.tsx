@@ -5,12 +5,15 @@ import { LoginForm } from '../Login/LoginForn';
 import { setMenuOpen } from '../../redux/authSlice';
 import { FaClipboardUser } from "react-icons/fa6";
 import './header.scss'
+import { BellRing } from 'lucide-react';
+import { NotificationBell } from './Notification/Notification';
 
 import { ProfileLogoutIcon } from './Icon/ProfileLogoutIcon ';
 import logotip from "../../../docs/logotip.png"
 
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 export function Header() {
+  const [showNotification, setShowNotification] = useState(false);
     const [showLogoutIcon, setShowLogoutIcon] = useState(false); 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const user = useAppSelector((state) => state.auth.user);
@@ -21,6 +24,9 @@ export function Header() {
   const handleShowIcon = () => {
         setShowLogoutIcon(!showLogoutIcon); // переключаем показ иконки
     };
+   const handleBellClick = () => {
+    setShowNotification(!showNotification); // переключаем открытие/закрытие
+  };  
      const toggleMenu = () => {
     dispatch(setMenuOpen(!menuOpen));
   };
@@ -98,13 +104,14 @@ useEffect(() => {
   </div>
 
   {/* Правая колонка (кнопка записи и логин) */}
-  <div className="header__right" onClick={handleShowIcon}>
+  <div className="header__right" >
  {user ? (
   <>
-    <h3 className="text-[18px] font-normal cursor-pointer max-[1025px]:text-[15px]">
+  <BellRing onClick={handleBellClick}/>
+    <h3 className="text-[18px] font-normal cursor-pointer max-[1025px]:text-[15px]" onClick={handleShowIcon}>
       Здравствуйте, <strong>{user?.firstName}</strong>
     </h3>
-    <FaClipboardUser className="w-10 h-10 text-[#2197ed] cursor-pointer"/>
+    <FaClipboardUser className="w-10 h-10 text-[#2197ed] cursor-pointer" onClick={handleShowIcon}/>
     {showLogoutIcon && <ProfileLogoutIcon />}
   </>
 ) : (
@@ -114,10 +121,14 @@ useEffect(() => {
     
     
   </div>
+  
   {!user && <LoginForm />}
 </div>
-        
+     
       </header>
+      {showNotification && (
+  <NotificationBell onClose={() => setShowNotification(false)} />
+)}
     </>
     
   );

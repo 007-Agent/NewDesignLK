@@ -1,5 +1,5 @@
 import React from 'react'
-import "./vacinacya.scss"
+
 import { formatDate } from '../../../../../utils/utils';
 interface VaccinaItem {
   date: string;      // "2025-08-07"

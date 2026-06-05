@@ -1,5 +1,5 @@
 import React from 'react'
-import './disable.scss'
+
 import { formatDate } from '../../../../../utils/utils';
 interface DisableContent{
     dateBegin: string;

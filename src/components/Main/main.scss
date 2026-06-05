@@ -46,6 +46,8 @@
   display: flex;
   justify-content: center;
   gap: 0 100px;
+  max-width: 1350px;
+  margin: 0 auto;
 }
 
 .section-title {
@@ -58,7 +60,7 @@
 .promotions-section {
   display: flex;
   flex-direction: column;
-  width: 630px;
+  width: 592px;
 }
 
 .promotions-grid {

@@ -1,5 +1,5 @@
 import React from 'react'
-import './contract.scss'
+
 import { formatDate } from '../../../../../utils/utils';
 export interface ContractData {
   date: string;            

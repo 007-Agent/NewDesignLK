@@ -3,7 +3,7 @@ import { Usernow } from '../../../../redux/authSlice';
 import axios from 'axios';
 import Contract from './Contract/Contract';
 import { Spinner } from '../../../Spinner/Spinner';
-import './contracts.scss'
+
 interface Patient {
   address: string;
   age: string;
@@ -92,7 +92,7 @@ function Contracts({patient, user} : Contracts) {
     <Contract key={i} contract={v} />
   ));
 
-  return <div className="contracts_content">{itemsElements}</div>;
+  return <div className="flex flex-col gap-y-2.5 max-w-[400px] mx-auto">{itemsElements}</div>;
 }
 
 export default Contracts;
