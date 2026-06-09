@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Usernow } from '../../redux/authSlice';
+import React, { Component } from "react";
+import axios from "axios";
+import { Usernow } from "../../redux/slice/authSlice";
 
 interface PolicyProps {
   user: Usernow | null; // пропс пока не используется, но может пригодиться
@@ -18,7 +18,7 @@ export default class Policy extends Component<PolicyProps, PolicyState> {
     super(props); // обязательно передаём props в родительский конструктор
     this.state = {
       show: true,
-      content: null
+      content: null,
     };
     this.refresh = this.refresh.bind(this);
   }
@@ -33,14 +33,15 @@ export default class Policy extends Component<PolicyProps, PolicyState> {
   }
 
   refresh() {
-    axios.get('/policy')
-      .then(response => {
+    axios
+      .get("/policy")
+      .then((response) => {
         if (this.mounted) {
           this.setState({ content: response.data });
         }
       })
-      .catch(error => {
-        console.error('Ошибка загрузки политики:', error);
+      .catch((error) => {
+        console.error("Ошибка загрузки политики:", error);
         // здесь можно добавить обработку ошибки (например, показать сообщение)
       });
   }
@@ -49,7 +50,7 @@ export default class Policy extends Component<PolicyProps, PolicyState> {
     return (
       <div>
         <div>
-          <div dangerouslySetInnerHTML={{ __html: this.state.content || '' }} />
+          <div dangerouslySetInnerHTML={{ __html: this.state.content || "" }} />
         </div>
       </div>
     );

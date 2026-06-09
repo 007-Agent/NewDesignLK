@@ -30,6 +30,7 @@ interface AppointmentModalProps {
   isOpen: boolean;
   onClose: () => void;
   patient: Patient;
+   onSuccess?: () => void;
   
 }
 interface RefactoredItem {

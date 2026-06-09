@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { useAppDispatch } from '../../../redux/hooks';
-import { loginUser } from '../../../redux/authSlice';
-import { useNavigate } from 'react-router-dom';
-import "../login.scss"
+import { useState } from "react";
+import { useAppDispatch } from "../../../redux/hooks";
+import { loginUser } from "../../../redux/slice/authSlice";
+import { useNavigate } from "react-router-dom";
+import "../login.scss";
 interface AuthorizationProps {
   onSuccess?: () => void; // закрыть модалку после успешного входа
 }
 
 export function Authorization({ onSuccess }: AuthorizationProps) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const dispatch = useAppDispatch();
@@ -22,20 +22,18 @@ export function Authorization({ onSuccess }: AuthorizationProps) {
     try {
       await dispatch(loginUser({ username, password })).unwrap();
       onSuccess?.(); // закрываем модалку
-      navigate('/home');
+      navigate("/home");
     } catch (err: any) {
-      setError(err.message || 'Ошибка авторизации');
-      console.log(err.message)
+      setError(err.message || "Ошибка авторизации");
+      console.log(err.message);
     } finally {
       setLoading(false);
-      
     }
   };
-  console.log(error)
+  console.log(error);
 
   return (
     <form onSubmit={handleSubmit} className="login-form">
-      
       <div className="login-field">
         <label htmlFor="login" className="login-label">
           Логин
@@ -67,7 +65,7 @@ export function Authorization({ onSuccess }: AuthorizationProps) {
         />
       </div>
       <button type="submit" className="login-submit" disabled={loading}>
-        {loading ? 'Загрузка...' : 'Войти'}
+        {loading ? "Загрузка..." : "Войти"}
       </button>
       {error && <div className="login-error">{error}</div>}
     </form>

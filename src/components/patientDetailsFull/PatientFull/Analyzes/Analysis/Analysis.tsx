@@ -1,7 +1,7 @@
-import React from 'react';
-import { Usernow } from '../../../../../redux/authSlice';
-import { Patient } from '../../PatientFull';
-import { formatDate } from '../../../../../utils/utils';
+import React from "react";
+import { Usernow } from "../../../../../redux/slice/authSlice";
+import { Patient } from "../../PatientFull";
+import { formatDate } from "../../../../../utils/utils";
 
 interface AnalysisItem {
   date: string;
@@ -12,7 +12,7 @@ interface AnalysisItem {
 
 interface AnalysisProps {
   patientId: number;
-  
+
   analysis: AnalysisItem; // обязательно
   downloads?: any;
 }
@@ -34,19 +34,19 @@ class Analysis extends React.Component<AnalysisProps, AnalysisState> {
     }
   }
 
-
   render() {
     const label = (
       <>
-      <div>{formatDate(this.props.analysis.date)}</div>
+        <div>{formatDate(this.props.analysis.date)}</div>
         <div>{this.props.analysis.name}</div>
       </>
-        
-      
     );
 
     return (
-      <div onClick={() => this.setState({ show: !this.state.show })}  className="flex gap-x-5 cursor-pointer">
+      <div
+        onClick={() => this.setState({ show: !this.state.show })}
+        className="flex gap-x-5 cursor-pointer"
+      >
         {label}
       </div>
     );

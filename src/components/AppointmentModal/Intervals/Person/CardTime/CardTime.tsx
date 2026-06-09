@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import './cardtime.scss';
-import { Usernow } from '../../../../../redux/authSlice';
-import { Patient } from '../../../../patientDetailsFull/PatientFull/PatientFull';
-import { X } from 'lucide-react';
+import React, { useState } from "react";
+import "./cardtime.scss";
+import { Usernow } from "../../../../../redux/slice/authSlice";
+import { Patient } from "../../../../patientDetailsFull/PatientFull/PatientFull";
+import { X } from "lucide-react";
 interface TimeSlot {
   time: string;
   id: number;
@@ -27,24 +27,25 @@ interface CardTimeProps {
 }
 
 export function CardTime({ user, person, patient, onSign }: CardTimeProps) {
-  const [selectedDateIndex, setSelectedDateIndex] = useState<number | null>(null);
-  const [selectedDate, setSelectedDate] = useState('');
-  
+  const [selectedDateIndex, setSelectedDateIndex] = useState<number | null>(
+    null,
+  );
+  const [selectedDate, setSelectedDate] = useState("");
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const options: Intl.DateTimeFormatOptions = {
-      day: 'numeric',
-      month: 'long',
-      weekday: 'short',
+      day: "numeric",
+      month: "long",
+      weekday: "short",
     };
-    return date.toLocaleDateString('ru-RU', options);
+    return date.toLocaleDateString("ru-RU", options);
   };
 
   const handleDateClick = (index: number) => {
     setSelectedDateIndex(index);
-    console.log('Выбран индекс даты:', index);
+    console.log("Выбран индекс даты:", index);
   };
-
 
   const handleTimeClick = (visit: any) => {
     if (onSign && selectedDateIndex !== null) {
@@ -55,9 +56,10 @@ export function CardTime({ user, person, patient, onSign }: CardTimeProps) {
 
   if (!person.dates || person.dates.length === 0) return null;
 
-  const selectedDateObj = selectedDateIndex !== null ? person.dates[selectedDateIndex] : null;
+  const selectedDateObj =
+    selectedDateIndex !== null ? person.dates[selectedDateIndex] : null;
   const intervals = selectedDateObj?.intervals || [];
-  console.log(intervals, "intervals doctor")
+  console.log(intervals, "intervals doctor");
   return (
     <div className="card-time" onClick={(e) => e.stopPropagation()}>
       <div className="card-time-header">
@@ -69,7 +71,7 @@ export function CardTime({ user, person, patient, onSign }: CardTimeProps) {
           {person.dates.map((d, idx) => (
             <button
               key={idx}
-              className={`card-time-date-btn ${selectedDateIndex === idx ? 'selected' : ''}`}
+              className={`card-time-date-btn ${selectedDateIndex === idx ? "selected" : ""}`}
               onClick={() => handleDateClick(idx)}
             >
               {formatDate(d.date)}
@@ -77,23 +79,19 @@ export function CardTime({ user, person, patient, onSign }: CardTimeProps) {
           ))}
         </div>
 
-        {selectedDateIndex !== null  && intervals.length > 0 && (
+        {selectedDateIndex !== null && intervals.length > 0 && (
           <div className="card-time-times">
-          
-           
-              {intervals.map((interval) => (
-                <button
-                  key={interval.id}
-                  className="card-time-time-btn"
-                  onClick={() => handleTimeClick(interval)}
-                >
-                  {interval.time.slice(0, 5)}
-                </button>
-              ))}
-            
+            {intervals.map((interval) => (
+              <button
+                key={interval.id}
+                className="card-time-time-btn"
+                onClick={() => handleTimeClick(interval)}
+              >
+                {interval.time.slice(0, 5)}
+              </button>
+            ))}
           </div>
         )}
-        
       </div>
     </div>
   );

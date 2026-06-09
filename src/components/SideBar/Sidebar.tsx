@@ -17,8 +17,8 @@ import {
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
-import { logoutUser } from "../../redux/authSlice";
-import { setMenuOpen } from "../../redux/authSlice";
+import { logoutUser } from "../../redux/slice/authSlice";
+import { setMenuOpen } from "../../redux/slice/authSlice";
 import { FaFacebookMessenger } from "react-icons/fa6";
 import { OnlineView } from "../OnlineView/OnlineView";
 import { AppointmentModal } from "../AppointmentModal/AppointmentModal";
@@ -41,6 +41,7 @@ export function Sidebar({
     { label: "Пациенты", page: "/patients", icon: Users },
     { label: "Расписание", page: "/schedule", icon: Calendar },
     { label: "Конфиденциальность", page: "/policy", icon: Shield },
+    { label: "Оплата услуг", page: "/pay", icon: Shield },
   ];
   const [showOnlineModal, setShowOnlineModal] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);

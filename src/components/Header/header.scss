@@ -171,6 +171,7 @@
     }
   }
   .header__right {
+    width: 185px;
   }
 }
 @media (max-width: 1025px) {
@@ -184,11 +185,11 @@
 }
 @media (max-width: 870px) {
   .header__content {
-    height: 148px;
-    padding-top: 42px;
+    height: 110px;
+    padding-top: 15px;
   }
   .header__right {
-    width: 152px;
+    width: 190px;
   }
   .header__center img {
     display: none;

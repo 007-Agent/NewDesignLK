@@ -13,7 +13,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import Medicaments from "./Medicaments/Medicaments";
 import "./Patientfull.scss";
 import { Visits } from "./Visits/Visits";
-import { Usernow } from "../../../redux/authSlice";
+import { Usernow } from "../../../redux/slice/authSlice";
 import Contracts from "./Contracts/Contracts";
 import Vaccinations from "./Vacination/Vacinations";
 import { AppointmentModal } from "../../AppointmentModal/AppointmentModal";

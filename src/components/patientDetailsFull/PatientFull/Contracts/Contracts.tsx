@@ -1,42 +1,38 @@
-import React, { useState, useEffect, useRef} from 'react';
-import { Usernow } from '../../../../redux/authSlice';
-import axios from 'axios';
-import Contract from './Contract/Contract';
-import { Spinner } from '../../../Spinner/Spinner';
+import React, { useState, useEffect, useRef } from "react";
+import { Usernow } from "../../../../redux/slice/authSlice";
+import axios from "axios";
+import Contract from "./Contract/Contract";
+import { Spinner } from "../../../Spinner/Spinner";
 
 interface Patient {
   address: string;
   age: string;
-  birthday: string;         // дата рождения
+  birthday: string; // дата рождения
   branchId: number;
   contacts: string;
   father: string;
   fatherPhone: string;
-  fio: string;              // полное имя
+  fio: string; // полное имя
   firstName: string;
-  gender: string;            // "жен"
-  genderId: number;          // 2
+  gender: string; // "жен"
+  genderId: number; // 2
   id: number;
   lastName: string | null;
   mother: string;
   motherPhone: string;
-  nib: string;               // номер медкарты
+  nib: string; // номер медкарты
 }
-
-
 
 interface Contracts {
   patient: Patient;
   user: Usernow | null;
- 
 }
-function Contracts({patient, user} : Contracts) {
+function Contracts({ patient, user }: Contracts) {
   const [items, setItems] = useState([]);
   const [wait, setWait] = useState(true);
   const isMounted = useRef(true);
   const patientId = patient.id;
   // Сброс флага монтирования при размонтировании
- 
 
   // Функция загрузки данных
   const fetchVisits = () => {
@@ -44,43 +40,33 @@ function Contracts({patient, user} : Contracts) {
 
     setWait(true);
     axios
-        .post('/api/office/patient/contracts', { patientId })
-     .then(response => {
-          if (isMounted.current) {
-            // console.log(response.data.data, 'RDRDRD')
-            setItems(response.data.data)
-            setWait(false)
-            
-          }
-        })
-        .catch(() => {
-          if (isMounted.current) {
-            setWait(false)
-          }
-        })
-     
-     
-     
-
-   
-    
+      .post("/api/office/patient/contracts", { patientId })
+      .then((response) => {
+        if (isMounted.current) {
+          // console.log(response.data.data, 'RDRDRD')
+          setItems(response.data.data);
+          setWait(false);
+        }
+      })
+      .catch(() => {
+        if (isMounted.current) {
+          setWait(false);
+        }
+      });
   };
 
   // Загружаем данные при монтировании и при изменении patientId
- useEffect(() => {
+  useEffect(() => {
     isMounted.current = true;
-    fetchVisits()
+    fetchVisits();
     return () => {
       isMounted.current = false;
     };
   }, [patientId]);
 
-  
-  
-
- if (wait) {
-  return <Spinner />;
-}
+  if (wait) {
+    return <Spinner />;
+  }
 
   // 2. Загрузка окончена, данных нет
   // if (!items || items.length === 0) {
@@ -88,11 +74,13 @@ function Contracts({patient, user} : Contracts) {
   // }
 
   // 3. Данные есть – рендерим список
-  const itemsElements = items.map((v, i) => (
-    <Contract key={i} contract={v} />
-  ));
+  const itemsElements = items.map((v, i) => <Contract key={i} contract={v} />);
 
-  return <div className="flex flex-col gap-y-2.5 max-w-[400px] mx-auto">{itemsElements}</div>;
+  return (
+    <div className="flex flex-col gap-y-2.5 max-w-[400px] mx-auto">
+      {itemsElements}
+    </div>
+  );
 }
 
 export default Contracts;

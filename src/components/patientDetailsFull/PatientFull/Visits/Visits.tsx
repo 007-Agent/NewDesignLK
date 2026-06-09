@@ -1,90 +1,85 @@
-import React, { useState, useEffect, useRef } from 'react'
-import axios from 'axios'
-import {RefreshCw} from 'lucide-react'
-import { Usernow } from '../../../../redux/authSlice';
-import { Visit } from './Visit/Visit';
-import { Visited } from './Visit/Visit';
-import { Spinner } from '../../../Spinner/Spinner';
-import './visits.scss'
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import { RefreshCw } from "lucide-react";
+import { Usernow } from "../../../../redux/slice/authSlice";
+import { Visit } from "./Visit/Visit";
+import { Visited } from "./Visit/Visit";
+import { Spinner } from "../../../Spinner/Spinner";
+import "./visits.scss";
 interface Patient {
   address: string;
   age: string;
-  birthday: string;         // дата рождения
+  birthday: string; // дата рождения
   branchId: number;
   contacts: string;
   father: string;
   fatherPhone: string;
-  fio: string;              // полное имя
+  fio: string; // полное имя
   firstName: string;
-  gender: string;            // "жен"
-  genderId: number;          // 2
+  gender: string; // "жен"
+  genderId: number; // 2
   id: number;
   lastName: string | null;
   mother: string;
   motherPhone: string;
-  nib: string;               // номер медкарты
+  nib: string; // номер медкарты
 }
-
-
 
 interface PatientDetailPageProps {
   patient: Patient;
   user: Usernow | null;
- 
 }
-export function Visits ({patient, user} :PatientDetailPageProps ) {
-    const [items, setItems] = useState<Visited[]>([]);
-  console.log(items, 'UTUT')
-  const [message, setMes] = useState('')
-  const [wait, setWait] = useState(false)
-  const [currentPage, setCurrentPage] = useState(1)
-  const clientsPerPage = 20
-  const isMounted = useRef(true)
+export function Visits({ patient, user }: PatientDetailPageProps) {
+  const [items, setItems] = useState<Visited[]>([]);
+  console.log(items, "UTUT");
+  const [message, setMes] = useState("");
+  const [wait, setWait] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const clientsPerPage = 20;
+  const isMounted = useRef(true);
 
   const fetchVisits = () => {
-    const patientId = patient?.id || 0
+    const patientId = patient?.id || 0;
     // console.log(patientId, 'EERRRE')
     if (patientId > 0) {
-      setWait(true)
+      setWait(true);
       axios
-        .post('/api/visit/list', { patientId })
-        .then(response => {
+        .post("/api/visit/list", { patientId })
+        .then((response) => {
           if (isMounted.current) {
             // console.log(response.data.data, 'RDRDRD')
-            setItems(response.data.data)
-            setWait(false)
-            setCurrentPage(1) // при загрузке сбрасываем страницу на первую
+            setItems(response.data.data);
+            setWait(false);
+            setCurrentPage(1); // при загрузке сбрасываем страницу на первую
           }
         })
         .catch(() => {
           if (isMounted.current) {
-            setWait(false)
+            setWait(false);
           }
         })
         .finally(() => {
           if (isMounted.current) {
-            setWait(false)                          // выключаем спиннер
+            setWait(false); // выключаем спиннер
           }
-          })
+        });
     }
-  }
-  const useMessageEffect = (info : any) => {
-   
-    setMes(info)
-  }
-
+  };
+  const useMessageEffect = (info: any) => {
+    setMes(info);
+  };
 
   useEffect(() => {
-    isMounted.current = true
-    fetchVisits()
+    isMounted.current = true;
+    fetchVisits();
     return () => {
-      isMounted.current = false
-    }
-  }, [patient]) // при изменении patient перезагружаем визиты
+      isMounted.current = false;
+    };
+  }, [patient]); // при изменении patient перезагружаем визиты
 
   if (wait) {
-   return <Spinner />;
- }
+    return <Spinner />;
+  }
 
   // 2. Если загрузка окончена, но данных нет – сообщение
   // if (!items || items.length === 0) {
@@ -105,19 +100,21 @@ export function Visits ({patient, user} :PatientDetailPageProps ) {
     ));
 
   const totalPages = Math.ceil(items.length / clientsPerPage);
-  const goToPreviousPage = () => currentPage > 1 && setCurrentPage(currentPage - 1);
-  const goToNextPage = () => currentPage < totalPages && setCurrentPage(currentPage + 1);
+  const goToPreviousPage = () =>
+    currentPage > 1 && setCurrentPage(currentPage - 1);
+  const goToNextPage = () =>
+    currentPage < totalPages && setCurrentPage(currentPage + 1);
 
   return (
     <div>
-  {/* patient-items-list: margin-bottom 25px */}
-  <div className="mb-[25px]">{visitItems}</div>
+      {/* patient-items-list: margin-bottom 25px */}
+      <div className="mb-[25px]">{visitItems}</div>
 
-  {totalPages > 0 && (
-    /* pajer_list: display flex, align-items center, justify-content center, gap 0 15px */
-    <div className="flex items-center justify-center gap-x-[15px]">
-       <button
-    className="
+      {totalPages > 0 && (
+        /* pajer_list: display flex, align-items center, justify-content center, gap 0 15px */
+        <div className="flex items-center justify-center gap-x-[15px]">
+          <button
+            className="
       cursor-pointer select-none box-border
       flex items-center justify-center
       py-[3px] px-2 max-[500px]:py-2 max-[500px]:px-4
@@ -126,18 +123,18 @@ export function Visits ({patient, user} :PatientDetailPageProps ) {
       font-['Arial'] text-[18px] max-[500px]:text-[14px]
       w-[220px] max-[500px]:w-full
     "
-    onClick={goToPreviousPage}
-    disabled={currentPage === 1}
-  >
-    ← Предыдущая
-  </button>
+            onClick={goToPreviousPage}
+            disabled={currentPage === 1}
+          >
+            ← Предыдущая
+          </button>
 
-  <span className="text-center font-['Arial'] text-[18px] max-[500px]:text-[14px]">
-    Страница {currentPage} из {totalPages}
-  </span>
+          <span className="text-center font-['Arial'] text-[18px] max-[500px]:text-[14px]">
+            Страница {currentPage} из {totalPages}
+          </span>
 
-  <button
-    className="
+          <button
+            className="
       cursor-pointer select-none box-border
       flex items-center justify-center
       py-[3px] px-2 max-[500px]:py-2 max-[500px]:px-4
@@ -146,13 +143,13 @@ export function Visits ({patient, user} :PatientDetailPageProps ) {
       font-['Arial'] text-[18px] max-[500px]:text-[14px]
       w-[220px] max-[500px]:w-full
     "
-    onClick={goToNextPage}
-    disabled={currentPage === totalPages}
-  >
-    Следующая →
-  </button>
+            onClick={goToNextPage}
+            disabled={currentPage === totalPages}
+          >
+            Следующая →
+          </button>
+        </div>
+      )}
     </div>
-  )}
-</div>
   );
 }

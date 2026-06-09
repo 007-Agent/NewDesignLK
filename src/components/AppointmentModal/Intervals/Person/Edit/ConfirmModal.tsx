@@ -3,6 +3,8 @@ import { X } from 'lucide-react';
 import { useAppSelector } from '../../../../../redux/hooks';
 import { Patient } from '../../../../patientDetailsFull/PatientFull/PatientFull';
 import { formatDate, formatTime } from '../../../../../utils/utils';
+import { useAppDispatch } from '../../../../../redux/hooks';
+import { triggerAppointmentsRefresh } from '../../../../../redux/slice/visitSlice';
 import axios from 'axios';
 
 export interface Visit {
@@ -36,6 +38,7 @@ const BUSY_MESSAGE = 'Интервал уже занят! Попробуйте �
 
 export const ConfirmModal = ({ visitId, patient, onClose }: ConfirmModalProps) => {
   const user = useAppSelector((state) => state.auth.user);
+   const dispatch = useAppDispatch();
   const [visit, setVisit] = useState<Visit | null>(null);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -87,6 +90,7 @@ export const ConfirmModal = ({ visitId, patient, onClose }: ConfirmModalProps) =
       setError(errorMessage);
     } finally {
       setSubmitting(false);
+      dispatch(triggerAppointmentsRefresh());
     }
   };
 

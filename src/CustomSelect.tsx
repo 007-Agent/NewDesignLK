@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
-import './custom.scss';
+import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
+// import './custom.scss';
 
 interface Option {
   id: number;
@@ -19,32 +19,31 @@ export function CustomSelectModal({
   options,
   value,
   onChange,
-  placeholder = 'Выберите специальность',
+  placeholder = "Выберите специальность",
   label,
 }: CustomSelectModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const triggerRef = useRef<HTMLDivElement>(null);
 
-  const selectedOption = options.find(opt => opt.id === value);
-
+  const selectedOption = options.find((opt) => opt.id === value);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsOpen(false);
+      if (e.key === "Escape") setIsOpen(false);
     };
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, []);
 
   // Блокировка скролла при открытом окне
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
 
@@ -53,53 +52,51 @@ export function CustomSelectModal({
     setIsOpen(false);
   };
 
-  
+  //   return (
+  //     <div className="custom-select-modal-container">
+  //       {label && <label className="custom-select-modal-label">{label}</label>}
+  //       <div
+  //         ref={triggerRef}
+  //         className="custom-select-modal-trigger"
+  //         onClick={() => setIsOpen(true)}
+  //       >
+  //         {selectedOption ? selectedOption.name : placeholder}
+  //         <span className="custom-select-modal-arrow">{isOpen ? '▲' : '▼'}</span>
+  //       </div>
 
-//   return (
-//     <div className="custom-select-modal-container">
-//       {label && <label className="custom-select-modal-label">{label}</label>}
-//       <div
-//         ref={triggerRef}
-//         className="custom-select-modal-trigger"
-//         onClick={() => setIsOpen(true)}
-//       >
-//         {selectedOption ? selectedOption.name : placeholder}
-//         <span className="custom-select-modal-arrow">{isOpen ? '▲' : '▼'}</span>
-//       </div>
+  //       {isOpen &&
+  //         createPortal(
+  //           <div className="custom-select-modal-overlay" onClick={() => setIsOpen(false)}>
+  //             <div
+  //               className="custom-select-modal-window"
+  //               onClick={(e) => e.stopPropagation()}
+  //               // можно позиционировать относительно триггера, но для простоты — по центру
+  //             >
+  //               <div className="custom-select-modal-header">
+  //                 <span>{label || 'Выберите специальность'}</span>
+  //                 <button className="custom-select-modal-close" onClick={() => setIsOpen(false)}>
+  //                   ✕
+  //                 </button>
+  //               </div>
+  //               <div className="custom-select-modal-list">
+  //                 {options.map((option) => (
+  //                   <div
+  //                     key={option.id}
+  //                     className={`custom-select-modal-item ${value === option.id ? 'selected' : ''}`}
+  //                     onClick={() => handleSelect(option.id)}
+  //                   >
+  //                     {option.name}
+  //                   </div>
+  //                 ))}
 
-//       {isOpen &&
-//         createPortal(
-//           <div className="custom-select-modal-overlay" onClick={() => setIsOpen(false)}>
-//             <div
-//               className="custom-select-modal-window"
-//               onClick={(e) => e.stopPropagation()}
-//               // можно позиционировать относительно триггера, но для простоты — по центру
-//             >
-//               <div className="custom-select-modal-header">
-//                 <span>{label || 'Выберите специальность'}</span>
-//                 <button className="custom-select-modal-close" onClick={() => setIsOpen(false)}>
-//                   ✕
-//                 </button>
-//               </div>
-//               <div className="custom-select-modal-list">
-//                 {options.map((option) => (
-//                   <div
-//                     key={option.id}
-//                     className={`custom-select-modal-item ${value === option.id ? 'selected' : ''}`}
-//                     onClick={() => handleSelect(option.id)}
-//                   >
-//                     {option.name}
-//                   </div>
-//                 ))}
-               
-//               </div>
-//             </div>
-//           </div>,
-//           document.body
-//         )}
-//     </div>
-//   );
-// }
+  //               </div>
+  //             </div>
+  //           </div>,
+  //           document.body
+  //         )}
+  //     </div>
+  //   );
+  // }
   return (
     <div className="w-full font-['Inter']">
       {label && (
@@ -113,7 +110,7 @@ export function CustomSelectModal({
         onClick={() => setIsOpen(true)}
       >
         {selectedOption ? selectedOption.name : placeholder}
-        <span className="text-xs text-gray-500">{isOpen ? '▲' : '▼'}</span>
+        <span className="text-xs text-gray-500">{isOpen ? "▲" : "▼"}</span>
       </div>
 
       {isOpen &&
@@ -127,7 +124,7 @@ export function CustomSelectModal({
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center p-4 border-b border-gray-200 font-semibold text-orange-500">
-                <span>{label || 'Выберите специальность'}</span>
+                <span>{label || "Выберите специальность"}</span>
                 <button
                   className="bg-transparent border-none cursor-pointer text-2xl text-gray-500 p-1 leading-none hover:text-gray-700"
                   onClick={() => setIsOpen(false)}
@@ -143,7 +140,7 @@ export function CustomSelectModal({
                       w-full py-3 px-5 cursor-pointer transition-colors border-b border-black text-xl
                       hover:bg-gray-100
                       max-[450px]:py-2 max-[450px]:px-6 max-[450px]:text-base
-                      ${value === option.id ? 'bg-orange-50 text-orange-500 font-medium' : ''}
+                      ${value === option.id ? "bg-orange-50 text-orange-500 font-medium" : ""}
                     `}
                     onClick={() => handleSelect(option.id)}
                   >
@@ -153,8 +150,8 @@ export function CustomSelectModal({
               </div>
             </div>
           </div>,
-          document.body
+          document.body,
         )}
     </div>
   );
-};
+}

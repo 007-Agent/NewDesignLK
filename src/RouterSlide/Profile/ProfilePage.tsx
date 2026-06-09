@@ -1,36 +1,32 @@
-import { User, Mail, Phone, Calendar, Users } from 'lucide-react';
+import { User, Mail, Phone, Calendar, Users } from "lucide-react";
 // import { Usernow } from '../redux/authSlice';
-import './profile.scss'
-import { formatDate } from '../../utils/utils';
+
+import { formatDate } from "../../utils/utils";
 interface Profile {
   id: number;
-uuid: string;
-firstName: string;
-lastName: string;
-middleName: string;
-birthday: string;
-email: string;
-phone: string;
-username: string | null;
-name: string | null;
-polId: number;
-stateId: number;
-authorities: string[];
-captcha: any;
-agreed: number;
+  uuid: string;
+  firstName: string;
+  lastName: string;
+  middleName: string;
+  birthday: string;
+  email: string;
+  phone: string;
+  username: string | null;
+  name: string | null;
+  polId: number;
+  stateId: number;
+  authorities: string[];
+  captcha: any;
+  agreed: number;
 }
 interface ProfilePageProps {
   user: Profile | null;
 }
 export function ProfilePage({ user }: ProfilePageProps) {
-  console.log(user)
+  console.log(user);
 
-
- 
   return (
-    <div className="profile__main">
-      
-
+    <div className="font-sans">
       <div className="bg-white rounded-xl shadow-sm p-8">
         {/* Profile Header */}
         <div className="flex items-center gap-6 mb-8 pb-8 border-b border-gray-200">
@@ -38,10 +34,9 @@ export function ProfilePage({ user }: ProfilePageProps) {
             <User className="w-12 h-12 text-white" />
           </div>
           <div>
-           <h3 className="text-[17px]">
-  {user?.lastName} {user?.firstName} {user?.middleName}
-</h3>
-            
+            <h3 className="text-[17px]">
+              {user?.lastName} {user?.firstName} {user?.middleName}
+            </h3>
           </div>
         </div>
 
@@ -91,15 +86,14 @@ export function ProfilePage({ user }: ProfilePageProps) {
               <div>
                 <p className="text-sm text-gray-500 mb-1">Пол</p>
                 <p className="text-gray-900">
-  {user?.polId === 1 ? 'Мужской' : 'Женский'}
-</p>
+                  {user?.polId === 1 ? "Мужской" : "Женский"}
+                </p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Children */}
-      
 
         {/* Edit Button */}
         <div className="mt-8 pt-8 border-t border-gray-200">
