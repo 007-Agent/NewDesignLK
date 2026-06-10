@@ -123,8 +123,10 @@ export function CustomSelectModal({
               className="bg-white rounded-2xl w-[90%] max-w-[400px] max-h-[80vh] overflow-y-auto shadow-xl animate-[slideUp_0.3s_ease-out]"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex justify-between items-center p-4 border-b border-gray-200 font-semibold text-orange-500">
-                <span>{label || "Выберите специальность"}</span>
+              <div className="flex justify-between items-center p-4 border-b border-gray-200 font-semibold text-orange-500 ">
+                <span className="text-[16px]">
+                  {label || "Выберите специальность"}
+                </span>
                 <button
                   className="bg-transparent border-none cursor-pointer text-2xl text-gray-500 p-1 leading-none hover:text-gray-700"
                   onClick={() => setIsOpen(false)}

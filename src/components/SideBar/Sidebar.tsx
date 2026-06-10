@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
+
 import {
   Menu,
   Home,
@@ -11,6 +12,7 @@ import {
   Calendar,
   Shield,
   LogOut,
+  Hospital,
   Phone,
   Facebook,
   Instagram,
@@ -41,7 +43,7 @@ export function Sidebar({
     { label: "Пациенты", page: "/patients", icon: Users },
     { label: "Расписание", page: "/schedule", icon: Calendar },
     { label: "Конфиденциальность", page: "/policy", icon: Shield },
-    { label: "Оплата услуг", page: "/pay", icon: Shield },
+    { label: "Санаторное лечение", page: "/pay", icon: Hospital },
   ];
   const [showOnlineModal, setShowOnlineModal] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
