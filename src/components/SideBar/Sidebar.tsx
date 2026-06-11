@@ -43,7 +43,7 @@ export function Sidebar({
     { label: "Пациенты", page: "/patients", icon: Users },
     { label: "Расписание", page: "/schedule", icon: Calendar },
     { label: "Конфиденциальность", page: "/policy", icon: Shield },
-    { label: "Санаторное лечение", page: "/pay", icon: Hospital },
+    { label: "Санаторное лечение", page: "/sanatories", icon: Hospital },
   ];
   const [showOnlineModal, setShowOnlineModal] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);

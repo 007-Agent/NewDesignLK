@@ -12,6 +12,7 @@ import { PatientDetailPageWrapper } from "./components/patientDetailsFull/Patien
 import Policy from "./RouterSlide/Policy/Policy";
 import Layout from "../src/components/Layout";
 import { HomePage } from "./components/Main/Main";
+import { Sanatorium } from "./RouterSlide/Sanatoriums/Sanatorium";
 import "./App.css";
 import { fetchSpecialties } from "./redux/Departament/Specialities";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -115,6 +116,15 @@ export default function App() {
           />
 
           <Route path="/policy" element={<Policy user={user} />} />
+
+          <Route
+            path="/sanatories"
+            element={
+              <PrivateRoute user={user}>
+                <Sanatorium user={user} />
+              </PrivateRoute>
+            }
+          />
 
           <Route
             path="/patientsfullinfo/:fullName"
