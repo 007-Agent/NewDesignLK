@@ -21,6 +21,7 @@ import { fetchSchedule } from "./redux/Departament/SheduleRequest";
 import { fetchDepartments } from "./redux/Departament/Departments";
 import { fetchBranches } from "./redux/Departament/Branches";
 import { fetchPersonal } from "./redux/Departament/Personal";
+import { CustomToaster } from "./components/Toaster/CustomToaster";
 
 export default function App() {
   const { user, checkStatus } = useAppSelector((state) => state.auth);
@@ -68,6 +69,7 @@ export default function App() {
 
   return (
     <div className="app">
+      <CustomToaster />
       <Header />
       <Routes>
         <Route element={<Layout />}>
