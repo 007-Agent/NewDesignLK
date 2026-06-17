@@ -5,7 +5,7 @@ import { Usernow } from "../../../../redux/slice/authSlice";
 import { Visit } from "./Visit/Visit";
 import { Visited } from "./Visit/Visit";
 import { Spinner } from "../../../Spinner/Spinner";
-import "./visits.scss";
+
 interface Patient {
   address: string;
   age: string;
@@ -105,14 +105,16 @@ export function Visits({ patient, user }: PatientDetailPageProps) {
   const goToNextPage = () =>
     currentPage < totalPages && setCurrentPage(currentPage + 1);
 
+  const showPagination = items.length > 10;
+
   return (
     <div>
       {/* patient-items-list: margin-bottom 25px */}
       <div className="mb-[25px]">{visitItems}</div>
 
-      {totalPages > 0 && (
+      {showPagination && (
         /* pajer_list: display flex, align-items center, justify-content center, gap 0 15px */
-        <div className="flex items-center justify-center gap-x-[15px]">
+        <div className="flex items-center justify-center gap-x-[15px] py-4">
           <button
             className="
       cursor-pointer select-none box-border
