@@ -13,7 +13,7 @@
 }
 .btn {
   padding: 0.75rem 2rem;
-  background-color: #2197ed;
+  background-color: #1572b5;
   color: white;
   width: 220px;
   cursor: pointer;
@@ -52,7 +52,7 @@
   left: 1.5rem; /* left-6 */
   z-index: 50; /* z-50 */
 
-  background-color: #2197ed; /* bg-blue-500 */
+  background-color: #6da9d3; /* bg-blue-500 */
   color: white; /* text-white */
 
   padding: 0.75rem; /* p-3 (3 * 0.25rem = 0.75rem) */
@@ -92,7 +92,7 @@
 }
 .header-btn-appointment {
   padding: 0.75rem 2rem;
-  background-color: #2197ed;
+  background-color: #d3ad28;
   color: white;
   cursor: pointer;
   border-radius: 0.5rem;
@@ -100,7 +100,7 @@
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 .header-btn-appointment:hover {
-  background-color: #f5bf03;
+  background-color: #d3ad28;
 }
 
 .header-btn-register {

@@ -16,7 +16,8 @@
   text-decoration: none;
 
   &--active {
-    background-color: #f5bf03; // green-500
+    background: #edb737;
+
     color: white;
   }
 
@@ -24,7 +25,7 @@
     color: #ffffff; // gray-700
 
     &:hover {
-      background-color: #f5bf03; // gray-300
+      background: #edb737;
     }
   }
 
@@ -39,6 +40,6 @@
   position: absolute;
   top: 27px;
   right: 35px;
-  color: bisque;
+  color: #1572b5;
   cursor: pointer;
 }

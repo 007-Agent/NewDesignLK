@@ -42,8 +42,8 @@ export function Sidebar({
     { label: "Записи", page: "/doctors", icon: User },
     { label: "Пациенты", page: "/patients", icon: Users },
     { label: "Расписание", page: "/schedule", icon: Calendar },
-    { label: "Конфиденциальность", page: "/policy", icon: Shield },
-    { label: "Санаторное лечение", page: "/sanatories", icon: Hospital },
+    { label: "Конфиденциальность", page: "/confidence", icon: Shield },
+    { label: "Отдых", page: "/sanatories", icon: Hospital },
   ];
   const [showOnlineModal, setShowOnlineModal] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
@@ -73,7 +73,7 @@ export function Sidebar({
   };
   return (
     <>
-      <aside className="h-full w-[320px] bg-[#2197ed] border-r-4 border-[#2197ed]">
+      <aside className="h-full w-[320px] bg-[#46abf1] border-r-4 border-[#46abf1]">
         <div className="h-full overflow-auto flex flex-col px-6 py-[68px]">
           {/* Навигация */}
           <nav className="flex flex-col gap-5">

@@ -82,7 +82,7 @@ export function AppointmentsPage(props: AppointmentsProps) {
               На данный момент нет записей к врачу отсутствуют
             </div>
             <button
-              className="px-8 py-3 bg-[#2197ed] text-white cursor-pointer rounded-lg transition-colors duration-300 shadow-sm max-w-[223px] mx-auto hover:bg-[#1a7acc]"
+              className="px-8 py-3 bg-[#d3ad28] text-white cursor-pointer rounded-lg transition-colors duration-300 shadow-sm max-w-[223px] mx-auto hover:bg-[#1a7acc]"
               onClick={handleSetPatient}
             >
               Записаться к врачу!

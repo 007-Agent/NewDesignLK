@@ -83,12 +83,12 @@ export function Sanatorium({ user }: SanatoriumProps) {
         {sanatoriums.map((s) => (
           <div
             key={s.id}
-            className="flex flex-col md:flex-row bg-white rounded-2xl shadow-md hover:shadow-orange-200/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden h-[500px]"
+            className="flex flex-col md:flex-row bg-[] rounded-2xl shadow-md hover:shadow-orange-200/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden h-[500px]"
           >
             {/* Левая часть с изображением */}
             <div className="relative flex-none md:w-[340px] h-full ">
               <img src={s.image} alt={s.name} className="w-full h-full " />
-              <span className="absolute top-4 left-4 bg-teal-500/90 text-white text-xs md:text-sm font-medium px-3 py-1 rounded-full">
+              <span className="absolute top-4 left-4 bg-[#46abf1] text-[#edb737] text-xs md:text-sm font-medium px-3 py-1 rounded-full">
                 {s.location}
               </span>
             </div>

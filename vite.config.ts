@@ -1,12 +1,12 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
-import tailwindcss from '@tailwindcss/vite';   // ← добавить
+import tailwindcss from '@tailwindcss/vite'; // Правильный импорт для v4 [citation:2][citation:6]
 import path from 'path';
 
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),                              // ← добавить
+    tailwindcss(), // Добавляем плагин в массив
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],

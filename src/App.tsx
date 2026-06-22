@@ -117,7 +117,7 @@ export default function App() {
             }
           />
 
-          <Route path="/policy" element={<Policy user={user} />} />
+          <Route path="/confidence" element={<Policy user={user} />} />
 
           <Route
             path="/sanatories"
