@@ -148,6 +148,7 @@
   scrollbar-width: thin;
   scrollbar-color: #46abf1 #f3f4f6;
   margin-bottom: 30px;
+  min-height: 330px;
 }
 
 .news-list::-webkit-scrollbar {
@@ -222,8 +223,16 @@
     margin: 0 auto;
   }
   .news-section {
-    height: 700px;
+    min-height: 700px;
     margin-bottom: 30px;
+  }
+  .news-list {
+    overflow-x: visible;
+    flex-wrap: wrap;
+    scrollbar-width: none; // Firefox
+    &::-webkit-scrollbar {
+      display: none; // Chrome, Safari, Edge
+    }
   }
 }
 
@@ -248,7 +257,6 @@
     flex-direction: column;
   }
   .news-section {
-    height: 610px;
     max-width: 385px;
     margin: 0 auto;
   }
