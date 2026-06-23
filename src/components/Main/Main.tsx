@@ -14,9 +14,9 @@ import action6 from "../../assets/images/стоматология.jpg";
 
 import san1 from "../../assets/images/Sanatoriy/Гурзуф.jpg";
 import san2 from "../../assets/images/Sanatoriy/Поляны.jpg";
-import san3 from "../../assets/images/Sanatoriy/Авангард.jpg";
+import san3 from "../../assets/images/Sanatoriy/авангард-второй.jpg";
 
-import new2 from "../../assets/images/Авангард.jpg";
+import new2 from "../../assets/images/авангард-второй.jpg";
 import new1 from "../../assets/images/action-1.png";
 import new3 from "../../assets/images/Аптека3.jpg";
 
@@ -28,28 +28,28 @@ export function HomePage(props: AppointmentsProps) {
   const promotions = [
     {
       image: action1,
-      title: "Диспансеризация",
+      title: "Комплексная диспансеризация (чекап) для детей",
       description: "Специальное предложение для новых пациентов",
       discount: "-20%",
       url: "https://www.kdpmc.ru/dispanserizacija-detej/",
     },
     {
       image: action2,
-      title: "Вакцинация",
+      title: "Вакцинация (прививки) для детей и взрослых",
       description: "Полное обследование организма со скидкой 30%",
       discount: "-30%",
       url: "https://www.kdpmc.ru/vakcinaciya/",
     },
     {
       image: action3,
-      title: "КТ",
+      title: "КТ (МСКТ) - компьютерная томография",
       description: "Бесплатная консультация педиатра при вакцинации",
       discount: "Бесплатно",
       url: "https://www.kdpmc.ru/kompjuternaja-tomografija-2/",
     },
     {
       image: action4,
-      title: "МРТ",
+      title: " МРТ (магнитно-резонансная томография)",
       description: "Скидка 15% на все услуги для всей семьи",
       discount: "-15%",
       url: "https://www.kdpmc.ru/magnitno-rezonansnaja-tomografija-mrt/?utm_source=kdpmc.ru&utm_medium=banner&utm_campaign=mrt",

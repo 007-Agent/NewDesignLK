@@ -107,7 +107,7 @@ export function Sanatorium({ user }: SanatoriumProps) {
                 {s.features.map((f) => (
                   <span
                     key={f}
-                    className="bg-orange-50 text-orange-600 border border-orange-200 text-xs md:text-sm font-medium px-3 py-1 rounded-full"
+                    className="bg-[#46abf1] text-[#46abf1]-600 border border-[#46abf1] text-[#ffff] md:text-sm font-medium px-3 py-1 rounded-full"
                   >
                     {f}
                   </span>
@@ -116,7 +116,7 @@ export function Sanatorium({ user }: SanatoriumProps) {
 
               {/* Кнопка */}
               <button
-                className="self-start mt-auto bg-gradient-to-r from-orange-500 to-orange-400 text-white font-semibold py-2 px-6 rounded-lg hover:opacity-90 hover:scale-105 transition-all duration-200 shadow-md"
+                className="self-start mt-auto bg-gradient-to-r from-[#edb737] to-orange-400 text-white font-semibold py-2 px-6 rounded-lg hover:opacity-90 hover:scale-105 transition-all duration-200 shadow-md"
                 onClick={() => handleCardClick(s.url)}
               >
                 Подробнее

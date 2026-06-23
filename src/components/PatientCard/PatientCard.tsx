@@ -47,7 +47,7 @@ export function PatientCard({ patient, user }: PatientCardProps) {
     group
     bg-white 
     rounded-2xl 
-    border-l-8 border-[#2197ed]
+    border-l-8 border-[#46abf1]
     shadow-md 
     hover:shadow-xl 
     transition-all 

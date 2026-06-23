@@ -33,7 +33,7 @@ export default function Reception({ visit }: ReceptionProps) {
   console.log(patient, "ghghghg");
   return (
     <>
-      <div className="bg-white rounded-xl p-6 mb-8 shadow-md border-2 border-teal-500 max-[500px]:p-3">
+      <div className="bg-white rounded-xl p-6 mb-8 shadow-md border-2 border-[#46abf1] max-[500px]:p-3">
         {/* Child Header */}
         <div className="flex items-center justify-center gap-4 pb-6 mb-6 border-b-2 border-gray-100">
           <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center shrink-0">
@@ -54,15 +54,15 @@ export default function Reception({ visit }: ReceptionProps) {
         <div className="flex flex-col gap-6">
           {visits.map((visit, i) => (
             <div key={i} className="bg-gray-50 rounded-xl max-[500px]py-3">
-              <div className="grid grid-cols-1 md:grid-cols-4 items-center gap-4 mb-2 ">
+              <div className="flex items-center gap-4 mb-2 ">
                 {/* Дата и время - строка 1 на мобилках */}
-                <div className="flex gap-6 max-[500px]:justify-between max-[500px]:max-w-[261px]">
+                <div className="flex gap-6 max-[500px]:justify-between max-[500px]:max-w-[261px] w-[265px]">
                   <div className="flex items-center gap-2 font-semibold text-gray-800">
-                    <Calendar className="w-5 h-5 text-orange-500" />
+                    <Calendar className="w-5 h-5 text-[#edb737]" />
                     <span>{formatDate(visit.date)}</span>
                   </div>
                   <div className="flex items-center gap-2 font-semibold text-gray-800">
-                    <Clock className="w-5 h-5 text-orange-500" />
+                    <Clock className="w-5 h-5 text-[#edb737]" />
                     <span>{formatTime(visit.time)}</span>
                   </div>
                 </div>
@@ -75,7 +75,7 @@ export default function Reception({ visit }: ReceptionProps) {
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <FileText className="w-4 h-4 text-orange-400 shrink-0" />
+                    <FileText className="w-4 h-4 text-[#edb737] shrink-0" />
                     <p className="font-medium text-gray-800 text-[15px] max-[500px]:text-[14px]">
                       {visit.speciality}
                     </p>
@@ -83,7 +83,10 @@ export default function Reception({ visit }: ReceptionProps) {
                 </div>
 
                 {/* Кнопка - строка 3 на мобилках */}
-                <div className="flex gap-3 max-[500px]:justify-end max-w-[130px]">
+                <div className="flex gap-3 max-[500px]:justify-end max-w-[260px]">
+                  <button className="px-6 py-1.5 h-[35px] text-[#edb737] border-2 border-[#edb737] bg-white rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-red-600 hover:text-white hover:border-red-600 max-[500px]:w-full max-[500px]:px-4">
+                    Перенести
+                  </button>
                   <button className="px-6 py-1.5 h-[35px] bg-white text-red-600 border border-red-600 rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-red-600 hover:text-white max-[500px]:w-full max-[500px]:px-4">
                     Отменить
                   </button>
