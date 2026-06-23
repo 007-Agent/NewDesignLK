@@ -43,7 +43,7 @@ export function Sidebar({
     { label: "Пациенты", page: "/patients", icon: Users },
     { label: "Расписание", page: "/schedule", icon: Calendar },
     { label: "Конфиденциальность", page: "/confidence", icon: Shield },
-    { label: "Отдых", page: "/sanatories", icon: Hospital },
+    { label: "Отдых и лечение", page: "/sanatories", icon: Hospital },
   ];
   const [showOnlineModal, setShowOnlineModal] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
@@ -113,7 +113,7 @@ export function Sidebar({
             <div className="flex flex-col gap-3">
               <button
                 onClick={() => setShowOnlineModal(true)}
-                className="flex items-center justify-center gap-3 px-4 py-3 w-full border-none rounded-lg text-base font-semibold cursor-pointer transition-all bg-white text-[#f5bf03] hover:bg-white/90 hover:-translate-y-0.5"
+                className="flex items-center justify-center gap-3 px-4 py-3 w-full border-none rounded-lg text-base font-semibold cursor-pointer transition-all bg-white text-[#edb737] hover:bg-white/90 hover:-translate-y-0.5"
               >
                 <Calendar className="w-[18px] h-[18px]" />
                 Онлайн запись

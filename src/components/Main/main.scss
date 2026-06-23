@@ -60,7 +60,7 @@
 .promotions-section {
   display: flex;
   flex-direction: column;
-  width: 592px;
+  width: 470px;
 }
 
 .promotions-grid {
@@ -78,7 +78,7 @@
     transform 0.3s,
     box-shadow 0.3s;
   cursor: pointer;
-  width: 290px;
+  width: 208px;
 }
 
 .promotion-card:hover {
@@ -88,14 +88,13 @@
 
 .promotion-image-wrapper {
   position: relative;
-  width: 100%;
-  height: 300px;
+
   overflow: hidden;
 }
 
 .promotion-image {
-  width: 284px;
-  height: 349px;
+  width: 208px;
+  height: 256px;
   object-fit: cover;
 }
 
@@ -113,14 +112,15 @@
 }
 
 .promotion-content {
-  padding: 16px;
+  padding: 8px;
 }
 
 .promotion-title {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
   color: #111827;
   margin-bottom: 8px;
+  text-align: center;
 }
 
 .promotion-description {
@@ -133,7 +133,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  height: 851px;
+
   width: 650px;
 }
 
@@ -143,8 +143,8 @@
   overflow-x: auto;
   padding-bottom: 16px;
   scrollbar-width: thin;
-  scrollbar-color: #14b8a6 #f3f4f6;
-  margin-bottom: 161px;
+  scrollbar-color: #46abf1 #f3f4f6;
+  margin-bottom: 20px;
 }
 
 .news-list::-webkit-scrollbar {
@@ -194,6 +194,7 @@
   font-weight: 600;
   color: #111827;
   line-height: 1.4;
+  text-align: center;
 }
 
 @media (max-width: 1024px) {

@@ -53,15 +53,15 @@ export function HomePage(props: AppointmentsProps) {
     },
     {
       image: new2,
-      title: "Новые специалисты в нашей команде",
+      title: "Первая линия,",
     },
     {
       image: new3,
-      title: "Обновленные стандарты безопасности",
+      title: "Аптека в Старопанском переулке",
     },
     {
       image: new3,
-      title: "Современное медицинское оборудование",
+      title: "Скорая медицинская помощь - 24/7",
     },
   ];
 
@@ -71,7 +71,7 @@ export function HomePage(props: AppointmentsProps) {
       <div className="home-content-wrapper">
         {/* Новости теперь идут ПЕРВЫМИ (были акциями) */}
         <div className="news-section">
-          <h3 className="section-title">Актуальные акции</h3>
+          <h3 className="section-title">Актуальные предложения</h3>
           <div className="news-list">
             {promotions.map((item, index) => (
               <div key={index} className="news-item">
@@ -91,7 +91,7 @@ export function HomePage(props: AppointmentsProps) {
 
         {/* Акции теперь идут ВТОРЫМИ (были новостями) */}
         <div className="promotions-section">
-          <h3 className="section-title">Новости</h3>
+          <h3 className="section-title">Важное</h3>
           <div className="promotions-grid">
             {newsItems.map((promo, index) => (
               <div key={index} className="promotion-card">
