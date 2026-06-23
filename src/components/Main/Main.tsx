@@ -5,10 +5,16 @@ import "./main.scss";
 import { MarqueeBar } from "../Marquee/Marquee";
 import { Usernow } from "../../redux/slice/authSlice";
 import dmc from "../../assets/images/dmc-photo.jpg";
-import action1 from "../../assets/images/action-1.png";
-import action2 from "../../assets/images/action-2.png";
-import action3 from "../../assets/images/action-3.jpg";
-import action4 from "../../assets/images/action-3.jpg";
+import action1 from "../../assets/images/диспансеризация.jpg";
+import action2 from "../../assets/images/вакцинация.jpg";
+import action3 from "../../assets/images/КТ.jpg";
+import action4 from "../../assets/images/МРТ.jpg";
+import action5 from "../../assets/images/школа.jpg";
+import action6 from "../../assets/images/стоматология.jpg";
+
+import san1 from "../../assets/images/Sanatoriy/Гурзуф.jpg";
+import san2 from "../../assets/images/Sanatoriy/Поляны.jpg";
+import san3 from "../../assets/images/Sanatoriy/Авангард.jpg";
 
 import new2 from "../../assets/images/Авангард.jpg";
 import new1 from "../../assets/images/action-1.png";
@@ -22,48 +28,71 @@ export function HomePage(props: AppointmentsProps) {
   const promotions = [
     {
       image: action1,
-      title: "Скидка 20% на первый прием",
+      title: "Диспансеризация",
       description: "Специальное предложение для новых пациентов",
       discount: "-20%",
+      url: "https://www.kdpmc.ru/dispanserizacija-detej/",
     },
     {
       image: action2,
-      title: "Комплексное обследование",
+      title: "Вакцинация",
       description: "Полное обследование организма со скидкой 30%",
       discount: "-30%",
+      url: "https://www.kdpmc.ru/vakcinaciya/",
     },
     {
       image: action3,
-      title: "Детская вакцинация",
+      title: "КТ",
       description: "Бесплатная консультация педиатра при вакцинации",
       discount: "Бесплатно",
+      url: "https://www.kdpmc.ru/kompjuternaja-tomografija-2/",
     },
     {
       image: action4,
-      title: "Семейная карта здоровья",
+      title: "МРТ",
       description: "Скидка 15% на все услуги для всей семьи",
       discount: "-15%",
+      url: "https://www.kdpmc.ru/magnitno-rezonansnaja-tomografija-mrt/?utm_source=kdpmc.ru&utm_medium=banner&utm_campaign=mrt",
+    },
+    {
+      image: action5,
+      title: "Мамина школа",
+      description: "Скидка 15% на все услуги для всей семьи",
+      discount: "-15%",
+    },
+    {
+      image: action6,
+      title: "Стоматология для взрослых",
+      description: "Скидка 15% на все услуги для всей семьи",
+      discount: "-15%",
+      url: "https://denta.kdpmc.ru/",
     },
   ];
 
   const newsItems = [
     {
-      image: new1,
-      title: "Новый филиал открыт в центре города",
-    },
-    {
-      image: new2,
-      title: "Первая линия,",
-    },
-    {
       image: new3,
       title: "Аптека в Старопанском переулке",
     },
     {
-      image: new3,
-      title: "Скорая медицинская помощь - 24/7",
+      image: new2,
+      title: "Сочи, первая линия, оздоровление всей семьи",
+      rating: "★★★★",
+    },
+    {
+      image: san1,
+      title: "Крымская здравница у моря",
+    },
+    {
+      image: san2,
+      title: "МО, лечение и отдых для детей",
     },
   ];
+
+  const handleGetSite = (url?: string) => {
+    window.open(url, "_blank"); // открывается в новой вкладке
+    // Или window.location.href = url; // открывается в той же вкладке
+  };
 
   return (
     <div className="home-page">
@@ -74,7 +103,11 @@ export function HomePage(props: AppointmentsProps) {
           <h3 className="section-title">Актуальные предложения</h3>
           <div className="news-list">
             {promotions.map((item, index) => (
-              <div key={index} className="news-item">
+              <div
+                key={index}
+                className="news-item"
+                onClick={() => handleGetSite(item.url)}
+              >
                 <div className="news-item-image-wrapper">
                   <img
                     src={item.image}
