@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Calendar, Clock, User, MapPin, FileText } from "lucide-react";
 import { Patient } from "../../../components/patientDetailsFull/PatientFull/PatientFull";
+import { TransferModal } from "../../../components/TransferModal/TransferModal";
 import { formatTime } from "../../../utils/utils";
 import "./style.scss";
 export interface Visit {
@@ -23,6 +24,10 @@ interface ReceptionProps {
   visit: PatientWithVisits; // можно назвать item
 }
 export default function Reception({ visit }: ReceptionProps) {
+  const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+  const [selectedSpeciality, setSelectedSpeciality] = useState<string | null>(
+    null,
+  );
   const visited = visit;
   console.log(visit, "VCVCV");
   const { patient, visits } = visit;
@@ -31,6 +36,11 @@ export default function Reception({ visit }: ReceptionProps) {
     return `${day}.${month}.${year}`;
   };
   console.log(patient, "ghghghg");
+
+  const handleTransferClick = (specialityName: string) => {
+    setSelectedSpeciality(specialityName);
+    setIsAppointmentModalOpen(true);
+  };
   return (
     <>
       <div className="bg-white rounded-xl p-6 mb-8 shadow-md border-2 border-[#46abf1] max-[500px]:p-3">
@@ -54,7 +64,7 @@ export default function Reception({ visit }: ReceptionProps) {
         <div className="flex flex-col gap-6">
           {visits.map((visit, i) => (
             <div key={i} className="bg-gray-50 rounded-xl max-[500px]py-3">
-              <div className="flex items-center gap-4 mb-2 ">
+              <div className="flex items-center justify-between gap-4 mb-2 px-3">
                 {/* Дата и время - строка 1 на мобилках */}
                 <div className="flex gap-6 max-[500px]:justify-between max-[500px]:max-w-[261px] w-[265px]">
                   <div className="flex items-center gap-2 font-semibold text-gray-800">
@@ -84,7 +94,10 @@ export default function Reception({ visit }: ReceptionProps) {
 
                 {/* Кнопка - строка 3 на мобилках */}
                 <div className="flex gap-3 max-[500px]:justify-end max-w-[260px]">
-                  <button className="px-6 py-1.5 h-[35px] text-[#edb737] border-2 border-[#edb737] bg-white rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-red-600 hover:text-white hover:border-red-600 max-[500px]:w-full max-[500px]:px-4">
+                  <button
+                    className="px-6 py-1.5 h-[35px] text-[#edb737] border-2 border-[#edb737] bg-white rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-red-600 hover:text-white hover:border-red-600 max-[500px]:w-full max-[500px]:px-4"
+                    onClick={() => handleTransferClick(visit.speciality)}
+                  >
                     Перенести
                   </button>
                   <button className="px-6 py-1.5 h-[35px] bg-white text-red-600 border border-red-600 rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-red-600 hover:text-white max-[500px]:w-full max-[500px]:px-4">
@@ -96,6 +109,12 @@ export default function Reception({ visit }: ReceptionProps) {
           ))}
         </div>
       </div>
+      <TransferModal
+        isOpen={isAppointmentModalOpen}
+        onClose={() => setIsAppointmentModalOpen(false)}
+        patient={patient}
+         specialityName={selectedSpeciality}
+      />
     </>
   );
 }

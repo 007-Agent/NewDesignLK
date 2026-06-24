@@ -50,7 +50,7 @@ export function PatientsPage({ user }: ProfilePatientsProps) {
             </div>
           </div>
 
-          <div className="flex flex-col justify-center text-center mx-auto max-w-[421px] gap-6 mb-10 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="flex flex-col justify-center text-center mx-auto max-w-[421px] gap-6 mb-10 ">
             {patients.map((patient, index) => (
               <PatientCard key={index} user={user} patient={patient} />
             ))}
