@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { X, Calendar as CalendarIcon } from "lucide-react";
 import { RefreshCw } from "lucide-react";
-import DatePicker from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
 import "./appointment.scss";
 import { useAppSelector } from "../../redux/hooks";
@@ -118,36 +118,39 @@ export function TransferModal({
   }, [isOpen, onClose]);
 
   useEffect(() => {
-    if (specId && specId > 0) {
-      const bound = new Date();
-      bound.setDate(bound.getDate() + 1);
-      const leftBound = new Date(bound);
-      bound.setDate(bound.getDate() + 29);
-      const rightBound = new Date(bound);
+    const fetchIntervals = async () => {
+      if (!(specId && specId > 0)) {
+        return;
+      }
+      try {
+        const bound = new Date();
+        bound.setDate(bound.getDate() + 1);
+        const leftBound = new Date(bound);
+        bound.setDate(bound.getDate() + 29);
+        const rightBound = new Date(bound);
 
-      const requestFromDate = fromDate < leftBound ? leftBound : fromDate;
-      const requestToDate = dateTo > rightBound ? rightBound : dateTo;
+        const requestFromDate = fromDate < leftBound ? leftBound : fromDate;
+        const requestToDate = dateTo > rightBound ? rightBound : dateTo;
 
-      axios
-        .post("/api/sched/intervals", {
+        setLoading(true);
+        setWait(true);
+        const response = await axios.post("/api/sched/intervals", {
           specId,
           fromDate: formatDateToISO(requestFromDate),
           toDate: formatDateToISO(requestToDate),
           branchId,
-        })
-        .then((response) => {
-          setIntervals(refactorIntervals(response.data.data));
-          setLoading(true);
-          setWait(true);
-        })
-        .catch((error) => {
-          console.error("Ошибка при получении интервалов:", error);
-        })
-        .finally(() => {
-          setWait(false); // выключаем спиннер
         });
-    }
+        setIntervals(refactorIntervals(response.data.data));
+      } catch (error) {
+        console.error("Ошибка при получении интервалов:", error);
+      } finally {
+        setWait(false);
+      }
+    };
+
+    fetchIntervals();
   }, [fromDate, dateTo, specId]);
+
   const formatDateToISO = (date: Date | null): string => {
     if (!date) return "";
     const year = date.getFullYear();
@@ -183,29 +186,8 @@ export function TransferModal({
     return slots;
   };
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    const options: Intl.DateTimeFormatOptions = {
-      day: "numeric",
-      month: "long",
-      weekday: "short",
-    };
-    return date.toLocaleDateString("ru-RU", options);
-  };
-
-  const formatDisplayDate = (date: Date | null) => {
-    if (!date) return "Выберите дату";
-    return date.toLocaleDateString("ru-RU", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-  };
-
   if (!isOpen) return null;
 
-  //   console.log(intervals, "CTOVERNET")
-  // console.log(specId, "SPCIDD")
   const availableDates = getAvailableDates();
   const timeSlots = getTimeSlots();
   return createPortal(
@@ -219,9 +201,6 @@ export function TransferModal({
         </div>
 
         <div className="appointment-modal-content">
-          {/* Диапазон дат с календарём */}
-
-          {/* Выбор специальности */}
           <div className="appointment-input-group specialty-group">
             <div className="w-full font-['Inter']">
               <div className="flex justify-center items-center p-[6px_14px] border-2 border-gray-200 rounded-lg bg-white cursor-pointer transition-all hover:border-orange-500 hover:bg-orange-50 text-lg font-['Inter']">
@@ -231,7 +210,6 @@ export function TransferModal({
           </div>
         </div>
         {wait ? (
-          // Показываем спиннер по центру, пока идёт загрузка
           <div
             style={{
               display: "flex",

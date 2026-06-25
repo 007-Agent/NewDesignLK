@@ -42,17 +42,19 @@
 }
 .cancel-button {
   padding: 10px 15px;
+  color: white;
   border-radius: 9px;
   font-size: 15px;
   font-weight: 600;
   white-space: nowrap;
-  background-color: #c5eb1e;
+  background-color: #edb737;
   cursor: pointer;
 }
 .visit-status-badge.green {
   background-color: #d1fae5;
-  color: #065f46;
+  color: #46abf1;
   font-size: 15px;
+  color: white;
 }
 
 .visit-status-badge.blue {

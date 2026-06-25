@@ -68,7 +68,7 @@ export function Sanatorium({ user }: SanatoriumProps) {
     <div className="px-4 md:px-8 py-8 max-w-[1100px] mx-auto">
       {/* Заголовок */}
       <div className="mb-10 text-center">
-        <h1 className="text-orange-500 mb-3 text-3xl md:text-4xl font-bold">
+        <h1 className="text-[#46abf1] mb-3 text-3xl md:text-4xl font-bold">
           Отдых и Санаторно-курортное лечение
         </h1>
         <p className="text-gray-500 max-w-[680px] mx-auto text-base md:text-lg">
@@ -88,7 +88,7 @@ export function Sanatorium({ user }: SanatoriumProps) {
             {/* Левая часть с изображением */}
             <div className="relative flex-none md:w-[340px] h-full ">
               <img src={s.image} alt={s.name} className="w-full h-full " />
-              <span className="absolute top-4 left-4 bg-[#46abf1] text-[#edb737] text-xs md:text-sm font-medium px-3 py-1 rounded-full">
+              <span className="absolute top-4 left-4 bg-[#edb737] text-[white] text-xs md:text-sm font-medium px-3 py-1 rounded-full">
                 {s.location}
               </span>
             </div>
@@ -116,7 +116,7 @@ export function Sanatorium({ user }: SanatoriumProps) {
 
               {/* Кнопка */}
               <button
-                className="self-start mt-auto bg-gradient-to-r from-[#edb737] to-orange-400 text-white font-semibold py-2 px-6 rounded-lg hover:opacity-90 hover:scale-105 transition-all duration-200 shadow-md"
+                className="self-start mt-auto bg-[#edb737]  text-white font-semibold py-2 px-6 rounded-lg hover:opacity-90 hover:scale-105 transition-all duration-200 shadow-md"
                 onClick={() => handleCardClick(s.url)}
               >
                 Подробнее

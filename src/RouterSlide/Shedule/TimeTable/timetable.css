@@ -1,0 +1,255 @@
+/* ── Page wrapper ────────────────────────────────────── */
+.sch-page {
+  padding: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Header ──────────────────────────────────────────── */
+
+
+/* ── Calendar wrapper ────────────────────────────────── */
+.sch-calendar-wrap {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  overflow: hidden;
+  border: 2px solid #46abf1;
+}
+
+/* ── Doctor card ─────────────────────────────────────── */
+.sch-doctor-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.75rem;
+  background: linear-gradient(135deg, #46abf1 0%, #43b4e9 100%);
+  flex-wrap: wrap;
+}
+
+.sch-doctor-avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: white;
+  color: #14b8a6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+.sch-doctor-avatar svg { width: 1.75rem; height: 1.75rem; color: #46abf1 ;}
+
+.sch-doctor-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: white;
+}
+.sch-doctor-meta {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.85);
+  margin-top: 2px;
+}
+
+.sch-doctor-legend {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.9);
+  flex-wrap: wrap;
+}
+.sch-legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.sch-legend-dot--work  { background: #d1fae5; border: 2px solid #10b981; }
+.sch-legend-dot--off   { background: #f3f4f6; border: 2px solid #d1d5db; }
+.sch-legend-dot--today { background: #edb737; border: 2px solid #edb737; }
+
+/* ── Month nav ───────────────────────────────────────── */
+.sch-month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem 1.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fafafa;
+}
+
+.sch-nav-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  background: #edb737;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 8px rgba(249,115,22,0.3);
+}
+.sch-nav-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(249,115,22,0.4);
+}
+.sch-nav-btn svg { width: 1.1rem; height: 1.1rem; }
+
+.sch-month-label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111827;
+  min-width: 180px;
+  text-align: center;
+}
+
+/* ── Calendar grid ───────────────────────────────────── */
+.sch-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background: #e5e7eb;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* weekday header cells */
+.sch-grid-head {
+  background: #f9fafb;
+  text-align: center;
+  padding: 0.6rem 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.sch-grid-head--weekend { color: #edb737; }
+
+/* day cells */
+.sch-cell {
+  background: white;
+  min-height: 80px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: background 0.15s;
+}
+
+.sch-cell--blank {
+  background: #f9fafb;
+  min-height: 80px;
+}
+
+.sch-cell--work {
+  background: #f0fdf9;
+}
+.sch-cell--work:hover {
+  background: #ccfbf1;
+  cursor: default;
+}
+
+.sch-cell--off {
+  background: white;
+  opacity: 0.7;
+}
+
+.sch-cell--weekend-off {
+  background: #fff5f5;
+  opacity: 0.75;
+}
+
+.sch-cell--today {
+  background: #fff7ed !important;
+  outline: 2px solid #edb737;
+  outline-offset: -2px;
+  border-radius: 2px;
+}
+
+.sch-cell-day {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1;
+}
+.sch-cell--today .sch-cell-day {
+  color: #f97316;
+}
+
+.sch-cell-hours {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #059669;
+  background: #d1fae5;
+  border-radius: 4px;
+  padding: 2px 5px;
+  line-height: 1.3;
+}
+.sch-cell-hours svg { flex-shrink: 0; color: #10b981; }
+
+.sch-cell-off-label {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  font-weight: 500;
+  margin-top: auto;
+}
+
+/* ── Summary ─────────────────────────────────────────── */
+.sch-summary {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem 1.75rem;
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+.sch-summary strong { color: #111827; }
+
+/* ── Empty state ─────────────────────────────────────── */
+.sch-empty {
+  background: white;
+  border-radius: 12px;
+  padding: 5rem 2rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  border: 2px dashed #d1d5db;
+}
+.sch-empty svg { width: 3.5rem; height: 3.5rem; color: #d1d5db; margin-bottom: 1rem; }
+.sch-empty h3 { font-size: 1.4rem; font-weight: 700; color: #1f2937; margin-bottom: 0.5rem; }
+.sch-empty p { color: #6b7280; max-width: 380px; margin: 0 auto; }
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 900px) {
+  .sch-filters { grid-template-columns: 1fr; }
+  .sch-cell { min-height: 60px; }
+  .sch-cell-hours { font-size: 0.65rem; }
+}
+
+@media (max-width: 600px) {
+  .sch-page { padding: 12px; }
+  .sch-cell { min-height: 48px; padding: 4px; }
+  .sch-cell-day { font-size: 0.8rem; }
+  .sch-cell-hours { display: none; }
+  .sch-cell--work::after {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: #10b981;
+    border-radius: 50%;
+    margin-top: 4px;
+  }
+  .sch-doctor-legend { display: none; }
+  .sch-month-label { min-width: 140px; font-size: 1rem; }
+}

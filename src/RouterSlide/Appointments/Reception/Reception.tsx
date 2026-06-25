@@ -68,11 +68,11 @@ export default function Reception({ visit }: ReceptionProps) {
                 {/* Дата и время - строка 1 на мобилках */}
                 <div className="flex gap-6 max-[500px]:justify-between max-[500px]:max-w-[261px] w-[265px]">
                   <div className="flex items-center gap-2 font-semibold text-gray-800">
-                    <Calendar className="w-5 h-5 text-[#edb737]" />
+                    <Calendar className="w-5 h-5 text-[#46abf1]" />
                     <span>{formatDate(visit.date)}</span>
                   </div>
                   <div className="flex items-center gap-2 font-semibold text-gray-800">
-                    <Clock className="w-5 h-5 text-[#edb737]" />
+                    <Clock className="w-5 h-5 text-[#46abf1]" />
                     <span>{formatTime(visit.time)}</span>
                   </div>
                 </div>
@@ -85,7 +85,7 @@ export default function Reception({ visit }: ReceptionProps) {
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <FileText className="w-4 h-4 text-[#edb737] shrink-0" />
+                    <FileText className="w-4 h-4 text-[#46abf1] shrink-0" />
                     <p className="font-medium text-gray-800 text-[15px] max-[500px]:text-[14px]">
                       {visit.speciality}
                     </p>
@@ -95,12 +95,12 @@ export default function Reception({ visit }: ReceptionProps) {
                 {/* Кнопка - строка 3 на мобилках */}
                 <div className="flex gap-3 max-[500px]:justify-end max-w-[260px]">
                   <button
-                    className="px-6 py-1.5 h-[35px] text-[#edb737] border-2 border-[#edb737] bg-white rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-red-600 hover:text-white hover:border-red-600 max-[500px]:w-full max-[500px]:px-4"
+                    className="px-6 py-1.5 h-[35px] text-[#46abf1] border-2 border-[#46abf1] bg-white rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-red-600 hover:text-white hover:border-red-600 max-[500px]:w-full max-[500px]:px-4"
                     onClick={() => handleTransferClick(visit.speciality)}
                   >
                     Перенести
                   </button>
-                  <button className="px-6 py-1.5 h-[35px] bg-white text-red-600 border border-red-600 rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-red-600 hover:text-white max-[500px]:w-full max-[500px]:px-4">
+                  <button className="px-6 py-1.5 h-[35px] bg-white text-[#edb737] border-2 border-[#edb737] rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-red-600 hover:text-white max-[500px]:w-full max-[500px]:px-4">
                     Отменить
                   </button>
                 </div>
@@ -113,7 +113,7 @@ export default function Reception({ visit }: ReceptionProps) {
         isOpen={isAppointmentModalOpen}
         onClose={() => setIsAppointmentModalOpen(false)}
         patient={patient}
-         specialityName={selectedSpeciality}
+        specialityName={selectedSpeciality}
       />
     </>
   );
