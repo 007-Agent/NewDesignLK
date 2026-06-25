@@ -65,13 +65,13 @@ export function TimeTable({ dates }: SchedulePageProps) {
   const month = currentMonth.getMonth();
   const cells = buildCalendarGrid(year, month);
 
-  // Если данных нет
+//   Если данных нет
   if (!dates || dates.length === 0) {
     return (
       <div className="sch-empty">
         <Calendar />
         <h3>Нет данных о расписании</h3>
-        <p>В текущем месяце нет рабочих дней</p>
+        <p>Выберите интервал времени</p>
       </div>
     );
   }
