@@ -1,3 +1,4 @@
+//Отображения мед карты выбранно пациента
 import { useState } from "react";
 import {
   User,
@@ -9,7 +10,7 @@ import {
   HeartPulse,
   Calendar,
 } from "lucide-react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Medicaments from "./Medicaments/Medicaments";
 import "./Patientfull.scss";
 import { Visits } from "./Visits/Visits";

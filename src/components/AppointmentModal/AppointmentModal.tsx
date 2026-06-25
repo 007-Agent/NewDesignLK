@@ -1,3 +1,4 @@
+//Компнент для осуществления записи к врачу
 import { useState, useEffect, useRef } from "react";
 import { X, Calendar as CalendarIcon } from "lucide-react";
 import { RefreshCw } from "lucide-react";
@@ -10,7 +11,7 @@ import { ru } from "date-fns/locale/ru";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import { Patient } from "../patientDetailsFull/PatientFull/PatientFull";
-import { CustomSelectModal } from "../../CustomSelect";
+import { CustomSelectModal } from "../..//components/CustomSelect/CustomSelect";
 import Intervals from "./Intervals/Intervals";
 import { createPortal } from "react-dom";
 interface IntervalItem {
@@ -107,6 +108,7 @@ export function AppointmentModal({
   }, [isOpen, onClose]);
 
   useEffect(() => {
+    // получаем интервалы записей
     const fetchIntervals = async () => {
       // Проверяем условия для запроса
       if (!(specId && specId > 0 && fromDate.getTime() <= dateTo.getTime())) {
@@ -194,19 +196,7 @@ export function AppointmentModal({
     return date.toLocaleDateString("ru-RU", options);
   };
 
-  const formatDisplayDate = (date: Date | null) => {
-    if (!date) return "Выберите дату";
-    return date.toLocaleDateString("ru-RU", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-  };
-
   if (!isOpen) return null;
-
-  //   console.log(intervals, "CTOVERNET")
-  // console.log(specId, "SPCIDD")
   const availableDates = getAvailableDates();
   const timeSlots = getTimeSlots();
   return createPortal(

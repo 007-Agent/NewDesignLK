@@ -1,3 +1,4 @@
+//Компонент для подтверждения записи
 import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { useAppSelector } from "../../../../../redux/hooks";

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { RefreshCw } from "lucide-react";
 import { Usernow } from "../../../../redux/slice/authSlice";
 import { Visit } from "./Visit/Visit";
 import { Visited } from "./Visit/Visit";

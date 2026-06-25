@@ -2,7 +2,6 @@ import React from "react";
 import Observation from "./Observation/Observation";
 import "./observations.scss";
 import { Usernow } from "../../../../redux/slice/authSlice";
-import { RefreshCw } from "lucide-react";
 import { Patient } from "../PatientFull";
 import { Spinner } from "../../../Spinner/Spinner";
 import axios from "axios";

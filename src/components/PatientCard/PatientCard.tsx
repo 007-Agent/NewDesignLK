@@ -1,7 +1,7 @@
 import { User, Calendar, FileText } from "lucide-react";
-import { PatientFull } from "../patientDetailsFull/PatientFull/PatientFull";
+
 import { useNavigate } from "react-router-dom";
-import "./patientcard.scss";
+
 import { Usernow } from "../../redux/slice/authSlice";
 import { formatDate } from "../../utils/utils";
 import { calculateAge } from "../../utils/utils";

@@ -1,59 +1,8 @@
-@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
 
-.card-time {
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 10px;
-  animation: slideDown 0.3s ease-out;
-  font-family: "Inter";
-  width: 100%;
-  position: relative;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    max-height: 1000px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
-}
-
-.card-time-header {
-  margin-bottom: 16px;
-}
-
-.card-time-header h4 {
-  margin: 0;
-  color: #46abf1;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.card-time-content {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* Список дат */
-.card-time-dates {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  gap: 8px;
-}
 
 .card-time-date-btn {
   padding: 6px 3px;
-  border: 2px solid #fed7aa;
+  border: 2px solid #46abf1;
   border-radius: 6px;
   background: white;
   cursor: pointer;
@@ -65,15 +14,15 @@
 }
 
 .card-time-date-btn:hover {
-  border-color: #f97316;
+  border-color: #edb737;
   background-color: white;
   transform: translateY(-1px);
   box-shadow: 0 1px 4px rgba(249, 115, 22, 0.2);
 }
 
 .card-time-date-btn.selected {
-  border-color: #f97316;
-  background-color: #f97316;
+  border-color: #edb737;
+  background-color: #edb737;
   color: white;
   transform: translateY(-1px);
   box-shadow: 0 2px 6px rgba(249, 115, 22, 0.3);
@@ -115,14 +64,11 @@
   grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
   gap: 6px;
 }
-.card-time-times-grid {
-  display: flex;
-  gap: 0 20px;
-}
+
 
 .card-time-time-btn {
   padding: 4px 7px;
-  border: 2px solid #b2f5ea;
+  border: 2px solid #c3c5c7;
   border-radius: 6px;
   background: white;
   cursor: pointer;

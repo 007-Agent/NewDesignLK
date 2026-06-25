@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Calendar, ChevronLeft, ChevronRight, Clock, User } from "lucide-react";
 import "./timetable.css";
+import { buildCalendarGrid } from "../../../utils/utils";
 
 const MONTH_NAMES = [
   "Январь",
@@ -39,21 +40,10 @@ interface SchedulePageProps {
   dates: DateItem[]; // ← массив DATES из пропсов
 }
 
-function mondayIndex(jsDay: number) {
+function mondayIndex(jsDay: number) { // Преобразует день недели так, чтобы понедельник был 0, воскресенье — 6
   return jsDay === 0 ? 6 : jsDay - 1;
 }
 
-function buildCalendarGrid(year: number, month: number) {
-  const firstDay = new Date(year, month, 1);
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const startOffset = mondayIndex(firstDay.getDay());
-
-  const cells: (number | null)[] = [];
-  for (let i = 0; i < startOffset; i++) cells.push(null);
-  for (let d = 1; d <= daysInMonth; d++) cells.push(d);
-  while (cells.length % 7 !== 0) cells.push(null);
-  return cells;
-}
 
 export function TimeTable({ dates }: SchedulePageProps) {
   const today = new Date();
@@ -101,7 +91,7 @@ export function TimeTable({ dates }: SchedulePageProps) {
     month === today.getMonth() &&
     day === today.getDate();
 
-  const getDayStatus = (day: number) => {
+  const getDayStatus = (day: number) => { // Проверяет, рабочий ли день для выбранного врача.
     const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
     return doctorSchedule[dateStr] || null;
   };
@@ -145,7 +135,7 @@ export function TimeTable({ dates }: SchedulePageProps) {
 
         {/* Grid */}
         <div className="sch-grid">
-          {DAY_NAMES_SHORT.map((d, i) => (
+          {DAY_NAMES_SHORT.map((d, i) => ( //Заголовки дней недели:
             <div
               key={d}
               className={`sch-grid-head ${i >= 5 ? "sch-grid-head--weekend" : ""}`}
@@ -154,7 +144,7 @@ export function TimeTable({ dates }: SchedulePageProps) {
             </div>
           ))}
 
-          {cells.map((day, i) => {
+          {cells.map((day, i) => { //Ячейки дней:
             if (!day)
               return (
                 <div key={`blank-${i}`} className="sch-cell sch-cell--blank" />

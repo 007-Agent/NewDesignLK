@@ -4,8 +4,6 @@ import { Usernow } from "../../../redux/slice/authSlice";
 import { Patient } from "../../patientDetailsFull/PatientFull/PatientFull";
 import Person from "./Person/Person";
 
-import "./intervals.scss";
-
 interface TimeSlot {
   time: string;
   id: number;
@@ -41,6 +39,6 @@ export default function Intervals({
     <Person key={index} person={person} user={user} patient={patient} />
   ));
   return intervals.length ? (
-    <div className="Intervals__content">{persons}</div>
+    <div className="flex flex-col gap-y-[15px] font-['Inter']">{persons}</div>
   ) : null;
 }

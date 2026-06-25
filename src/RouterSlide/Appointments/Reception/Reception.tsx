@@ -61,46 +61,44 @@ export default function Reception({ visit }: ReceptionProps) {
         </div>
 
         {/* Appointments List */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4">
           {visits.map((visit, i) => (
-            <div key={i} className="bg-gray-50 rounded-xl max-[500px]py-3">
-              <div className="flex items-center justify-between gap-4 mb-2 px-3">
-                {/* Дата и время - строка 1 на мобилках */}
-                <div className="flex gap-6 max-[500px]:justify-between max-[500px]:max-w-[261px] w-[265px]">
-                  <div className="flex items-center gap-2 font-semibold text-gray-800">
-                    <Calendar className="w-5 h-5 text-[#46abf1]" />
+            <div key={i} className="bg-gray-50 rounded-xl p-3 max-[500px]:p-2">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-4">
+                {/* Дата и время */}
+                <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                  <div className="flex items-center gap-2 font-semibold text-gray-800 text-sm">
+                    <Calendar className="w-4 h-4 text-[#46abf1] flex-shrink-0" />
                     <span>{formatDate(visit.date)}</span>
                   </div>
-                  <div className="flex items-center gap-2 font-semibold text-gray-800">
-                    <Clock className="w-5 h-5 text-[#46abf1]" />
+                  <div className="flex items-center gap-2 font-semibold text-gray-800 text-sm">
+                    <Clock className="w-4 h-4 text-[#46abf1] flex-shrink-0" />
                     <span>{formatTime(visit.time)}</span>
                   </div>
                 </div>
 
-                {/* Врач + Специальность - строка 2 на мобилках */}
-                <div className="flex flex-col max-[500px]:flex-row max-[500px]:justify-between max-[500px]:gap-4 gap-1 col-span-1 md:col-span-2">
-                  <div className="flex items-center gap-2">
-                    <p className="font-semibold text-gray-800 text-[15px] max-[500px]:text-[14px]">
-                      Врач: {visit.resource}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2">
+                {/* Врач + Специальность */}
+                <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
+                  <p className="font-semibold text-gray-800 text-sm">
+                    Врач: {visit.resource}
+                  </p>
+                  <div className="flex items-center gap-1">
                     <FileText className="w-4 h-4 text-[#46abf1] shrink-0" />
-                    <p className="font-medium text-gray-800 text-[15px] max-[500px]:text-[14px]">
+                    <p className="font-medium text-gray-800 text-sm">
                       {visit.speciality}
                     </p>
                   </div>
                 </div>
 
-                {/* Кнопка - строка 3 на мобилках */}
-                <div className="flex gap-3 max-[500px]:justify-end max-w-[260px]">
+                {/* Кнопки */}
+                <div className="flex flex-wrap gap-2 w-full md:w-auto">
                   <button
-                    className="px-6 py-1.5 h-[35px] text-[#46abf1] border-2 border-[#46abf1] bg-white rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-red-600 hover:text-white hover:border-red-600 max-[500px]:w-full max-[500px]:px-4"
+                    className="px-4 py-1.5 text-[#46abf1] border-2 border-[#46abf1] bg-white rounded-lg text-sm font-semibold cursor-pointer transition-all duration-200 hover:bg-red-600 hover:text-white hover:border-red-600 flex-1 md:flex-none min-w-[100px]"
                     onClick={() => handleTransferClick(visit.speciality)}
                   >
                     Перенести
                   </button>
-                  <button className="px-6 py-1.5 h-[35px] bg-white text-[#edb737] border-2 border-[#edb737] rounded-lg text-[14px] font-semibold cursor-pointer transition-all duration-200 hover:bg-red-600 hover:text-white max-[500px]:w-full max-[500px]:px-4">
+                  <button className="px-4 py-1.5 bg-white text-[#edb737] border-2 border-[#edb737] rounded-lg text-sm font-semibold cursor-pointer transition-all duration-200 hover:bg-red-600 hover:text-white flex-1 md:flex-none min-w-[100px]">
                     Отменить
                   </button>
                 </div>

@@ -1,11 +1,13 @@
+//Компонент для отображения карточки с достцуаными датами для записи
 import React, { useState } from "react";
 import { Usernow } from "../../../../redux/slice/authSlice";
 import { Patient } from "../../../patientDetailsFull/PatientFull/PatientFull";
 import Interval from "./Interval/Interval";
+import { formatDateShort } from "../../../../utils/utils";
 import { CardTime } from "./CardTime/CardTime";
 import { X } from "lucide-react";
 import { ConfirmModal } from "./Edit/ConfirmModal";
-import "./person.scss";
+
 interface TimeSlot {
   time: string;
   id: number;
@@ -68,21 +70,7 @@ export default function Person(props: PersonProps) {
     event.stopPropagation();
     setIndex(index);
   };
-  const formatDateShort = (dateStr: string): string => {
-    const date = new Date(dateStr);
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    return `${day}.${month}`;
-  };
 
-  // Функция форматирования даты в "25.03.2026"
-  const formatDateDot = (dateStr: string): string => {
-    const date = new Date(dateStr);
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const year = date.getFullYear();
-    return `${day}.${month}.${year}`;
-  };
   const processedPerson = person
     ? {
         ...person,
@@ -123,16 +111,50 @@ export default function Person(props: PersonProps) {
   return (
     <>
       <div
-        className={`doctor-card ${isExpanded ? "selected" : ""}`}
+        className={`
+        flex flex-col justify-center
+        p-3 px-4
+        border-2 border-gray-200
+        rounded-lg
+        bg-white
+        cursor-pointer
+        transition-all duration-200
+        relative
+        hover:border-orange-50 hover:bg-[#f8f8f8]
+        ${isExpanded ? "border-gray-200" : ""}
+      `}
         onClick={handleCardClick}
       >
-        {isExpanded && <X size={24} className="clear_icon" />}
+        {/* Крестик (только когда раскрыто) */}
+        {isExpanded && (
+          <X
+            size={24}
+            className="
+            text-gray-700
+            absolute right-5 top-2.5
+            w-[43px] h-9
+          "
+          />
+        )}
 
-        <div className="doctor-info">
-          <h3 className="doctor-namee">{person.person.name}</h3>
+        {/* Информация о враче */}
+        <div className="flex-1 min-w-0">
+          <h3 className="font-semibold text-base mb-1 text-inherit">
+            {person.person.name}
+          </h3>
 
-          <div className="doctor-availability">Записи доступны с {date}</div>
+          {/* Доступность (скрывается, если isExpanded = true) */}
+          <div
+            className={`
+          text-[15px] text-[#46abf1]
+          ${isExpanded ? "hidden" : ""}
+        `}
+          >
+            Записи доступны с {date}
+          </div>
         </div>
+
+        {/* Дополнительный контент при раскрытии */}
         {isExpanded && (
           <CardTime
             person={props.person}
@@ -142,6 +164,7 @@ export default function Person(props: PersonProps) {
           />
         )}
 
+        {/* Модальное окно подтверждения */}
         {showEditModal && visitId > 0 && (
           <ConfirmModal
             visitId={visitId}

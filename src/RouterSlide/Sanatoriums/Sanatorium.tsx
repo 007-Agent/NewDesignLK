@@ -83,7 +83,7 @@ export function Sanatorium({ user }: SanatoriumProps) {
         {sanatoriums.map((s) => (
           <div
             key={s.id}
-            className="flex flex-col md:flex-row bg-[] rounded-2xl shadow-md hover:shadow-orange-200/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden h-[500px]"
+            className="flex flex-col md:flex-row bg-[] rounded-2xl shadow-md hover:shadow-orange-200/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden min-h-[500px]"
           >
             {/* Левая часть с изображением */}
             <div className="relative flex-none md:w-[340px] h-full ">

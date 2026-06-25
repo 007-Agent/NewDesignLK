@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Usernow } from "../../../../redux/slice/authSlice";
 import { Patient } from "../../../patientDetailsFull/PatientFull/PatientFull";
 import Interval from "./Interval/Interval";
-import { CardTime } from "./CardTime/CardTime";
+import { TransferTime } from "./TransferTime/TransferTime";
 import { X } from "lucide-react";
 import { ConfirmModal } from "./Edit/ConfirmModal";
 import "./person.scss";
@@ -134,7 +134,7 @@ export default function Person(props: PersonProps) {
           <div className="doctor-availability">Записи доступны с {date}</div>
         </div>
         {isExpanded && (
-          <CardTime
+          <TransferTime
             person={props.person}
             user={props.user}
             patient={props.patient}

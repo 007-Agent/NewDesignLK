@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import { Usernow } from "../../../../redux/slice/authSlice";
-import { RefreshCw } from "lucide-react";
 import { Patient } from "../PatientFull";
 import Medicament from "./Medocament/Medicament";
 import { Spinner } from "../../../Spinner/Spinner";

@@ -1,16 +1,18 @@
+// Компонент для переноса записи ///
+
 import { useState, useEffect, useRef } from "react";
 import { X, Calendar as CalendarIcon } from "lucide-react";
 import { RefreshCw } from "lucide-react";
 
 import "react-datepicker/dist/react-datepicker.css";
-import "./appointment.scss";
+
 import { useAppSelector } from "../../redux/hooks";
 import { registerLocale } from "react-datepicker";
 import { ru } from "date-fns/locale/ru";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import { Patient } from "../patientDetailsFull/PatientFull/PatientFull";
-import { CustomSelectModal } from "../../CustomSelect";
+
 import Intervals from "./Intervals/Intervals";
 import { createPortal } from "react-dom";
 interface IntervalItem {

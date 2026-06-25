@@ -1,3 +1,4 @@
+//Компонент для просмотра записей на портале
 import React, { useState, useEffect } from "react";
 import { Calendar, Clock, User, MapPin, FileText } from "lucide-react";
 import { RefreshCw } from "lucide-react";
