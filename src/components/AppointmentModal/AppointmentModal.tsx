@@ -4,7 +4,7 @@ import { X, Calendar as CalendarIcon } from "lucide-react";
 import { RefreshCw } from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "./appointment.scss";
+import "../AppointmentModal/appointment.scss"
 import { useAppSelector } from "../../redux/hooks";
 import { registerLocale } from "react-datepicker";
 import { ru } from "date-fns/locale/ru";

@@ -42,6 +42,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid #46abf1
 }
 
 .patient-detail-avatar.male {
@@ -49,19 +50,13 @@
 }
 
 .patient-detail-avatar.female {
-  background-color: #fce7f3;
-}
-
-.patient-detail-avatar svg.male {
-  width: 2.5rem;
-  height: 2.5rem;
-  color: #2563eb;
+  background-color: hsl(0, 0%, 100%);
 }
 
 .patient-detail-avatar svg.female {
   width: 2.5rem;
   height: 2.5rem;
-  color: #db2777;
+  color: #46abf1;
 }
 
 .patient-detail-info {

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Usernow } from "../../../../redux/slice/authSlice";
 import { Patient } from "../../../patientDetailsFull/PatientFull/PatientFull";
-import Interval from "./Interval/Interval";
+import Interval from "./Confirm/Confirm";
 import { TransferTime } from "./TransferTime/TransferTime";
 import { X } from "lucide-react";
 import { ConfirmModal } from "./Edit/ConfirmModal";
+import { ConfirmWindow } from "./Confirm/Confirm";
 import "./person.scss";
 interface TimeSlot {
   time: string;
@@ -36,7 +37,7 @@ interface PersonProps {
 export default function Person(props: PersonProps) {
   const person = props.person;
   const [showEditModal, setShowEditModal] = useState(false);
-
+  const [showConfirmModal, setConfirmModal] = useState(false);
   const [visitId, setVisitId] = useState(0);
   const [index, setIndex] = useState(-1);
   const [selectedDoctor, setSelectedDoctor] = useState<Number | null>(null);
@@ -49,7 +50,8 @@ export default function Person(props: PersonProps) {
     console.log(visit, "result visit");
     const id = visit?.id;
     console.log("onSign called, id:", id);
-    setShowEditModal(true);
+    // setShowEditModal(true);
+    setConfirmModal(true);
     if (id > 0) {
       setVisitId(id);
       console.log("visitId set to:", id);
@@ -142,7 +144,7 @@ export default function Person(props: PersonProps) {
           />
         )}
 
-        {showEditModal && visitId > 0 && (
+        {/* {showEditModal && visitId > 0 && (
           <ConfirmModal
             visitId={visitId}
             patient={props.patient}
@@ -150,6 +152,13 @@ export default function Person(props: PersonProps) {
               setShowEditModal(false);
               setVisitId(0);
             }}
+          />
+        )} */}
+         {showConfirmModal && visitId > 0 && (
+          <ConfirmWindow
+      
+           isOpen={showConfirmModal}
+           
           />
         )}
       </div>

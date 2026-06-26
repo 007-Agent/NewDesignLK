@@ -52,7 +52,51 @@ export function CustomSelectModal({
     setIsOpen(false);
   };
 
- 
+  //   return (
+  //     <div className="custom-select-modal-container">
+  //       {label && <label className="custom-select-modal-label">{label}</label>}
+  //       <div
+  //         ref={triggerRef}
+  //         className="custom-select-modal-trigger"
+  //         onClick={() => setIsOpen(true)}
+  //       >
+  //         {selectedOption ? selectedOption.name : placeholder}
+  //         <span className="custom-select-modal-arrow">{isOpen ? '▲' : '▼'}</span>
+  //       </div>
+
+  //       {isOpen &&
+  //         createPortal(
+  //           <div className="custom-select-modal-overlay" onClick={() => setIsOpen(false)}>
+  //             <div
+  //               className="custom-select-modal-window"
+  //               onClick={(e) => e.stopPropagation()}
+  //               // можно позиционировать относительно триггера, но для простоты — по центру
+  //             >
+  //               <div className="custom-select-modal-header">
+  //                 <span>{label || 'Выберите специальность'}</span>
+  //                 <button className="custom-select-modal-close" onClick={() => setIsOpen(false)}>
+  //                   ✕
+  //                 </button>
+  //               </div>
+  //               <div className="custom-select-modal-list">
+  //                 {options.map((option) => (
+  //                   <div
+  //                     key={option.id}
+  //                     className={`custom-select-modal-item ${value === option.id ? 'selected' : ''}`}
+  //                     onClick={() => handleSelect(option.id)}
+  //                   >
+  //                     {option.name}
+  //                   </div>
+  //                 ))}
+
+  //               </div>
+  //             </div>
+  //           </div>,
+  //           document.body
+  //         )}
+  //     </div>
+  //   );
+  // }
   return (
     <div className="w-full font-['Inter']">
       {label && (
@@ -62,7 +106,7 @@ export function CustomSelectModal({
       )}
       <div
         ref={triggerRef}
-        className="flex justify-between items-center p-[10px_14px] border-2 border-gray-200 rounded-lg bg-white cursor-pointer transition-all hover:border-[#46abf1] hover:bg-white-50 text-lg font-['Inter']"
+        className="flex justify-between items-center p-[10px_14px] border-2 border-gray-200 rounded-lg bg-white cursor-pointer transition-all hover:border-[#46abf1] hover:bg-[#46abf1] text-lg font-['Inter']"
         onClick={() => setIsOpen(true)}
       >
         {selectedOption ? selectedOption.name : placeholder}
@@ -80,7 +124,7 @@ export function CustomSelectModal({
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center p-4 border-b border-gray-200 font-semibold text-orange-500 ">
-                <span className="text-[16px] text-[#d3ad28]">
+                <span className="text-[16px]">
                   {label || "Выберите специальность"}
                 </span>
                 <button

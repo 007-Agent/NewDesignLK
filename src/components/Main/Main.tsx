@@ -85,7 +85,7 @@ export function HomePage(props: AppointmentsProps) {
     },
     {
       image: san2,
-      title: "МО, лечение и отдых для детей",
+      title: "Московская область, лечение и отдых для детей",
     },
   ];
 

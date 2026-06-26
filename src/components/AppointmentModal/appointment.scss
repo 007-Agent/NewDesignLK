@@ -80,7 +80,7 @@
 
 .appointment-modal-header h2 {
   margin: 0;
-  color: #f97316;
+  color: #edb737;
 }
 
 .appointment-modal-close {
@@ -180,13 +180,13 @@
 }
 
 .appointment-date-input:hover {
-  border-color: #f97316 !important;
-  background-color: #fff7ed !important;
+  border-color: #46abf1 !important;
+  background-color: #fdfdfd !important;
 }
 
 .appointment-date-input:focus {
   outline: none !important;
-  border-color: #f97316 !important;
+  border-color: #d3ad28 !important;
   box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1) !important;
 }
 
@@ -207,7 +207,7 @@
 }
 
 .react-datepicker__header {
-  background-color: #f97316 !important;
+  background-color: #d3ad28 !important;
   border-bottom: none !important;
   border-radius: 8px 8px 0 0 !important;
   padding-top: 12px;
@@ -226,12 +226,12 @@
 
 .react-datepicker__day:hover {
   background-color: #fff7ed !important;
-  color: #f97316 !important;
+  color: #d3ad28 !important;
 }
 
 .react-datepicker__day--selected,
 .react-datepicker__day--keyboard-selected {
-  background-color: #f97316 !important;
+  background-color: #d3ad28 !important;
   color: white !important;
 }
 

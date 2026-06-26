@@ -1,4 +1,4 @@
-import { User, Calendar, FileText } from "lucide-react";
+import { UserRoundPlus, Calendar, FileText } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -63,14 +63,14 @@ export function PatientCard({ patient, user }: PatientCardProps) {
         <div
           className={`
       w-14 h-14 rounded-full flex items-center justify-center
-      ${patient.gender === "муж" ? "bg-blue-100" : "bg-pink-100"}
+      ${patient.gender === "муж" && "bg-blue-100"}
     `}
         >
-          <User
+          <UserRoundPlus
             className={`
-        w-8 h-8 
-        ${patient.gender === "муж" ? "text-blue-600" : "text-pink-500"}
-      `}
+    w-8 h-8 
+    ${patient.gender === "муж" ? "text-[#46abf1]" : "text-[#46abf1]"}
+  `}
           />
         </div>
         <h3 className="text-xl font-semibold text-gray-800 max-[450px]:text-base">

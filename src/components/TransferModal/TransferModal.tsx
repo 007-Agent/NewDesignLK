@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { X, Calendar as CalendarIcon } from "lucide-react";
 import { RefreshCw } from "lucide-react";
-
+import "../AppointmentModal/appointment.scss";
 import "react-datepicker/dist/react-datepicker.css";
 
 import { useAppSelector } from "../../redux/hooks";
@@ -205,7 +205,7 @@ export function TransferModal({
         <div className="appointment-modal-content">
           <div className="appointment-input-group specialty-group">
             <div className="w-full font-['Inter']">
-              <div className="flex justify-center items-center p-[6px_14px] border-2 border-gray-200 rounded-lg bg-white cursor-pointer transition-all hover:border-orange-500 hover:bg-orange-50 text-lg font-['Inter']">
+              <div className="flex justify-center items-center p-[6px_14px] border-2 border-gray-200 rounded-lg bg-white cursor-pointer transition-all hover:border-[#46abf1] hover:bg-white-50 text-lg font-['Inter']">
                 {selectedSpeciality?.name || "Выберите специальность"}
               </div>
             </div>

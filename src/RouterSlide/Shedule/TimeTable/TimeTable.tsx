@@ -40,10 +40,10 @@ interface SchedulePageProps {
   dates: DateItem[]; // ← массив DATES из пропсов
 }
 
-function mondayIndex(jsDay: number) { // Преобразует день недели так, чтобы понедельник был 0, воскресенье — 6
+function mondayIndex(jsDay: number) {
+  // Преобразует день недели так, чтобы понедельник был 0, воскресенье — 6
   return jsDay === 0 ? 6 : jsDay - 1;
 }
-
 
 export function TimeTable({ dates }: SchedulePageProps) {
   const today = new Date();
@@ -55,7 +55,7 @@ export function TimeTable({ dates }: SchedulePageProps) {
   const month = currentMonth.getMonth();
   const cells = buildCalendarGrid(year, month);
 
-//   Если данных нет
+  //   Если данных нет
   if (!dates || dates.length === 0) {
     return (
       <div className="sch-empty">
@@ -91,7 +91,8 @@ export function TimeTable({ dates }: SchedulePageProps) {
     month === today.getMonth() &&
     day === today.getDate();
 
-  const getDayStatus = (day: number) => { // Проверяет, рабочий ли день для выбранного врача.
+  const getDayStatus = (day: number) => {
+    // Проверяет, рабочий ли день для выбранного врача.
     const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
     return doctorSchedule[dateStr] || null;
   };
@@ -135,16 +136,23 @@ export function TimeTable({ dates }: SchedulePageProps) {
 
         {/* Grid */}
         <div className="sch-grid">
-          {DAY_NAMES_SHORT.map((d, i) => ( //Заголовки дней недели:
-            <div
-              key={d}
-              className={`sch-grid-head ${i >= 5 ? "sch-grid-head--weekend" : ""}`}
-            >
-              {d}
-            </div>
-          ))}
+          {DAY_NAMES_SHORT.map(
+            (
+              d,
+              i, //Заголовки дней недели:
+            ) => (
+              <div
+                key={d}
+                className={`sch-grid-head ${i >= 5 ? "sch-grid-head--weekend" : ""}`}
+              >
+                {d}
+              </div>
+            ),
+          )}
 
-          {cells.map((day, i) => { //Ячейки дней:
+          {cells.map((day, i) => {
+            //Ячейки дней:
+            console.log(day, "day");
             if (!day)
               return (
                 <div key={`blank-${i}`} className="sch-cell sch-cell--blank" />
@@ -154,6 +162,8 @@ export function TimeTable({ dates }: SchedulePageProps) {
             const isTodayCell = isToday(day);
             const weekdayIdx = i % 7;
             const isWeekend = weekdayIdx >= 5;
+
+            console.log(hours, isOff, isTodayCell, weekdayIdx, isWeekend);
 
             return (
               <div

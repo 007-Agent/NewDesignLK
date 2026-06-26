@@ -138,7 +138,7 @@ export function SchedulePage() {
 
     setState(newState);
   };
-  console.log(state, "show satet");
+  // console.log(state, "show satet");
   return (
     <div className="shedule__header">
       <div className="flex items-center justify-center gap-4 mb-8">
