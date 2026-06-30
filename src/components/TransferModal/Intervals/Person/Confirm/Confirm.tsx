@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 interface ConfirmModalProps {
   isOpen: boolean;
-  // onClose: () => void;
+  onClose: () => void;
   // onConfirm: () => void;
   // title?: string;
   // message?: string;
@@ -10,7 +10,7 @@ interface ConfirmModalProps {
   // cancelText?: string;
 }
 
-export function ConfirmWindow({isOpen} : ConfirmModalProps) {
+export function ConfirmWindow({isOpen, onClose} : ConfirmModalProps) {
   // if (!isOpen) return null;
 
   // const handleConfirm = () => {
@@ -43,7 +43,7 @@ export function ConfirmWindow({isOpen} : ConfirmModalProps) {
 
         {/* Текст сообщения */}
         <p className="text-gray-600 text-center text-base leading-relaxed mb-6">
-          Вы точно хотите перенести запись?
+          Вы точно хотите перенести запись? Существующая запись будет удалена 
         </p>
 
         {/* Кнопки */}
@@ -72,6 +72,7 @@ export function ConfirmWindow({isOpen} : ConfirmModalProps) {
               hover:scale-105
               min-w-[100px]
             "
+            onClick={onClose}
           >
             Нет
           </button>

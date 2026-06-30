@@ -54,6 +54,8 @@ export function TransferTime({ user, person, patient, onSign }: CardTimeProps) {
     }
   };
 
+
+
   if (!person.dates || person.dates.length === 0) return null;
 
   const selectedDateObj =

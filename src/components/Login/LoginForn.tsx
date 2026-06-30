@@ -6,14 +6,13 @@
 // import { loginUser } from '../../redux/authSlice';
 interface LoginFormProps {
   isOpen: boolean;
-  onClose: () => void
+  onClose: () => void;
 }
 
 // export function LoginForm() {
 //   const [username, setUsername] = useState('');
 //   const [password, setPassword] = useState('');
 //       const dispatch = useAppDispatch()
-
 
 //  const handleSubmit = (e: React.FormEvent) => {
 //     e.preventDefault();
@@ -27,9 +26,9 @@ interface LoginFormProps {
 //         <button className="login-close" >
 //           <X />
 //         </button>
-        
+
 //         <h2 className="login-title">Авторизуйтесь на портал</h2>
-        
+
 //         <form onSubmit={handleSubmit} className="login-form">
 //           <div className="login-field">
 //             <label htmlFor="login" className="login-label">
@@ -45,7 +44,7 @@ interface LoginFormProps {
 //               required
 //             />
 //           </div>
-          
+
 //           <div className="login-field">
 //             <label htmlFor="password" className="login-label">
 //               Пароль
@@ -60,7 +59,7 @@ interface LoginFormProps {
 //               required
 //             />
 //           </div>
-          
+
 //           <button type="submit" className="login-submit">
 //             Войти
 //           </button>
@@ -69,54 +68,72 @@ interface LoginFormProps {
 //     </div>
 //   );
 // }
-import { X } from 'lucide-react';
-import { useState } from 'react';
-import './login.scss';
-import { Authorization } from './Auth/Authorization';
-import { Registration } from './Registration/Registartion';
-import logotip from "../../../docs/logotip.png"
+import { X } from "lucide-react";
+import { useState } from "react";
+import "./login.scss";
+import { Authorization } from "./Auth/Authorization";
+import { Registration } from "./Registration/Registartion";
+import logotip from "../../../docs/logotip.png";
 
 interface LoginFormProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-type TabType = 'auth' | 'reg';
+type TabType = "auth" | "reg";
 
 export function LoginForm() {
-  const [activeTab, setActiveTab] = useState<TabType>('auth');
-
- 
+  const [activeTab, setActiveTab] = useState<TabType>("auth");
+  const [consentPersonalData, setConsentPersonalData] = useState(true); // ← true
+const [consentOffer, setConsentOffer] = useState(true);   
 
   return (
-    <div className="login-overlay" >
+    <div className="login-overlay">
       <div className="login-panel" onClick={(e) => e.stopPropagation()}>
-        <button className="login-close" >
+        <button className="login-close">
           <X />
         </button>
-        <img src={logotip} alt="" className='auth_logo'/>
+        <img src={logotip} alt="" className="auth_logo" />
         {/* Табы сверху */}
         <div className="login-tabs">
           <button
-            className={`login-tab ${activeTab === 'auth' ? 'active' : ''}`}
-            onClick={() => setActiveTab('auth')}
+            className={`login-tab ${activeTab === "auth" ? "active" : ""}`}
+            onClick={() => setActiveTab("auth")}
           >
             Авторизация
           </button>
           <button
-            className={`login-tab ${activeTab === 'reg' ? 'active' : ''}`}
-            onClick={() => setActiveTab('reg')}
+            className={`login-tab ${activeTab === "reg" ? "active" : ""}`}
+            onClick={() => setActiveTab("reg")}
           >
             Регистрация
           </button>
         </div>
 
         <div className="login-content">
-          {activeTab === 'auth' ? (
-            <Authorization  />
+          {activeTab === "auth" ? (
+            <Authorization />
           ) : (
-            <Registration onSwitchToLogin={() => setActiveTab('auth')} />
+            <Registration onSwitchToLogin={() => setActiveTab("auth")} />
           )}
+        </div>
+        <div className="login-checkboxes">
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              checked={consentPersonalData}
+              // onChange={(e) => setConsentPersonalData(e.target.checked)}
+            />
+            Подтверждаю согласие на обработку персональных данных
+          </label>
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              checked={consentOffer}
+              // onChange={(e) => setConsentOffer(e.target.checked)}
+            />
+            Подтверждаю согласие с договором-офертой
+          </label>
         </div>
       </div>
     </div>

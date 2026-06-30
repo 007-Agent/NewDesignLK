@@ -113,6 +113,10 @@ export default function Person(props: PersonProps) {
           }) || [],
       }
     : null;
+
+      const handleCloseModal = () => {
+    setConfirmModal(false)
+  } 
   console.log(processedPerson, "PRCICI");
 
   const date = formatDateShort(person.dates[0].date);
@@ -156,7 +160,7 @@ export default function Person(props: PersonProps) {
         )} */}
          {showConfirmModal && visitId > 0 && (
           <ConfirmWindow
-      
+           onClose={handleCloseModal}
            isOpen={showConfirmModal}
            
           />
