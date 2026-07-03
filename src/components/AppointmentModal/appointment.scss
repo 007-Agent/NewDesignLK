@@ -259,12 +259,12 @@
   text-align-last: center;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 550px) {
   .appointment-modal-overlay {
     padding: 0;
   }
   .appointment-modal {
-    max-width: 410px;
+    max-width: 400px;
   }
   .appointment-date-picker-wrapper {
     width: 160px;
@@ -275,5 +275,10 @@
   .custom-select-modal-trigger {
     padding: 3px 13px;
     font-size: 16px;
+  }
+}
+@media (max-width: 550px) {
+  .appointment-modal {
+    max-width: 380px;
   }
 }
