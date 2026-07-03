@@ -4,7 +4,7 @@ import { X, Calendar as CalendarIcon } from "lucide-react";
 import { RefreshCw } from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "../AppointmentModal/appointment.scss"
+import "../AppointmentModal/appointment.scss";
 import { useAppSelector } from "../../redux/hooks";
 import { registerLocale } from "react-datepicker";
 import { ru } from "date-fns/locale/ru";
@@ -77,7 +77,7 @@ export function AppointmentModal({
   const [loading, setLoading] = useState(false);
   const [dateTo, setDateTo] = useState(() => {
     const twoWeeksLater = new Date();
-    twoWeeksLater.setDate(twoWeeksLater.getDate() + 14);
+    twoWeeksLater.setDate(twoWeeksLater.getDate() + 29);
     twoWeeksLater.setHours(0, 0, 0, 0);
     return twoWeeksLater;
   });
@@ -117,14 +117,6 @@ export function AppointmentModal({
 
       try {
         // Вычисляем границы дат
-        const bound = new Date();
-        bound.setDate(bound.getDate() + 1);
-        const leftBound = new Date(bound);
-        bound.setDate(bound.getDate() + 12);
-        const rightBound = new Date(bound);
-
-        const requestFromDate = fromDate < leftBound ? leftBound : fromDate;
-        const requestToDate = dateTo > rightBound ? rightBound : dateTo;
 
         // Включаем спиннер (загрузку)
         setLoading(true);
@@ -133,8 +125,8 @@ export function AppointmentModal({
         // Выполняем запрос
         const response = await axios.post("/api/sched/intervals", {
           specId,
-          fromDate: formatDateToISO(requestFromDate),
-          toDate: formatDateToISO(requestToDate),
+          fromDate: formatDateToISO(fromDate),
+          toDate: formatDateToISO(dateTo),
           branchId,
         });
 
@@ -184,16 +176,6 @@ export function AppointmentModal({
       }
     }
     return slots;
-  };
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    const options: Intl.DateTimeFormatOptions = {
-      day: "numeric",
-      month: "long",
-      weekday: "short",
-    };
-    return date.toLocaleDateString("ru-RU", options);
   };
 
   if (!isOpen) return null;
@@ -274,10 +256,22 @@ export function AppointmentModal({
           >
             <RefreshCw className="spinner" />
           </div>
+        ) : intervals.length === 0 ? (
+          // Если интервалов нет
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "200px",
+              color: "#6b7280",
+              fontSize: "16px",
+            }}
+          >
+            Нет доступных интервалов для записи
+          </div>
         ) : (
-          <>
-            <Intervals intervals={intervals} user={user} patient={patient} />
-          </>
+          <Intervals intervals={intervals} user={user} patient={patient} />
         )}
       </div>
     </div>,
