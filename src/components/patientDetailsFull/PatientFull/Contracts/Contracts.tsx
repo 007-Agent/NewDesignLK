@@ -26,10 +26,11 @@ interface Patient {
 interface Contracts {
   patient: Patient;
   user: Usernow | null;
+  setIsLoading: (loading: boolean) => void;
 }
-function Contracts({ patient, user }: Contracts) {
+function Contracts({ patient, user, setIsLoading }: Contracts) {
   const [items, setItems] = useState([]);
-  const [wait, setWait] = useState(true);
+
   const isMounted = useRef(true);
   const patientId = patient.id;
   // Сброс флага монтирования при размонтировании
@@ -37,20 +38,20 @@ function Contracts({ patient, user }: Contracts) {
   // Функция загрузки данных
   const fetchVisits = () => {
     if (!patient.id) return; // ничего не делаем, если patientId не передан
+    setIsLoading(true);
 
-    setWait(true);
     axios
       .post("/api/office/patient/contracts", { patientId })
       .then((response) => {
         if (isMounted.current) {
-          // console.log(response.data.data, 'RDRDRD')
           setItems(response.data.data);
-          setWait(false);
+
+          setIsLoading(false);
         }
       })
       .catch(() => {
         if (isMounted.current) {
-          setWait(false);
+          setIsLoading(false);
         }
       });
   };
@@ -64,9 +65,7 @@ function Contracts({ patient, user }: Contracts) {
     };
   }, [patientId]);
 
-  if (wait) {
-    return <Spinner />;
-  }
+  
 
   // 2. Загрузка окончена, данных нет
   // if (!items || items.length === 0) {

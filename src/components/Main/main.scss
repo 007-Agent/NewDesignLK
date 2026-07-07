@@ -227,6 +227,8 @@
     margin-bottom: 30px;
   }
   .news-list {
+    display: flex;
+    justify-content: center;
     overflow-x: visible;
     flex-wrap: wrap;
     scrollbar-width: none; // Firefox

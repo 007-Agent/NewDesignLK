@@ -23,6 +23,7 @@ import Observations from "./Observations/Observations";
 import Disables from "./Disables/Disables";
 import Documentation from "./Documentaion/Documentation";
 import { formatDate } from "../../../utils/utils";
+import { Spinner } from "../../Spinner/Spinner";
 
 export interface Patient {
   address: string;
@@ -51,6 +52,7 @@ interface PatientDetailPageProps {
 export function PatientFull({ patient, user }: PatientDetailPageProps) {
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const tabs = [
@@ -128,22 +130,46 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
                 {activeTab === tab.id && (
                   <div className="tab-content">
                     {tab.id === "contracts" && (
-                      <Contracts patient={patient} user={user} />
+                      <Contracts
+                        patient={patient}
+                        user={user}
+                        setIsLoading={setIsLoading}
+                      />
                     )}
                     {tab.id === "sickLeave" && (
-                      <Disables patient={patient} user={user} />
+                      <Disables
+                        patient={patient}
+                        user={user}
+                        setIsLoading={setIsLoading}
+                      />
                     )}
                     {tab.id === "vaccination" && (
-                      <Vaccinations patient={patient} user={user} />
+                      <Vaccinations
+                        patient={patient}
+                        user={user}
+                        setIsLoading={setIsLoading}
+                      />
                     )}
                     {tab.id === "terrapy" && (
-                      <Medicaments patient={patient} user={user} />
+                      <Medicaments
+                        patient={patient}
+                        user={user}
+                        setIsLoading={setIsLoading}
+                      />
                     )}
                     {tab.id === "laboratory" && (
-                      <Analyzes patient={patient} user={user} />
+                      <Analyzes
+                        patient={patient}
+                        user={user}
+                        setIsLoading={setIsLoading}
+                      />
                     )}
                     {tab.id === "monitoring" && (
-                      <Observations patient={patient} user={user} />
+                      <Observations
+                        patient={patient}
+                        user={user}
+                        setIsLoading={setIsLoading}
+                      />
                     )}
                     {tab.id === "examination" && (
                       <div className="examination-list">
@@ -175,10 +201,18 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
                       </div>
                     )}
                     {tab.id === "visits" && (
-                      <Visits patient={patient} user={user} />
+                      <Visits
+                        patient={patient}
+                        user={user}
+                        setIsLoading={setIsLoading}
+                      />
                     )}
                     {tab.id === "documentation" && (
-                      <Documentation patient={patient} user={user} />
+                      <Documentation
+                        patient={patient}
+                        user={user}
+                        setIsLoading={setIsLoading}
+                      />
                     )}
                   </div>
                 )}
@@ -186,6 +220,11 @@ export function PatientFull({ patient, user }: PatientDetailPageProps) {
             );
           })}
         </div>
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center  z-10">
+            <Spinner />
+          </div>
+        )}
         <AppointmentModal
           isOpen={isAppointmentModalOpen}
           onClose={() => setIsAppointmentModalOpen(false)}

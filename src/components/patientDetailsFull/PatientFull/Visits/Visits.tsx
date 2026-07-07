@@ -27,12 +27,17 @@ interface Patient {
 interface PatientDetailPageProps {
   patient: Patient;
   user: Usernow | null;
+  setIsLoading: (loading: boolean) => void;
 }
-export function Visits({ patient, user }: PatientDetailPageProps) {
+export function Visits({
+  patient,
+  user,
+  setIsLoading,
+}: PatientDetailPageProps) {
   const [items, setItems] = useState<Visited[]>([]);
   console.log(items, "UTUT");
   const [message, setMes] = useState("");
-  const [wait, setWait] = useState(false);
+
   const [currentPage, setCurrentPage] = useState(1);
   const clientsPerPage = 20;
   const isMounted = useRef(true);
@@ -41,25 +46,25 @@ export function Visits({ patient, user }: PatientDetailPageProps) {
     const patientId = patient?.id || 0;
     // console.log(patientId, 'EERRRE')
     if (patientId > 0) {
-      setWait(true);
+      setIsLoading(true);
       axios
         .post("/api/visit/list", { patientId })
         .then((response) => {
           if (isMounted.current) {
             // console.log(response.data.data, 'RDRDRD')
             setItems(response.data.data);
-            setWait(false);
+            setIsLoading(false);
             setCurrentPage(1); // при загрузке сбрасываем страницу на первую
           }
         })
         .catch(() => {
           if (isMounted.current) {
-            setWait(false);
+            setIsLoading(false);
           }
         })
         .finally(() => {
           if (isMounted.current) {
-            setWait(false); // выключаем спиннер
+            setIsLoading(false); // выключаем спиннер
           }
         });
     }
@@ -75,10 +80,6 @@ export function Visits({ patient, user }: PatientDetailPageProps) {
       isMounted.current = false;
     };
   }, [patient]); // при изменении patient перезагружаем визиты
-
-  if (wait) {
-    return <Spinner />;
-  }
 
   // 2. Если загрузка окончена, но данных нет – сообщение
   // if (!items || items.length === 0) {

@@ -8,29 +8,35 @@ import axios from "axios";
 interface MedicamentsProps {
   patient: Patient;
   user: Usernow | null;
+  setIsLoading: (loading: boolean) => void;
 }
-export default function Medicaments({ patient, user }: MedicamentsProps) {
+export default function Medicaments({
+  patient,
+  user,
+  setIsLoading,
+}: MedicamentsProps) {
   const [items, setItems] = useState([]);
-  const [wait, setWait] = useState(true);
+
   const isMounted = useRef(true);
   const patientId = patient.id;
 
   const fetchMedicaments = () => {
     if (!patient.id) return; // ничего не делаем, если patientId не передан
 
-    setWait(true);
+    setIsLoading(true);
     axios
       .post("/api/office/patient/medicaments", { patientId })
       .then((response) => {
         if (isMounted.current) {
           // console.log(response.data.data, 'RDRDRD')
           setItems(response.data.data);
-          setWait(false);
+
+          setIsLoading(false);
         }
       })
       .catch(() => {
         if (isMounted.current) {
-          setWait(false);
+          setIsLoading(false);
         }
       });
   };
@@ -44,10 +50,6 @@ export default function Medicaments({ patient, user }: MedicamentsProps) {
     };
   }, [patientId]);
   console.log(items, "TT");
-
-  if (wait) {
-    return <Spinner />;
-  }
 
   const itemsMedicaments = items.map((v, i) => (
     <Medicament key={i} medicament={v} />

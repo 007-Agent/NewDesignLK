@@ -169,14 +169,13 @@
       font-size: 10px;
       text-align: center;
     }
-    .section-title{
-
+    .section-title {
     }
   }
   .header__right {
     width: 185px;
   }
-  .section-title{
+  .section-title {
     text-align: center;
   }
 }
@@ -186,7 +185,13 @@
     padding-top: 42px;
   }
   .header__right {
-    width: 152px;
+    width: 188px;
+  }
+  .header__center img {
+    height: 58px;
+  }
+  .header__center .second {
+    font-size: 23px;
   }
 }
 @media (max-width: 870px) {

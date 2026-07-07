@@ -10,11 +10,11 @@ import axios from "axios";
 interface AnalyzesProps {
   patient: Patient;
   user: Usernow | null;
+  setIsLoading: (loading: boolean) => void;
 }
 interface AnalyzesState {
   items: any[]; // лучше заменить на конкретный тип анализа, если есть
   orderId: null;
-  wait: boolean;
 }
 class Vaccinations extends React.Component<AnalyzesProps, AnalyzesState> {
   mounted: boolean = false;
@@ -23,7 +23,6 @@ class Vaccinations extends React.Component<AnalyzesProps, AnalyzesState> {
     this.state = {
       items: [],
       orderId: null,
-      wait: true,
     };
     this.refresh = this.refresh.bind(this);
     // this.handleDownload = this.handleDownload.bind(this)
@@ -65,27 +64,25 @@ class Vaccinations extends React.Component<AnalyzesProps, AnalyzesState> {
 
   refresh() {
     const patientId = this.props.patient.id;
-    this.setState({ wait: true });
+    this.props.setIsLoading(true);
     axios
       .post("/api/office/patient/vaccinations", { patientId })
       .then((response) => {
         if (this.mounted) {
           this.setState({ items: response.data.data });
         }
-        this.setState({ wait: false });
+        this.props.setIsLoading(false);
       })
       .catch((error) => {
         console.error("Ошибка загрузки анализов:", error);
         if (this.mounted) {
-          this.setState({ wait: false });
+          this.props.setIsLoading(false);
         }
       });
   }
 
   render() {
-    if (this.state.wait) {
-      return <Spinner />;
-    }
+ 
 
     let items = this.state.items.map((v, i) => {
       return <Vaccinacya key={i} vaccination={v} />;

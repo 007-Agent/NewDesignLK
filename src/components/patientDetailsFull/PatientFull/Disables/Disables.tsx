@@ -9,10 +9,10 @@ import axios from "axios";
 interface DisableProps {
   patient: Patient;
   user: Usernow | null;
+  setIsLoading: (loading: boolean) => void;
 }
 interface DisableState {
   items: any[]; // лучше заменить на конкретный тип анализа, если есть
-  wait: boolean;
 }
 class Disables extends React.Component<DisableProps, DisableState> {
   mounted: boolean = false;
@@ -20,7 +20,6 @@ class Disables extends React.Component<DisableProps, DisableState> {
     super(props);
     this.state = {
       items: [],
-      wait: true,
     };
     this.refresh = this.refresh.bind(this);
   }
@@ -36,13 +35,15 @@ class Disables extends React.Component<DisableProps, DisableState> {
 
   refresh() {
     const patientId = this.props.patient.id;
-    this.setState({ wait: true });
+
+    this.props.setIsLoading(true);
     axios
       .post("/api/office/patient/disable", { patientId })
       .then((response) => {
         if (this.mounted) {
           this.setState({ items: response.data.data });
-          this.setState({ wait: false });
+
+          this.props.setIsLoading(false);
         }
       })
       .catch((error) => {
@@ -51,9 +52,6 @@ class Disables extends React.Component<DisableProps, DisableState> {
   }
 
   render() {
-    if (this.state.wait) {
-      return <Spinner />;
-    }
     let items = this.state.items.map((v, i) => {
       return (
         <React.Fragment>

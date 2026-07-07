@@ -139,7 +139,15 @@ export function Header() {
           </div>
           {/* <button className='btn'>Записаться к врачу</button> */}
           <div className="header__center">
-            {user ? <img src={logotip} alt="" className="h-[72px]" /> : ""}
+            {user ? (
+              <img
+                src={logotip}
+                alt=""
+                className="h-[72px] max-w-[1024px]:h-[60px]"
+              />
+            ) : (
+              ""
+            )}
             <div>
               <div className="first">
                 ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ УЧРЕЖДЕНИЕ
@@ -155,7 +163,10 @@ export function Header() {
           <div className="header__right">
             {user ? (
               <>
-                <BellRing onClick={handleBellClick} />
+                <BellRing
+                  onClick={handleBellClick}
+                  className="max-w-[1024px]:h-[31px] max-w-[1024px]:w-[31px]"
+                />
                 <h3
                   className="text-[18px] font-normal cursor-pointer max-[1025px]:text-[15px]"
                   onClick={handleShowIcon}

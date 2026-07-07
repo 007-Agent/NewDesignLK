@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Usernow } from "../../../../redux/slice/authSlice";
 import { Patient } from "../../../patientDetailsFull/PatientFull/PatientFull";
-import Interval from "./Confirm/Confirm";
+
 import { TransferTime } from "./TransferTime/TransferTime";
 import { X } from "lucide-react";
 import { ConfirmModal } from "./Edit/ConfirmModal";
@@ -17,6 +17,7 @@ interface DateItem {
   date: string;
   intervals: TimeSlot[];
 }
+
 
 interface GroupedItem {
   branch: { id: number; name?: string };
@@ -114,9 +115,9 @@ export default function Person(props: PersonProps) {
       }
     : null;
 
-      const handleCloseModal = () => {
-    setConfirmModal(false)
-  } 
+  const handleCloseModal = () => {
+    setConfirmModal(false);
+  };
   console.log(processedPerson, "PRCICI");
 
   const date = formatDateShort(person.dates[0].date);
@@ -158,12 +159,8 @@ export default function Person(props: PersonProps) {
             }}
           />
         )} */}
-         {showConfirmModal && visitId > 0 && (
-          <ConfirmWindow
-           onClose={handleCloseModal}
-           isOpen={showConfirmModal}
-           
-          />
+        {showConfirmModal && visitId > 0 && (
+          <ConfirmWindow onClose={handleCloseModal} isOpen={showConfirmModal} />
         )}
       </div>
     </>

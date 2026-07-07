@@ -28,7 +28,7 @@ export const ProfileLogoutIcon = ({ onClose }: ProfileLogoutProps) => {
     onClose();
   };
   return (
-    <div className="absolute flex flex-col items-center p-0 bg-white rounded-lg shadow-lg top-full right-10 mt-2 z-50 min-w-[120px]">
+    <div className="absolute flex flex-col items-center p-0 bg-white rounded-lg shadow-lg top-full right-10 mt-2 z-50 min-w-[160px] ">
       <button
         type="button"
         className="flex items-center gap-2 px-4 py-3 w-full cursor-pointer transition-colors duration-200 hover:bg-gray-100 border-b border-gray-200 bg-transparent"

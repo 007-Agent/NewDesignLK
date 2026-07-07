@@ -26,13 +26,14 @@ interface Patient {
 interface DocumentationProps {
   patient: Patient;
   user: Usernow | null;
+  setIsLoading: (loading: boolean) => void;
 }
 
-const Documentation = ({ patient, user }: DocumentationProps) => {
+const Documentation = ({ patient, user, setIsLoading }: DocumentationProps) => {
   const [items, setItems] = useState([]);
   // console.log(items, 'UTUT')
   const [message, setMes] = useState("");
-  const [wait, setWait] = useState(false);
+
   const [currentPage, setCurrentPage] = useState(1);
   const clientsPerPage = 25;
   const isMounted = useRef(true);
@@ -41,20 +42,21 @@ const Documentation = ({ patient, user }: DocumentationProps) => {
     const patientId = patient?.id || 0;
     console.log(patientId, "EERRRE");
     if (patientId > 0) {
-      setWait(true);
+      setIsLoading(true);
       axios
         .post("/api/visit/protocol-list", { patientId })
         .then((response) => {
           if (isMounted.current) {
             console.log(response.data.data, "RDRDRD");
             setItems(response.data.data);
-            setWait(false);
+
+            setIsLoading(false);
             setCurrentPage(1); // при загрузке сбрасываем страницу на первую
           }
         })
         .catch(() => {
           if (isMounted.current) {
-            setWait(false);
+            setIsLoading(false);
           }
         });
     }
@@ -105,8 +107,10 @@ const Documentation = ({ patient, user }: DocumentationProps) => {
 
   return (
     <div>
-      {!wait && items.length === 0 ? (
-        <div>Нет существующих протоколов</div>
+      {items.length === 0 ? (
+        <div className="p-5 flex justify-center">
+          Нет существующих протоколов
+        </div>
       ) : (
         <>
           {items.length > 0 && (

@@ -8,10 +8,10 @@ import axios from "axios";
 interface ObservationProps {
   patient: Patient;
   user: Usernow | null;
+  setIsLoading: (loading: boolean) => void;
 }
 interface AnalyzesState {
   items: any[]; // лучше заменить на конкретный тип анализа, если есть
-  wait: boolean;
 }
 
 class Observations extends React.Component<ObservationProps, AnalyzesState> {
@@ -20,7 +20,6 @@ class Observations extends React.Component<ObservationProps, AnalyzesState> {
     super(props);
     this.state = {
       items: [],
-      wait: true,
     };
     this.refresh = this.refresh.bind(this);
   }
@@ -36,25 +35,32 @@ class Observations extends React.Component<ObservationProps, AnalyzesState> {
 
   refresh() {
     const patientId = this.props.patient.id;
-    this.setState({ wait: true });
+
+    this.props.setIsLoading(true);
     axios
       .post("/rest/office/patient/observations", { patientId })
       .then((response) => {
         if (this.mounted) {
           this.setState({ items: response.data.data });
-          this.setState({ wait: false });
+
+          this.props.setIsLoading(false);
         }
       })
       .catch((error) => {
         console.error("Ошибка загрузки анализов:", error);
-        this.setState({ wait: false });
+
+        this.props.setIsLoading(false);
       });
   }
 
   render() {
-    if (this.state.wait) {
-      return <Spinner />;
-    }
+    // if (this.state.wait) {
+    //   return (
+    //     <div className="relative min-h-[200px]">
+    //       <Spinner />
+    //     </div>
+    //   );
+    // }
 
     const results = this.state.items;
 
@@ -62,14 +68,14 @@ class Observations extends React.Component<ObservationProps, AnalyzesState> {
     if (this.state.items) {
       items = this.state.items.map((v, i) => {
         return (
-          <div key={i}>
+          <>
             <Observation observation={v} />
-          </div>
+          </>
         );
       });
     }
 
-    return <div>{items}</div>;
+    return <div className="pl-4">{items}</div>;
   }
 }
 

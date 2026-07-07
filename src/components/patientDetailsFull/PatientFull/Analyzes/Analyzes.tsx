@@ -9,10 +9,11 @@ import { Spinner } from "../../../Spinner/Spinner";
 interface AnalyzesProps {
   patient: Patient;
   user: Usernow | null;
+  setIsLoading: (loading: boolean) => void;
 }
 interface AnalyzesState {
   items: any[]; // лучше заменить на конкретный тип анализа, если есть
-  wait: boolean;
+  
 }
 class Analyzes extends React.Component<AnalyzesProps, AnalyzesState> {
   mounted: boolean = false;
@@ -20,7 +21,7 @@ class Analyzes extends React.Component<AnalyzesProps, AnalyzesState> {
     super(props);
     this.state = {
       items: [],
-      wait: true,
+      
     };
     this.refresh = this.refresh.bind(this);
   }
@@ -36,27 +37,26 @@ class Analyzes extends React.Component<AnalyzesProps, AnalyzesState> {
 
   refresh() {
     const patientId = this.props.patient.id;
-    this.setState({ wait: true });
+    this.props.setIsLoading(true);
     axios
       .post("/api/office/patient/analyzes", { patientId })
       .then((response) => {
         if (this.mounted) {
-          this.setState({ items: response.data.data, wait: false });
+          this.setState({ items: response.data.data });
+          this.props.setIsLoading(false);
         }
       })
       .catch((error) => {
         console.error("Ошибка загрузки анализов:", error);
         if (this.mounted) {
-          this.setState({ wait: false });
+          this.props.setIsLoading(false);
         }
       });
   }
 
   render() {
     // 1. Сначала проверяем, идёт ли загрузка
-    if (this.state.wait) {
-      return <Spinner />;
-    }
+    
 
     // 2. Загрузка окончена, данных нет
     // if (!this.state.items || this.state.items.length === 0) {
@@ -69,7 +69,7 @@ class Analyzes extends React.Component<AnalyzesProps, AnalyzesState> {
     ));
 
     return (
-      <div className="flex flex-col mx-auto w-full text-center gap-y-[15px]">
+      <div className="flex flex-col mx-auto w-full text-center gap-y-[15px] pl-3 pt-4">
         {items}
       </div>
     );

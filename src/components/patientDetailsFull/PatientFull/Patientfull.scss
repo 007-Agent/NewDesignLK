@@ -42,7 +42,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #46abf1
+  border: 1px solid #46abf1;
 }
 
 .patient-detail-avatar.male {
@@ -150,7 +150,7 @@
 }
 
 .tab-content {
-  margin-left: 20px;
+  margin-left: 10px;
 
   background-color: white;
   border-radius: 10px;
@@ -207,5 +207,11 @@
     margin: 0 auto;
   }
   .tab-content {
+  }
+}
+@media (max-width: 1024px) {
+  .vertical-tabs {
+    max-width: 930px;
+    margin: 0 auto;
   }
 }

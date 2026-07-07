@@ -85,7 +85,7 @@ type TabType = "auth" | "reg";
 export function LoginForm() {
   const [activeTab, setActiveTab] = useState<TabType>("auth");
   const [consentPersonalData, setConsentPersonalData] = useState(true); // ← true
-const [consentOffer, setConsentOffer] = useState(true);   
+  const [consentOffer, setConsentOffer] = useState(true);
 
   return (
     <div className="login-overlay">
@@ -123,6 +123,7 @@ const [consentOffer, setConsentOffer] = useState(true);
               type="checkbox"
               checked={consentPersonalData}
               // onChange={(e) => setConsentPersonalData(e.target.checked)}
+              readOnly
             />
             Подтверждаю согласие на обработку персональных данных
           </label>
@@ -131,6 +132,7 @@ const [consentOffer, setConsentOffer] = useState(true);
               type="checkbox"
               checked={consentOffer}
               // onChange={(e) => setConsentOffer(e.target.checked)}
+              readOnly
             />
             Подтверждаю согласие с договором-офертой
           </label>
