@@ -108,32 +108,34 @@ export function AppointmentModal({
   }, [isOpen, onClose]);
 
   useEffect(() => {
-    // получаем интервалы записей
     const fetchIntervals = async () => {
-      // Проверяем условия для запроса
+      // ✅ Объявляем переменные ДО условия
+      const bound = new Date();
+      bound.setDate(bound.getDate() + 1);
+      const leftBound = new Date(bound);
+      bound.setDate(bound.getDate() + 29);
+      const rightBound = new Date(bound);
+
+
       if (!(specId && specId > 0 && fromDate.getTime() <= dateTo.getTime())) {
-        return;
+        return; 
       }
 
       try {
-        // Вычисляем границы дат
-
-        // Включаем спиннер (загрузку)
         setLoading(true);
         setWait(true);
 
-        // Выполняем запрос
         const response = await axios.post("/api/sched/intervals", {
           specId,
-          fromDate: formatDateToISO(fromDate),
-          toDate: formatDateToISO(dateTo),
+          fromDate: formatDateToISO(
+            fromDate < leftBound ? leftBound : fromDate,
+          ),
+          toDate: formatDateToISO(dateTo > rightBound ? rightBound : dateTo),
           branchId,
         });
 
-        // Обрабатываем успешный ответ
         setIntervals(refactorIntervals(response.data.data));
       } catch (error) {
-        // Обрабатываем ошибку
         console.error("Ошибка при получении интервалов:", error);
       } finally {
         setWait(false);

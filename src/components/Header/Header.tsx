@@ -32,9 +32,11 @@ export function Header() {
   };
   const toggleMenu = () => {
     dispatch(setMenuOpen(!menuOpen));
+    setIsMobileMenuOpen(true);
   };
   const closeMenu = () => {
     dispatch(setMenuOpen(false));
+    setIsMobileMenuOpen(false);
   };
   useEffect(() => {
     if (menuOpen) {
@@ -165,7 +167,7 @@ export function Header() {
               <>
                 <BellRing
                   onClick={handleBellClick}
-                  className="max-w-[1024px]:h-[31px] max-w-[1024px]:w-[31px]"
+                  className="max-w-[1024px]:h-[31px] max-w-[1024px]:w-[31px] max-[541px]:h-[15px]"
                 />
                 <h3
                   className="text-[18px] font-normal cursor-pointer max-[1025px]:text-[15px]"
@@ -174,7 +176,7 @@ export function Header() {
                   Здравствуйте, <strong>{user?.firstName}</strong>
                 </h3>
                 <FaClipboardUser
-                  className="w-10 h-10 text-[#2197ed] cursor-pointer"
+                  className="w-10 h-10 text-[#2197ed] cursor-pointer max-[541px]:w-[25px]"
                   onClick={handleShowIcon}
                 />
                 {showLogoutIcon && (

@@ -123,7 +123,7 @@ export function Visits({
       bg-[rgba(42,239,137,0.35)] text-black
       rounded-[8px] text-center
       font-['Arial'] text-[18px] max-[500px]:text-[14px]
-      w-[220px] max-[500px]:w-full
+      w-[220px] max-[500px]:w-full max-[541px]:text-[14px] max-[541px]:py-1 max-[541px]:w-[150px]
     "
             onClick={goToPreviousPage}
             disabled={currentPage === 1}
@@ -131,7 +131,7 @@ export function Visits({
             ← Предыдущая
           </button>
 
-          <span className="text-center font-['Arial'] text-[18px] max-[500px]:text-[14px]">
+          <span className="text-center font-['Arial'] text-[18px] max-[500px]:text-[14px] max-[541px]:text-[13px]">
             Страница {currentPage} из {totalPages}
           </span>
 
@@ -143,7 +143,7 @@ export function Visits({
       bg-[rgba(42,239,137,0.35)] text-black
       rounded-[8px] text-center
       font-['Arial'] text-[18px] max-[500px]:text-[14px]
-      w-[220px] max-[500px]:w-full
+      w-[220px] max-[500px]:w-full max-[541px]:text-[14px] max-[541px]:w-[150px]
     "
             onClick={goToNextPage}
             disabled={currentPage === totalPages}

@@ -43,3 +43,44 @@
   color: #f7f7f7;
   cursor: pointer;
 }
+@media (max-width: 541px) {
+  .nav-item {
+    display: flex;
+    font-size: 16px;
+    align-items: center;
+    gap: 12px; // gap-3 (3 * 4px = 12px)
+    text-align: left;
+    padding: 7px 13px; // py-3 px-4
+    border-radius: 8px; // rounded-lg
+
+    font-weight: 500;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+
+    &--active {
+      background: #edb737;
+
+      color: white;
+    }
+
+    &--inactive {
+      color: #ffffff; // gray-700
+
+      &:hover {
+        background: #edb737;
+      }
+    }
+  }
+  .close_panel {
+    width: 45px;
+    height: 46px;
+    position: absolute;
+    top: 24px;
+    right: 58px;
+    color: #f7f7f7;
+    cursor: pointer;
+  }
+}

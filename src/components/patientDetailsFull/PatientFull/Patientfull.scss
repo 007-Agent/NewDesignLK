@@ -170,10 +170,7 @@
     font-size: 13px;
     width: 100px;
   }
-  .patient-detail-avatar {
-    width: 3rem;
-    height: 3rem;
-  }
+
   .patient-detail-info h2 {
     font-size: 14px;
     margin: 0;
@@ -213,5 +210,72 @@
   .vertical-tabs {
     max-width: 930px;
     margin: 0 auto;
+  }
+}
+@media (max-width: 541px) {
+  .patient-detail-avatar {
+    width: 3rem;
+    height: 3rem;
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+  .patient-detail-info h2 {
+    font-size: 15px;
+    width: 141px;
+  }
+  .patient-detail-meta {
+    font-size: 13px;
+  }
+  .header-btn-appointment {
+    padding: 10px;
+    font-size: 15px;
+    width: 150px;
+  }
+  .patient-detail-header-content {
+    display: flex;
+    flex-wrap: wrap; /* ← разрешаем перенос */
+    gap: 0.5rem 1.5rem;
+  }
+
+  .patient-detail-avatar {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+  }
+
+  .patient-detail-info {
+    min-width: 369px;
+    max-width: calc(100% - 60px);
+    display: flex;
+  }
+
+  .patient-detail-info h2 {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .patient-detail-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 13px;
+  }
+
+  .header-btn-appointment {
+    /* width: 100%; ← УБИРАЕМ */
+    width: auto; /* ← кнопка занимает только свою ширину */
+    padding: 8px 16px;
+    font-size: 14px;
+    margin-top: 4px;
+    order: 3;
+    flex-basis: auto; /* ← не растягивается */
+  }
+  .tab-header .tab-label {
+    font-size: 14px;
+  }
+  .tab-header {
+    padding: 6px;
   }
 }

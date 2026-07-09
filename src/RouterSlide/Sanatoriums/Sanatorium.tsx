@@ -68,10 +68,10 @@ export function Sanatorium({ user }: SanatoriumProps) {
     <div className="px-4 md:px-8 py-8 max-w-[1100px] mx-auto">
       {/* Заголовок */}
       <div className="mb-10 text-center">
-        <h1 className="text-[#46abf1] mb-3 text-3xl md:text-4xl font-bold">
+        <h1 className="text-[#46abf1] mb-3 text-3xl md:text-4xl font-bold max-[541px]:text-[20px]">
           Отдых и Санаторно-курортное лечение
         </h1>
-        <p className="text-gray-500 max-w-[680px] mx-auto text-base md:text-lg">
+        <p className="text-gray-500 max-w-[680px] mx-auto text-base md:text-lg max-[541px]:text-[15px]">
           Мы сотрудничаем с ведущими санаторно-курортными учреждениями, чтобы
           обеспечить нашим пациентам полноценное восстановление здоровья в
           комфортных условиях.
@@ -86,7 +86,7 @@ export function Sanatorium({ user }: SanatoriumProps) {
             className="flex flex-col md:flex-row bg-[] rounded-2xl shadow-md hover:shadow-orange-200/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden min-h-[500px]"
           >
             {/* Левая часть с изображением */}
-            <div className="relative flex-none md:w-[340px] h-full ">
+            <div className="relative flex-none md:w-[340px] h-full max-[541px]:w-[300px] m-auto">
               <img src={s.image} alt={s.name} className="w-full h-full " />
               <span className="absolute top-4 left-4 bg-[#edb737] text-[white] text-xs md:text-sm font-medium px-3 py-1 rounded-full">
                 {s.location}
@@ -95,10 +95,10 @@ export function Sanatorium({ user }: SanatoriumProps) {
 
             {/* Правая часть с контентом */}
             <div className="flex-1 p-5 md:p-7 flex flex-col gap-3">
-              <h2 className="text-gray-800 text-xl md:text-2xl font-bold m-0">
+              <h2 className="text-gray-800 text-xl md:text-2xl font-bold m-0 max-[541px]:text-[17px]">
                 {s.name}
               </h2>
-              <p className="text-gray-500 leading-relaxed m-0">
+              <p className="text-gray-500 leading-relaxed m-0 max-[541px]:text-[14px]">
                 {s.description}
               </p>
 
@@ -107,7 +107,7 @@ export function Sanatorium({ user }: SanatoriumProps) {
                 {s.features.map((f) => (
                   <span
                     key={f}
-                    className="bg-[#46abf1] text-[#46abf1]-600 border border-[#46abf1] text-[#ffff] md:text-sm font-medium px-3 py-1 rounded-full"
+                    className="bg-[#46abf1] text-[#46abf1]-600 border border-[#46abf1] text-[#ffff] md:text-sm font-medium px-3 py-1 rounded-full max-[541px]:text-[14px]"
                   >
                     {f}
                   </span>
@@ -116,7 +116,7 @@ export function Sanatorium({ user }: SanatoriumProps) {
 
               {/* Кнопка */}
               <button
-                className="self-start mt-auto bg-[#edb737]  text-white font-semibold py-2 px-6 rounded-lg hover:opacity-90 hover:scale-105 transition-all duration-200 shadow-md"
+                className="self-start mt-auto bg-[#edb737]  text-white font-semibold py-2 px-6 rounded-lg hover:opacity-90 hover:scale-105 transition-all duration-200 shadow-md max-[541px]:text-[14px]"
                 onClick={() => handleCardClick(s.url)}
               >
                 Подробнее

@@ -51,10 +51,10 @@
   cursor: pointer;
 }
 .visit-status-badge.green {
-  background-color: #46abf1;
-  color: #46abf1;
+  // background-color: #46abf1;
+  // color: #46abf1;
   font-size: 15px;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .visit-status-badge.blue {
@@ -65,4 +65,14 @@
 .visit-status-badge.yellow {
   background-color: #fef3c7;
   color: #92400e;
+}
+@media (max-width: 541px) {
+  .visit__card {
+    font-size: 14px;
+    width: 350px;
+    justify-content: start;
+  }
+  .visit-status-badge.green {
+    font-size: 11px;
+  }
 }

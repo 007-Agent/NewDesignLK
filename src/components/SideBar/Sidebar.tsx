@@ -73,8 +73,8 @@ export function Sidebar({
   };
   return (
     <>
-      <aside className="h-full w-[320px] bg-[#46abf1] border-r-4 border-[#46abf1]">
-        <div className="h-full overflow-auto flex flex-col px-6 py-[68px]">
+      <aside className="h-full w-[320px] bg-[#46abf1] border-r-4 border-[#46abf1] max-[541px]:w-[270px] z-50">
+        <div className="h-full overflow-auto flex flex-col px-6 py-[90px] max-[541px]:pt-25">
           {/* Навигация */}
           <nav className="flex flex-col gap-5">
             {menuItems.map((item, index) => {
@@ -113,7 +113,7 @@ export function Sidebar({
             <div className="flex flex-col gap-3">
               <button
                 onClick={() => setShowOnlineModal(true)}
-                className="flex items-center justify-center gap-3 px-4 py-3 w-full border-none rounded-lg text-base font-semibold cursor-pointer transition-all bg-white text-[#edb737] hover:bg-white/90 hover:-translate-y-0.5"
+                className="flex items-center justify-center gap-3 px-4 py-3 w-full border-none rounded-lg text-base font-semibold cursor-pointer transition-all bg-white text-[#edb737] hover:bg-white/90 hover:-translate-y-0.5 max-[541px]:text-[15px] max-[541px]:py-1.5"
               >
                 <Calendar className="w-[18px] h-[18px]" />
                 Онлайн запись

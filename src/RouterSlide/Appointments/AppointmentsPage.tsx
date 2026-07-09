@@ -65,11 +65,13 @@ export function AppointmentsPage(props: AppointmentsProps) {
     <div className="max-w-[1000px] mx-auto max-[450px]:max-w-[404px] max-[450px]:flex max-[450px]:flex-col max-[450px]:justify-center">
       {/* Header */}
       <div className="flex items-center justify-center gap-4 mb-8">
-        <div className="w-10 h-10 bg-[#2197ed] text-white rounded-lg flex items-center justify-center">
-          <Calendar className="w-7 h-7" />
+        <div className="w-10 h-10 bg-[#2197ed] text-white rounded-lg flex items-center justify-center max-[541px]:h-[30px] max-[541px]:w-[30px]">
+          <Calendar className="w-7 h-7 max-[541px]:w-[15px] max-[541px]:h-[15px]" />
         </div>
         <div className="flex justify-center">
-          <h2 className="text-xl font-semibold">Записи к врачу</h2>
+          <h2 className="text-xl font-semibold max-[541px]:text-[15px]">
+            Записи к врачу
+          </h2>
         </div>
       </div>
 
@@ -79,11 +81,11 @@ export function AppointmentsPage(props: AppointmentsProps) {
           <Spinner />
         ) : visits.length === 0 ? (
           <div className="flex flex-col">
-            <div className="text-center py-10 px-5 text-gray-500 text-2xl max-[450px]:text-base">
-              На данный момент нет записей к врачу отсутствуют
+            <div className="text-center py-10 px-5 text-gray-500 text-2xl max-[450px]:text-base max-[541px]:text-[15px]">
+              На данный момент записи к врачу отсутствуют!
             </div>
             <button
-              className="px-8 py-3 bg-[#d3ad28] text-white cursor-pointer rounded-lg transition-colors duration-300 shadow-sm max-w-[223px] mx-auto hover:bg-[#1a7acc]"
+              className="px-8 py-3 bg-[#d3ad28] text-white cursor-pointer rounded-lg transition-colors duration-300 shadow-sm max-w-[223px] mx-auto hover:bg-[#1a7acc] max-[541px]:px-4 max-[541px]:py-2"
               onClick={handleSetPatient}
             >
               Записаться к врачу!
@@ -95,7 +97,7 @@ export function AppointmentsPage(props: AppointmentsProps) {
       </div>
 
       {/* Phone support */}
-      <p className="text-center font-['Inter'] text-lg text-black mt-4 max-[450px]:text-[17px]">
+      <p className="text-center font-['Inter'] text-lg text-black mt-4 max-[450px]:text-[17px] max-[541px]:text-[15px]">
         Единый телефон поддержки +7 495 727-11-66
       </p>
 

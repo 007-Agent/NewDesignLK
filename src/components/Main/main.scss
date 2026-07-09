@@ -147,8 +147,8 @@
   padding-bottom: 16px;
   scrollbar-width: thin;
   scrollbar-color: #46abf1 #f3f4f6;
-  margin-bottom: 30px;
-  min-height: 330px;
+  margin-bottom: 50px;
+  min-height: 305px;
 }
 
 .news-list::-webkit-scrollbar {
@@ -295,5 +295,18 @@
   }
   .marquee-content {
     animation: marquee 10s linear infinite;
+  }
+}
+@media (max-width: 541px) {
+  .news-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px 50px;
+  }
+  .news-section {
+    max-width: 385px;
+    margin: 0 auto;
+    margin-bottom: 30px;
   }
 }
