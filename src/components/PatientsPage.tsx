@@ -40,12 +40,12 @@ export function PatientsPage({ user }: ProfilePatientsProps) {
       ) : (
         <>
           <div className="flex items-center gap-4 mb-8 font-['Inter']">
-            <div className="w-16 h-16 bg-teal-100 rounded-lg flex items-center justify-center">
+            <div className="w-16 h-16 bg-teal-100 rounded-lg flex items-center justify-center max-[541px]:w-13 max-[541px]:h-13">
               <Users className="w-6 h-6 text-teal-600" />
             </div>
             <div className="patients-header-title">
-              <h2 className="mb-1 text-xl">Пациенты</h2>
-              <p className="text-gray-500 text-base">
+              <h2 className="mb-1 text-xl max-[541px]:text-[16px]">Пациенты</h2>
+              <p className="text-gray-500 text-base max-[541px]:text-[14px]">
                 Всего пациентов: {patients.length}
               </p>
             </div>

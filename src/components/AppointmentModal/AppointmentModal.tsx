@@ -116,9 +116,8 @@ export function AppointmentModal({
       bound.setDate(bound.getDate() + 29);
       const rightBound = new Date(bound);
 
-
       if (!(specId && specId > 0 && fromDate.getTime() <= dateTo.getTime())) {
-        return; 
+        return;
       }
 
       try {

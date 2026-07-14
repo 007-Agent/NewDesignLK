@@ -73,8 +73,14 @@ export function Sidebar({
   };
   return (
     <>
-      <aside className="h-full w-[320px] bg-[#46abf1] border-r-4 border-[#46abf1] max-[541px]:w-[270px] z-50">
-        <div className="h-full overflow-auto flex flex-col px-6 py-[90px] max-[541px]:pt-25">
+      <aside className="h-full w-[320px] bg-[#46abf1] border-[#46abf1] max-[541px]:w-[270px] z-50 scrollbar-red">
+        <div
+          className="h-full overflow-auto flex flex-col px-6 py-[90px] border-[#ffff] max-[541px]:pt-25 max-[541px]:w-full"
+          style={{
+            scrollbarColor: "#ebebeb #f1f1f1",
+            scrollbarWidth: "thin",
+          }}
+        >
           {/* Навигация */}
           <nav className="flex flex-col gap-5">
             {menuItems.map((item, index) => {

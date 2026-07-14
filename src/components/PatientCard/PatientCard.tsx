@@ -56,15 +56,17 @@ export function PatientCard({ patient, user }: PatientCardProps) {
     w-[420px] 
     max-[450px]:w-[350px]
     p-5
+
+    max-[541px]:w-[380px] 
   "
     >
       {/* Шапка: аватар + имя */}
-      <div className="flex items-center gap-4 mb-4">
+      <div className="flex items-center gap-4 mb-4 max-[450px]:mb-0 ">
         <div
           className={`
       w-14 h-14 rounded-full flex items-center justify-center
       ${patient.gender === "муж" && "bg-blue-100"}
-    `}
+     max-[541px]:w-[38px]  max-[541px]:h-[38px]`}
         >
           <UserRoundPlus
             className={`
@@ -73,7 +75,7 @@ export function PatientCard({ patient, user }: PatientCardProps) {
   `}
           />
         </div>
-        <h3 className="text-xl font-semibold text-gray-800 max-[450px]:text-base">
+        <h3 className="text-xl font-semibold text-gray-800 max-[450px]:text-base max-[541px]:text-[16px]">
           {patient.fio.split(" ").slice(0, 2).join(" ")}, {age} лет
         </h3>
       </div>
@@ -81,12 +83,12 @@ export function PatientCard({ patient, user }: PatientCardProps) {
       {/* Детали: дата рождения + номер карты */}
       <div className="flex  gap-3">
         <div className="flex items-center gap-3">
-          <Calendar className="w-5 h-5 text-[#2197ed]" />
+          <Calendar className="w-5 h-5 text-[#2197ed] " />
           <div>
-            <p className="text-xs text-gray-500 uppercase tracking-wide">
+            <p className="text-xs text-gray-500 uppercase tracking-wide max-[541px]:text-[10px]">
               Дата рождения
             </p>
-            <p className="text-base font-medium text-gray-700 max-[450px]:text-sm">
+            <p className="text-base font-medium text-gray-700 max-[450px]:text-sm max-[541px]:text-[13px]">
               {patient.birthday}
             </p>
           </div>
@@ -94,10 +96,10 @@ export function PatientCard({ patient, user }: PatientCardProps) {
         <div className="flex items-center gap-3">
           <FileText className="w-5 h-5 text-[#2197ed]" />
           <div>
-            <p className="text-xs text-gray-500 uppercase tracking-wide">
+            <p className="text-xs text-gray-500 uppercase tracking-wide max-[541px]:text-[10px]">
               Номер мед. карты
             </p>
-            <p className="text-base font-medium text-gray-700 max-[450px]:text-sm">
+            <p className="text-base font-medium text-gray-700 max-[450px]:text-sm max-[541px]:text-[13px]">
               {patient.nib}
             </p>
           </div>
