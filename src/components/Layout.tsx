@@ -25,7 +25,7 @@ export default function Layout() {
         <div
           className={`
       
-        mx-auto max-[431px]:pt-10  
+        mx-auto max-[431px]:pt-5  
         ${
           isHomePage
             ? "max-w-[calc(7/6*100%)]" // увеличиваем на ~30% (примерно как 130%)

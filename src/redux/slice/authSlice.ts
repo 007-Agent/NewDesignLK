@@ -117,7 +117,7 @@ const authSlice = createSlice({
   .addCase(checkAuth.fulfilled, (state, action) => {
     state.checkStatus = 'succeeded';
     state.user = action.payload;
-    localStorage.setItem('user', JSON.stringify(action.payload));
+    // localStorage.setItem('user', JSON.stringify(action.payload));
   })
   .addCase(checkAuth.rejected, (state) => {
     state.checkStatus = 'failed';
