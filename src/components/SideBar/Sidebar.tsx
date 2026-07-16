@@ -1,9 +1,9 @@
-//
+//Боковое меню левое//
 import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
-
+import Policy from "../../RouterSlide/Policy/Policy";
 import {
   Menu,
   Home,
@@ -42,13 +42,13 @@ export function Sidebar({
     { label: "Записи", page: "/doctors", icon: User },
     { label: "Пациенты", page: "/patients", icon: Users },
     { label: "Расписание", page: "/schedule", icon: Calendar },
-    { label: "Конфиденциальность", page: "/confidence", icon: Shield },
+    // { label: "Конфиденциальность", page: "/confidence", icon: Shield },
     { label: "Отдых и лечение", page: "/sanatories", icon: Hospital },
   ];
   const [showOnlineModal, setShowOnlineModal] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
   const [showAppointmentModal, setShowAppointmentModal] = useState(false);
-
+  const [showPolicyModal, setShowPolicyModal] = useState(false);
   const dispatch = useAppDispatch();
   const sidebarRef = useRef<HTMLDivElement>(null);
 
@@ -62,6 +62,11 @@ export function Sidebar({
     dispatch(logoutUser());
     dispatch(setMenuOpen(false));
     navigate("/doctors");
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleShowPolicy = () => {
+    setShowPolicyModal(true);
     setIsMobileMenuOpen(false);
   };
 
@@ -115,7 +120,7 @@ export function Sidebar({
           </button>
 
           {/* Футер */}
-          <div className="mt-auto pt-6 border-t border-white/20">
+          <div className="mt-auto pt-6 border-t border-white/20 mb-5">
             <div className="flex flex-col gap-3">
               <button
                 onClick={() => setShowOnlineModal(true)}
@@ -154,6 +159,13 @@ export function Sidebar({
               </div>
             </div>
           </div>
+          <button
+            onClick={handleShowPolicy}
+            className="flex items-center justify-center gap-3 px-4 py-2.5 w-full rounded-lg text-sm font-medium text-white border border-white/30 hover:bg-white/20 transition-all"
+          >
+            <Shield className="w-[18px] h-[18px]" />
+            Политика конфиденциальности
+          </button>
         </div>
       </aside>
       <OnlineView
@@ -168,6 +180,10 @@ export function Sidebar({
           patient={selectedPatient}
         />
       )}
+      <Policy
+        isOpen={showPolicyModal}
+        onClose={() => setShowPolicyModal(false)}
+      />
     </>
   );
 }

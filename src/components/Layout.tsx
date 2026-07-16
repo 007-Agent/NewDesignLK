@@ -1,3 +1,4 @@
+//Компонент для определения машрута страницы//
 import { Outlet, useLocation } from "react-router-dom";
 import { Sidebar } from "./SideBar/Sidebar";
 import { useState } from "react";
