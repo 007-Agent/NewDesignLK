@@ -27,13 +27,13 @@ export default defineConfig({
     },
   },
   build: {
-    target: 'esnext',
     outDir: 'build',
-    // rollupOptions: {
-    //   input: {
-    //     office: path.resolve(__dirname, 'office.html'), // ← СБОРКА СОЗДАСТ office.html
-    //   },
-    // },
+    rollupOptions: {
+      input: {
+        office: path.resolve(__dirname, 'office.html'),   // ← ВАЖНО
+        password: path.resolve(__dirname, 'password.html'), // ← ВАЖНО
+      },
+    },
   },
   server: {
     port: 8000,

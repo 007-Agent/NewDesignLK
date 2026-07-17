@@ -31,7 +31,7 @@ export function Authorization({ onSuccess }: AuthorizationProps) {
     }
   };
   console.log(error);
-
+  
   return (
     <form onSubmit={handleSubmit} className="login-form">
       <div className="login-field">

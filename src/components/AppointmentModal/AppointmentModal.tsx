@@ -11,7 +11,7 @@ import { ru } from "date-fns/locale/ru";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import { Patient } from "../patientDetailsFull/PatientFull/PatientFull";
-import { CustomSelectModal } from "../..//components/CustomSelect/CustomSelect";
+import { CustomSelectModal } from "../../components/CustomSelect/CustomSelect";
 import Intervals from "./Intervals/Intervals";
 import { createPortal } from "react-dom";
 interface IntervalItem {
