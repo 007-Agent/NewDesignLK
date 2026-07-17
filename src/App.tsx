@@ -46,11 +46,6 @@ export default function App() {
     }
   }, [navigate]);
 
-  // useEffect(() => {
-  //   dispatch(checkAuth());
-  //   dispatch(fetchSchedule());
-  //   dispatch(fetchDepartments())
-  // }, [dispatch]);
   useEffect(() => {
     const init = async () => {
       // 1. Сначала проверяем авторизацию
@@ -116,8 +111,6 @@ export default function App() {
               </PrivateRoute>
             }
           />
-
-   
 
           <Route
             path="/sanatories"
