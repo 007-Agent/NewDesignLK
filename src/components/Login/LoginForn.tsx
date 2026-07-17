@@ -1,86 +1,23 @@
-// import { X } from 'lucide-react';
-// import { useState } from 'react';
-// import { useDispatch, useSelector } from "react-redux";
-// import './login.scss';
-// import { useAppDispatch } from '../../redux/hooks';
-// import { loginUser } from '../../redux/authSlice';
+//Модуль для авторизации и регистрации
 interface LoginFormProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-// export function LoginForm() {
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-//       const dispatch = useAppDispatch()
-
-//  const handleSubmit = (e: React.FormEvent) => {
-//     e.preventDefault();
-//      dispatch(loginUser({ username, password }));
-//      console.log(username, password)
-//   };
-
-//   return (
-//     <div className="login-overlay" >
-//       <div className="login-panel" onClick={(e) => e.stopPropagation()}>
-//         <button className="login-close" >
-//           <X />
-//         </button>
-
-//         <h2 className="login-title">Авторизуйтесь на портал</h2>
-
-//         <form onSubmit={handleSubmit} className="login-form">
-//           <div className="login-field">
-//             <label htmlFor="login" className="login-label">
-//               Логин
-//             </label>
-//             <input
-//               id="login"
-//               type="text"
-//               value={username}
-//               onChange={(e) => setUsername(e.target.value)}
-//               className="login-input"
-//               placeholder="Введите логин"
-//               required
-//             />
-//           </div>
-
-//           <div className="login-field">
-//             <label htmlFor="password" className="login-label">
-//               Пароль
-//             </label>
-//             <input
-//               id="password"
-//               type="password"
-//               value={password}
-//               onChange={(e) => setPassword(e.target.value)}
-//               className="login-input"
-//               placeholder="Введите пароль"
-//               required
-//             />
-//           </div>
-
-//           <button type="submit" className="login-submit">
-//             Войти
-//           </button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// }
 import { X } from "lucide-react";
 import { useState } from "react";
 import "./login.scss";
 import { Authorization } from "./Auth/Authorization";
 import { Registration } from "./Registration/Registartion";
 import logotip from "../../../docs/logotip.png";
+import { ChangePassword } from "./restorePassword/ChangePassword";
 
 interface LoginFormProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-type TabType = "auth" | "reg";
+type TabType = "auth" | "reg" | "restore";
 
 export function LoginForm() {
   const [activeTab, setActiveTab] = useState<TabType>("auth");
@@ -90,10 +27,11 @@ export function LoginForm() {
   return (
     <div className="login-overlay">
       <div className="login-panel" onClick={(e) => e.stopPropagation()}>
-        <button className="login-close">
+        {/* <button className="login-close">
           <X />
-        </button>
+        </button> */}
         <img src={logotip} alt="" className="auth_logo" />
+
         {/* Табы сверху */}
         <div className="login-tabs">
           <button
@@ -111,32 +49,48 @@ export function LoginForm() {
         </div>
 
         <div className="login-content">
-          {activeTab === "auth" ? (
-            <Authorization />
-          ) : (
+          {activeTab === "auth" && <Authorization />}
+          {activeTab === "reg" && (
             <Registration onSwitchToLogin={() => setActiveTab("auth")} />
           )}
+          {activeTab === "restore" && (
+            <ChangePassword onSwitchToLogin={() => setActiveTab("auth")} />
+          )}
         </div>
-        <div className="login-checkboxes">
-          <label className="checkbox-label">
-            <input
-              type="checkbox"
-              checked={consentPersonalData}
-              // onChange={(e) => setConsentPersonalData(e.target.checked)}
-              readOnly
-            />
-            Подтверждаю согласие на обработку персональных данных
-          </label>
-          <label className="checkbox-label">
-            <input
-              type="checkbox"
-              checked={consentOffer}
-              // onChange={(e) => setConsentOffer(e.target.checked)}
-              readOnly
-            />
-            Подтверждаю согласие с договором-офертой
-          </label>
-        </div>
+
+        {/* Кнопка "Восстановить пароль" под формой (только для auth) */}
+        {activeTab === "auth" && (
+          <div className="login-footer">
+            <button
+              className="restore-password-btn"
+              onClick={() => setActiveTab("restore")}
+            >
+              Восстановить пароль
+            </button>
+          </div>
+        )}
+
+        {/* Чекбоксы (только для регистрации) */}
+        {activeTab === "reg" && (
+          <div className="login-checkboxes">
+            <label className="checkbox-label">
+              <input
+                type="checkbox"
+                checked={consentPersonalData}
+                readOnly
+              />
+              Подтверждаю согласие на обработку персональных данных
+            </label>
+            <label className="checkbox-label">
+              <input
+                type="checkbox"
+                checked={consentOffer}
+                readOnly
+              />
+              Подтверждаю согласие с договором-офертой
+            </label>
+          </div>
+        )}
       </div>
     </div>
   );
