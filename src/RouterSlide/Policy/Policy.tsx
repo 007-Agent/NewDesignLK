@@ -107,10 +107,17 @@ export default class Policy extends Component<
   fetchPolicy() {
     this.setState({ loading: true });
     axios
-      .get("/policy")
+      .get("/policy.html")
       .then((response) => {
         if (this.mounted) {
-          this.setState({ content: response.data, loading: false });
+          const html = response.data;
+          // Извлекаем содержимое тега body
+          const match = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+          if (match) {
+            this.setState({ content: match[1], loading: false });
+          } else {
+            this.setState({ content: html, loading: false });
+          }
         }
       })
       .catch((error) => {

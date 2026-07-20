@@ -42,7 +42,7 @@ export default function App() {
     )[0] as PerformanceNavigationTiming;
     if (navEntry?.type === "reload") {
       hasRedirected.current = true;
-      navigate("/home", { replace: true });
+      navigate("/office", { replace: true });
     }
   }, [navigate]);
 
@@ -68,7 +68,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/office" element={<HomePage user={user} />} />
           <Route
             path="/home"
             element={
